@@ -1,6 +1,11 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
+ext{
+    ankoVersion = '0.10.1'
+    retrofitVersion = '2.3.0'
+}
+
 android {
     compileSdkVersion 26
     buildToolsVersion "26.0.1"
@@ -28,10 +33,22 @@ dependencies {
     testCompile 'junit:junit:4.12'
 
     // Kotlin
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlinVersion"
 
     // Design libraries
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
+
+    // Anko
+    compile "org.jetbrains.anko:anko:$ankoVersion"
+    compile "org.jetbrains.anko:anko-commons:$ankoVersion"
+
+    // Retrofit
+    compile "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    compile "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    compile "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
+
+    // OkHttp
+    compile 'com.squareup.okhttp3:logging-interceptor:3.8.1'
 }
 repositories {
     mavenCentral()
