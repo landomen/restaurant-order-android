@@ -6,6 +6,8 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import si.lanisnik.restaurantorder.BuildConfig
+import si.lanisnik.restaurantorder.data.net.apis.RestApiCustomer
+import si.lanisnik.restaurantorder.data.net.apis.RestApiMenuItems
 import java.util.concurrent.TimeUnit
 
 /**
@@ -14,7 +16,8 @@ import java.util.concurrent.TimeUnit
  */
 object RestApiClient {
 
-    val api: RestApiService
+    val api: RestApiCustomer
+    val menuItemsApi: RestApiMenuItems
 
     init {
         val retrofit = Retrofit.Builder()
@@ -23,7 +26,8 @@ object RestApiClient {
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(createOkHttpClient())
                 .build()
-        api = retrofit.create(RestApiService::class.java)
+        api = retrofit.create(RestApiCustomer::class.java)
+        menuItemsApi = retrofit.create(RestApiMenuItems::class.java)
     }
 
     private fun createOkHttpClient(): OkHttpClient {
@@ -39,7 +43,7 @@ object RestApiClient {
             // automatically add authorization header to every request that demands it
             if (original.header(NetConstants.HEADER_AUTHORIZATION)?.contains(NetConstants.REPLACE_CHAR) == true) {
                 // TODO Add authorization header value
-                requestBuilder.header(NetConstants.HEADER_AUTHORIZATION, "")
+//                requestBuilder.header(NetConstants.HEADER_AUTHORIZATION, "")
             }
 
             chain.proceed(requestBuilder.build())
