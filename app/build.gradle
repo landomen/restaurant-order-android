@@ -7,6 +7,7 @@ ext{
     ankoVersion = '0.10.1'
     retrofitVersion = '2.3.0'
     daggerVersion = '2.11'
+    supportLibraryVersion = '26.0.0'
 }
 
 android {
@@ -30,7 +31,7 @@ android {
     productFlavors {
         develop {
             versionNameSuffix "-DEV"
-            buildConfigField "String", "SERVER_BASE_URL", '"http://localhost:8080/"'
+            buildConfigField "String", "SERVER_BASE_URL", '"http://7330f0f5.ngrok.io/"'
         }
 
         staging {
@@ -50,6 +51,7 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlinVersion"
 
     // Design libraries
+    compile "com.android.support:design:$supportLibraryVersion"
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
 
     // Anko
@@ -72,7 +74,8 @@ dependencies {
     compile "com.google.dagger:dagger:$daggerVersion"
     kapt "com.google.dagger:dagger-compiler:$daggerVersion"
 
-    compile 'com.android.support:design:25.3.1'
+    // Material Dialogs
+    compile 'com.afollestad.material-dialogs:core:0.9.4.5'
 }
 repositories {
     mavenCentral()

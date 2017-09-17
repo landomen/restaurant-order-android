@@ -1,5 +1,14 @@
 <resources>
-    <string name="app_name">Restaurant Order</string>
-    <string name="title_activity_dashboard">DashboardActivity</string>
-    <string name="title_activity_main">MainActivity</string>
+    <!-- General -->
+    <string name="app_name">Pizzerija Gobica</string>
+    <string name="general_loading">Nalaganje…</string>
+    <string name="general_dialog_notification_title">Obvestilo</string>
+    <string name="general_close">Zapri</string>
+    <string name="general_retry">Poskusi znova</string>
+
+    <!-- Errors -->
+    <string name="error_loading_failed">Pri pridobivanju podatkov je prišlo do napake. Prosim, poskusite kasneje.</string>
+
+    <!-- Categories -->
+    <string name="categories_title">Meni</string>
 </resources>

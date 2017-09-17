@@ -22,16 +22,17 @@
         </activity>
         <activity
             android:name=".presentation.dashboard.DashboardActivity"
-            android:label="@string/title_activity_dashboard"
             android:screenOrientation="portrait" />
         <activity
             android:name=".presentation.menuitems.list.MenuItemsListActivity"
+            android:label="@string/categories_title"
             android:screenOrientation="portrait" />
         <activity
             android:name=".presentation.menuitems.details.MenuItemDetailsActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".presentation.categories.CategoriesListActivity"
+            android:label="@string/categories_title"
             android:screenOrientation="portrait" />
     </application>
 
