@@ -1,7 +1,8 @@
-package si.lanisnik.restaurantorder
+package si.lanisnik.restaurantorder.presentation.splash
 
 import android.app.Activity
 import android.os.Bundle
+import si.lanisnik.restaurantorder.R
 
 class SplashActivity : Activity() {
 
