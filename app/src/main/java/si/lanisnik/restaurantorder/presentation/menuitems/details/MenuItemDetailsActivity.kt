@@ -1,11 +1,10 @@
 package si.lanisnik.restaurantorder.presentation.menuitems.details
 
-import android.app.Activity
 import android.os.Bundle
-
 import si.lanisnik.restaurantorder.R
+import si.lanisnik.restaurantorder.presentation.base.BaseActivity
 
-class MenuItemDetailsActivity : Activity() {
+class MenuItemDetailsActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
