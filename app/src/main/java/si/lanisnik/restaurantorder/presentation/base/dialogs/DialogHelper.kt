@@ -41,11 +41,6 @@ object DialogHelper {
                     .cancelable(cancelable)
                     .canceledOnTouchOutside(cancelable)
                     .title(R.string.general_dialog_notification_title)
-                    .titleColorRes(R.color.primary_text)
-                    .contentColorRes(R.color.secondary_text)
-                    .positiveColorRes(R.color.accent)
-                    .negativeColorRes(R.color.accent)
-                    .backgroundColorRes(android.R.color.white)
 
     private fun wrapCallback(callback: SimpleListener): MaterialDialog.SingleButtonCallback =
             MaterialDialog.SingleButtonCallback { dialog, _ ->

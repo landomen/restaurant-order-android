@@ -5,6 +5,7 @@ import android.support.annotation.Nullable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_categories_list.*
+import kotlinx.android.synthetic.main.toolbar.*
 import si.lanisnik.restaurantorder.R
 import si.lanisnik.restaurantorder.data.entity.menuitems.FoodCategory
 import si.lanisnik.restaurantorder.data.entity.menuitems.GroupedByCategory
@@ -22,7 +23,9 @@ class CategoriesListActivity : BaseActivity() {
     override fun onCreate(@Nullable savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_categories_list)
-//        actionBar.setDisplayHomeAsUpEnabled(true)
+        setSupportActionBar(toolbar)
+        setTitle(R.string.app_name)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         fetchData()
     }
 
