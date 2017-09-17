@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 ext{
@@ -29,7 +30,7 @@ android {
     productFlavors {
         develop {
             versionNameSuffix "-DEV"
-            buildConfigField "String", "SERVER_BASE_URL", '"http://localhost:8080/"'
+            buildConfigField "String", "SERVER_BASE_URL", '"http://be427a6c.ngrok.io/"'
         }
 
         staging {
