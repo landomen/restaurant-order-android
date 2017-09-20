@@ -8,6 +8,7 @@ ext{
     retrofitVersion = '2.3.0'
     daggerVersion = '2.11'
     supportLibraryVersion = '26.0.0'
+    architectureComponentsVersion = "1.0.0-alpha9"
 }
 
 android {
@@ -31,7 +32,7 @@ android {
     productFlavors {
         develop {
             versionNameSuffix "-DEV"
-            buildConfigField "String", "SERVER_BASE_URL", '"http://7330f0f5.ngrok.io/"'
+            buildConfigField "String", "SERVER_BASE_URL", '"http://c0da93db.ngrok.io/"'
         }
 
         staging {
@@ -76,6 +77,11 @@ dependencies {
 
     // Material Dialogs
     compile 'com.afollestad.material-dialogs:core:0.9.4.5'
+
+    // Architecture components
+    compile "android.arch.persistence.room:runtime:$architectureComponentsVersion"
+    kapt "android.arch.persistence.room:compiler:$architectureComponentsVersion"
+    compile "android.arch.persistence.room:rxjava2:$architectureComponentsVersion"
 }
 repositories {
     mavenCentral()
