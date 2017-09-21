@@ -1,0 +1,93 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+android {
+    defaultPublishConfig "debug"
+
+    def globalConfiguration = rootProject.extensions.getByName("ext")
+
+    compileSdkVersion globalConfiguration["androidCompileSdkVersion"]
+    buildToolsVersion globalConfiguration["androidBuildToolsVersion"]
+
+    defaultConfig {
+        minSdkVersion globalConfiguration["androidMinSdkVersion"]
+        targetSdkVersion globalConfiguration["androidTargetSdkVersion"]
+        versionCode 1
+    }
+
+    lintOptions {
+        quiet true
+        abortOnError false
+        ignoreWarnings true
+        disable 'InvalidPackage'  // Some libraries have issues with this
+        disable 'OldTargetApi'    // Due to Robolectric that modifies the manifest when running tests
+    }
+
+    productFlavors {
+        develop {
+            versionNameSuffix "-DEV"
+            buildConfigField "String", "SERVER_BASE_URL", '"http://c0da93db.ngrok.io/"'
+        }
+
+        staging {
+            buildConfigField "String", "SERVER_BASE_URL", '"http://localhost:8080/"'
+        }
+    }
+}
+
+configurations {
+    provided
+}
+
+sourceSets {
+    main {
+        compileClasspath += configurations.provided
+    }
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${rootProject.ext.kotlinVersion}"
+    }
+}
+
+dependencies {
+    def dataDependencies = rootProject.ext.dataDependencies
+
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    testCompile 'junit:junit:4.12'
+
+    compile project(':domain')
+
+    // Kotlin
+    compile dataDependencies.kotlinStdLib
+
+    // RxJava
+    compile dataDependencies.rxJava
+    compile dataDependencies.rxAndroid
+
+    // Retrofit
+    compile dataDependencies.retrofit
+    compile dataDependencies.retrofitGson
+    compile dataDependencies.retrofitRxJava
+
+    // OkHttp
+    compile dataDependencies.okHttp
+
+    // Architecture components (Room)
+    compile dataDependencies.roomRuntime
+    compile dataDependencies.roomCompiler
+    compile dataDependencies.roomRxJava2
+
+    // Annotations
+    provided dataDependencies.javaxAnnotation
+    compile dataDependencies.javaxInject
+    compile dataDependencies.androidAnnotations
+}

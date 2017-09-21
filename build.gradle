@@ -1,13 +1,13 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-
 buildscript {
     ext.kotlinVersion = '1.1.4-3'
+
     repositories {
         jcenter()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.3.3'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlinVersion}"
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -23,6 +23,106 @@ allprojects {
     }
 }
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
+ext {
+    //Android
+    androidBuildToolsVersion = "26.0.1"
+    androidMinSdkVersion = 21
+    androidTargetSdkVersion = 26
+    androidCompileSdkVersion = 26
+
+    // Design libraries
+    supportLibraryVersion = '26.1.0'
+
+    // Kotlin
+    kotlinVersion = "$kotlinVersion"
+    ankoVersion = '0.10.1'
+
+    // RxJava
+    rxJavaVersion = '2.1.3'
+    rxAndroidVersion = '2.0.1'
+
+    // Retrofit
+    retrofitVersion = '2.3.0'
+
+    // Dagger
+    daggerVersion = '2.11'
+
+    // Architecture components
+    architectureComponentsVersion = "1.0.0-alpha9"
+
+    // Annotations
+    javaxAnnotationVersion = '1.0'
+    javaxInjectVersion = '1'
+    androidAnnotationsVersion = '21.0.3'
+
+    presentationDependencies = [
+            // Kotlin
+            kotlinStdLib:       "org.jetbrains.kotlin:kotlin-stdlib-jre7:${kotlinVersion}",
+
+            // RxJava
+            rxJava:             "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+            rxAndroid:          "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
+
+            // Dagger
+            daggerCompiler:     "com.google.dagger:dagger-compiler:${daggerVersion}",
+            dagger:             "com.google.dagger:dagger:${daggerVersion}",
+
+            // Design libraries
+            supportDesign:      "com.android.support:design:${supportLibraryVersion}",
+            constraintLayout:   'com.android.support.constraint:constraint-layout:1.0.2',
+
+            // Anko
+            anko:               "org.jetbrains.anko:anko:${ankoVersion}",
+            ankoCommons:        "org.jetbrains.anko:anko-commons:${ankoVersion}",
+
+            // Material Dialogs
+            materialDialogs:    'com.afollestad.material-dialogs:core:0.9.4.5',
+
+            // Annotations
+            javaxAnnotation:    "javax.annotation:jsr250-api:${javaxAnnotationVersion}"
+    ]
+
+    domainDependencies = [
+            // RxJava
+            rxJava:             "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+
+             // Kotlin
+            kotlinStdLib:       "org.jetbrains.kotlin:kotlin-stdlib-jre7:${kotlinVersion}",
+
+            // Annotations
+            javaxAnnotation:    "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
+            javaxInject:        "javax.inject:javax.inject:${javaxInjectVersion}"
+    ]
+
+    dataDependencies = [
+            // Kotlin
+            kotlinStdLib:       "org.jetbrains.kotlin:kotlin-stdlib-jre7:${kotlinVersion}",
+
+            // Dagger
+            daggerCompiler:     "com.google.dagger:dagger-compiler:${daggerVersion}",
+            dagger:             "com.google.dagger:dagger:${daggerVersion}",
+
+            // RxJava
+            rxJava:             "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+            rxAndroid:          "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
+
+            // Retrofit
+            retrofit:           "com.squareup.retrofit2:retrofit:${retrofitVersion}",
+            retrofitGson:       "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
+            retrofitRxJava:     "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}",
+
+            // OkHttp
+            okHttp:             'com.squareup.okhttp3:logging-interceptor:3.8.1',
+
+            // Architecture components
+            roomRuntime:        "android.arch.persistence.room:runtime:${architectureComponentsVersion}",
+            roomCompiler:       "android.arch.persistence.room:compiler:${architectureComponentsVersion}",
+            roomRxJava2:        "android.arch.persistence.room:rxjava2:${architectureComponentsVersion}",
+
+            // Annotations
+            javaxAnnotation:    "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
+            javaxInject:        "javax.inject:javax.inject:${javaxInjectVersion}",
+            androidAnnotations: "com.android.support:support-annotations:${androidAnnotationsVersion}"
+    ]
 }
+

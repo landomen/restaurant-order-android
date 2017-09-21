@@ -1,0 +1,37 @@
+apply plugin: 'kotlin'
+
+sourceCompatibility = "1.7"
+targetCompatibility = "1.7"
+
+configurations {
+    provided
+}
+
+sourceSets {
+    main {
+        compileClasspath += configurations.provided
+    }
+}
+
+def domainDependencies = rootProject.ext.domainDependencies
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${rootProject.ext.kotlinVersion}"
+    }
+}
+
+dependencies {
+    // Annotations
+    provided domainDependencies.javaxAnnotation
+    compile domainDependencies.javaxInject
+
+    // RxJava
+    compile domainDependencies.rxJava
+
+    // Kotlin
+    compile domainDependencies.kotlinStdLib
+}
