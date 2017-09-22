@@ -4,6 +4,7 @@ buildscript {
 
     repositories {
         jcenter()
+        mavenCentral()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.3.3'
@@ -23,6 +24,10 @@ allprojects {
     }
 }
 
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
 ext {
     //Android
     androidBuildToolsVersion = "26.0.1"
@@ -31,10 +36,10 @@ ext {
     androidCompileSdkVersion = 26
 
     // Design libraries
-    supportLibraryVersion = '26.1.0'
+    supportLibraryVersion = '26.0.2'
 
     // Kotlin
-    kotlinVersion = "$kotlinVersion"
+    kotlinVersion = "1.1.4-3"
     ankoVersion = '0.10.1'
 
     // RxJava

@@ -15,5 +15,5 @@ data class MenuItem(
         val description: String,
         val image: String? = null,
         val price: Double,
-        val category: FoodCategory
+        val category: String
 )

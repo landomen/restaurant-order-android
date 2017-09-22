@@ -3,7 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
 android {
-    defaultPublishConfig "debug"
+    defaultPublishConfig "developDebug"
 
     def globalConfiguration = rootProject.extensions.getByName("ext")
 
@@ -16,14 +16,6 @@ android {
         versionCode 1
     }
 
-    lintOptions {
-        quiet true
-        abortOnError false
-        ignoreWarnings true
-        disable 'InvalidPackage'  // Some libraries have issues with this
-        disable 'OldTargetApi'    // Due to Robolectric that modifies the manifest when running tests
-    }
-
     productFlavors {
         develop {
             versionNameSuffix "-DEV"
@@ -34,15 +26,11 @@ android {
             buildConfigField "String", "SERVER_BASE_URL", '"http://localhost:8080/"'
         }
     }
-}
 
-configurations {
-    provided
-}
-
-sourceSets {
-    main {
-        compileClasspath += configurations.provided
+    packagingOptions {
+        exclude 'LICENSE.txt'
+        exclude 'NOTICE'
+        exclude 'META-INF/LICENSE'
     }
 }
 
@@ -56,38 +44,32 @@ buildscript {
 }
 
 dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     def dataDependencies = rootProject.ext.dataDependencies
-
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    testCompile 'junit:junit:4.12'
-
     compile project(':domain')
-
     // Kotlin
     compile dataDependencies.kotlinStdLib
-
     // RxJava
     compile dataDependencies.rxJava
     compile dataDependencies.rxAndroid
-
     // Retrofit
     compile dataDependencies.retrofit
     compile dataDependencies.retrofitGson
     compile dataDependencies.retrofitRxJava
-
     // OkHttp
     compile dataDependencies.okHttp
-
     // Architecture components (Room)
     compile dataDependencies.roomRuntime
-    compile dataDependencies.roomCompiler
+    kapt dataDependencies.roomCompiler
     compile dataDependencies.roomRxJava2
-
     // Annotations
     provided dataDependencies.javaxAnnotation
     compile dataDependencies.javaxInject
     compile dataDependencies.androidAnnotations
+}
+
+configurations.all {
+    resolutionStrategy {
+        force "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+    }
 }

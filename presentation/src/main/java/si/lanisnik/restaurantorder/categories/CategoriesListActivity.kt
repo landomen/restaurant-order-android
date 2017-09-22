@@ -12,11 +12,13 @@ import si.lanisnik.restaurantorder.base.extensions.changeVisibility
 import si.lanisnik.restaurantorder.base.extensions.enableItemDividers
 import si.lanisnik.restaurantorder.base.extensions.showErrorDialogWithRetryAndDismissCallback
 import si.lanisnik.restaurantorder.categories.adapters.CategoryRecyclerAdapter
+import si.lanisnik.restaurantorder.data.entity.menuitems.GroupedByCategory
+import si.lanisnik.restaurantorder.data.net.RestApiClient
 import si.lanisnik.restaurantorder.domain.model.FoodCategory
 
 class CategoriesListActivity : BaseActivity() {
 
-//    private lateinit var categories: List<>
+    private lateinit var categories: List<GroupedByCategory>
 
     override fun onCreate(@Nullable savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,9 +44,9 @@ class CategoriesListActivity : BaseActivity() {
     }
 
     private fun showCategories() {
-//        categoriesRecyclerView.adapter = CategoryRecyclerAdapter(categories.map { FoodCategory(title = it.title) }, {
-//
-//        })
+        categoriesRecyclerView.adapter = CategoryRecyclerAdapter(categories.map { FoodCategory(title = it.title) }, {
+
+        })
         categoriesRecyclerView.enableItemDividers()
     }
 
