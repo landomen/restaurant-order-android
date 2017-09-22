@@ -44,32 +44,32 @@ buildscript {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
     def dataDependencies = rootProject.ext.dataDependencies
+
     compile project(':domain')
+
     // Kotlin
     compile dataDependencies.kotlinStdLib
+
     // RxJava
     compile dataDependencies.rxJava
     compile dataDependencies.rxAndroid
+
     // Retrofit
     compile dataDependencies.retrofit
     compile dataDependencies.retrofitGson
     compile dataDependencies.retrofitRxJava
+
     // OkHttp
     compile dataDependencies.okHttp
+
     // Architecture components (Room)
     compile dataDependencies.roomRuntime
     kapt dataDependencies.roomCompiler
     compile dataDependencies.roomRxJava2
+
     // Annotations
     provided dataDependencies.javaxAnnotation
     compile dataDependencies.javaxInject
     compile dataDependencies.androidAnnotations
-}
-
-configurations.all {
-    resolutionStrategy {
-        force "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
-    }
 }

@@ -40,33 +40,32 @@ android {
 
 dependencies {
     def presentationDependencies = rootProject.ext.presentationDependencies
+
     compile project(':domain')
     compile project(':data')
+
     // Kotlin
     compile presentationDependencies.kotlinStdLib
+
     // RxJava
     compile presentationDependencies.rxJava
     compile presentationDependencies.rxAndroid
+
     // Dagger
     compile presentationDependencies.dagger
     kapt presentationDependencies.daggerCompiler
+
     // Design libraries
     compile presentationDependencies.supportDesign
     compile presentationDependencies.constraintLayout
+
     // Anko
     compile presentationDependencies.anko
     compile presentationDependencies.ankoCommons
+
     // Material Dialogs
     compile presentationDependencies.materialDialogs
+
     // Annotations
     provided presentationDependencies.javaxAnnotation
-}
-repositories {
-    mavenCentral()
-}
-
-configurations.all {
-    resolutionStrategy {
-        force "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
-    }
 }
