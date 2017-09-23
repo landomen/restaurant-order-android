@@ -36,7 +36,7 @@ ext {
     androidCompileSdkVersion = 26
 
     // Design libraries
-    supportLibraryVersion = '26.0.2'
+    supportLibraryVersion = '26.1.0'
 
     // Kotlin
     kotlinVersion = "1.1.4-3"
@@ -53,7 +53,7 @@ ext {
     daggerVersion = '2.11'
 
     // Architecture components
-    architectureComponentsVersion = "1.0.0-alpha9"
+    architectureComponentsVersion = "1.0.0-beta1"
 
     // Annotations
     javaxAnnotationVersion = '1.0'
