@@ -2,7 +2,7 @@ package si.lanisnik.restaurantorder.data.net.apis
 
 import io.reactivex.Single
 import retrofit2.http.GET
-import si.lanisnik.restaurantorder.data.entity.menuitems.AllMenuItemsResponse
+import si.lanisnik.restaurantorder.data.net.model.menuitem.AllMenuItemsResponse
 
 /**
  * Created by Domen Lanišnik on 13/09/2017.

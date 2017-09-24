@@ -1,6 +1,6 @@
 package si.lanisnik.restaurantorder.data.entity.orders.menuitem
 
-import si.lanisnik.restaurantorder.data.entity.menuitems.MenuItem
+import si.lanisnik.restaurantorder.data.net.model.menuitem.MenuItemDto
 import si.lanisnik.restaurantorder.data.entity.orders.Order
 
 /**
@@ -8,7 +8,7 @@ import si.lanisnik.restaurantorder.data.entity.orders.Order
  * domen.lanisnik@gmail.com
  */
 data class OrderMenuItems(
-        val menuItem: MenuItem,
+        val menuItemDto: MenuItemDto,
         val order: Order,
         val count: Int,
         val comment: String? = null

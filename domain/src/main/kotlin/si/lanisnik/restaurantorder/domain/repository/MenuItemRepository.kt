@@ -2,7 +2,7 @@ package si.lanisnik.restaurantorder.domain.repository
 
 import io.reactivex.Flowable
 import si.lanisnik.restaurantorder.domain.model.menuitem.FoodCategory
-import java.awt.MenuItem
+import si.lanisnik.restaurantorder.domain.model.menuitem.MenuItem
 
 /**
  * Created by Domen Lanišnik on 21/09/2017.

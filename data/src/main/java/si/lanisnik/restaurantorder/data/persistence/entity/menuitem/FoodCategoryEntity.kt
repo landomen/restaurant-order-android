@@ -1,4 +1,4 @@
-package si.lanisnik.restaurantorder.data.entity.menuitems
+package si.lanisnik.restaurantorder.data.persistence.entity.menuitem
 
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
@@ -8,7 +8,7 @@ import android.arch.persistence.room.PrimaryKey
  * domen.lanisnik@gmail.com
  */
 @Entity(tableName = "food_category")
-data class FoodCategory(
+data class FoodCategoryEntity(
         @PrimaryKey
         val id: Int = 0,
         val title: String = ""

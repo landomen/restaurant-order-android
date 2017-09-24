@@ -4,14 +4,14 @@ import android.arch.persistence.room.Database
 import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
 import android.content.Context
-import si.lanisnik.restaurantorder.data.entity.menuitems.MenuItem
 import si.lanisnik.restaurantorder.data.persistence.dao.MenuItemsDao
+import si.lanisnik.restaurantorder.data.persistence.entity.menuitem.MenuItemEntity
 
 /**
  * Created by Domen Lanišnik on 20/09/2017.
  * domen.lanisnik@gmail.com
  */
-@Database(entities = arrayOf(MenuItem::class), version = 1)
+@Database(entities = arrayOf(MenuItemEntity::class), version = 1)
 abstract class LocalDatabase : RoomDatabase() {
     abstract fun menuItemsDao(): MenuItemsDao
 

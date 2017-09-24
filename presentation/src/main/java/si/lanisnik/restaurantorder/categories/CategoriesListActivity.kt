@@ -12,8 +12,10 @@ import si.lanisnik.restaurantorder.base.extensions.changeVisibility
 import si.lanisnik.restaurantorder.base.extensions.enableItemDividers
 import si.lanisnik.restaurantorder.base.extensions.showErrorDialogWithRetryAndDismissCallback
 import si.lanisnik.restaurantorder.categories.adapters.CategoryRecyclerAdapter
-import si.lanisnik.restaurantorder.data.entity.menuitems.GroupedByCategory
+import si.lanisnik.restaurantorder.data.net.model.menuitem.GroupedByCategory
 import si.lanisnik.restaurantorder.data.net.RestApiClient
+import si.lanisnik.restaurantorder.data.repository.MenuItemRepository
+import si.lanisnik.restaurantorder.domain.interactor.usecases.GetCategories
 import si.lanisnik.restaurantorder.domain.model.menuitem.FoodCategory
 
 class CategoriesListActivity : BaseActivity() {
@@ -31,6 +33,8 @@ class CategoriesListActivity : BaseActivity() {
 
     private fun fetchData() {
         toggleLoading(true)
+        
+
         RestApiClient.menuItemsApi.getAllMenuItems()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -44,7 +48,7 @@ class CategoriesListActivity : BaseActivity() {
     }
 
     private fun showCategories() {
-        categoriesRecyclerView.adapter = CategoryRecyclerAdapter(categories.map { FoodCategory(title = it.title) }, {
+        categoriesRecyclerView.adapter = CategoryRecyclerAdapter(categories.map { FoodCategory(title = it.category.title) }, {
 
         })
         categoriesRecyclerView.enableItemDividers()
