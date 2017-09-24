@@ -3,7 +3,7 @@ package si.lanisnik.restaurantorder.categories.holders
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import kotlinx.android.synthetic.main.recycler_item_category.view.*
-import si.lanisnik.restaurantorder.domain.model.FoodCategory
+import si.lanisnik.restaurantorder.domain.model.menuitem.FoodCategory
 
 /**
  * Created by Domen Lanišnik on 17/09/2017.

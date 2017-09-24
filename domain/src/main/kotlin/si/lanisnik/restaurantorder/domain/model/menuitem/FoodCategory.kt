@@ -1,4 +1,4 @@
-package si.lanisnik.restaurantorder.domain.model
+package si.lanisnik.restaurantorder.domain.model.menuitem
 
 /**
  * Created by Domen Lanišnik on 21/09/2017.

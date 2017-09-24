@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import si.lanisnik.restaurantorder.R
 import si.lanisnik.restaurantorder.base.extensions.inflate
 import si.lanisnik.restaurantorder.categories.holders.CategoryViewHolder
-import si.lanisnik.restaurantorder.domain.model.FoodCategory
+import si.lanisnik.restaurantorder.domain.model.menuitem.FoodCategory
 
 /**
  * Created by Domen Lanišnik on 17/09/2017.

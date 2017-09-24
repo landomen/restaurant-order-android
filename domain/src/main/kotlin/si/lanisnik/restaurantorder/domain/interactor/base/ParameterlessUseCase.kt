@@ -9,23 +9,17 @@ import si.lanisnik.restaurantorder.domain.executor.PostExecutionThread
 import si.lanisnik.restaurantorder.domain.executor.ThreadExecutor
 
 /**
- * Abstract class for a Use Case (Interactor in terms of Clean Architecture).
- * This interface represents a execution unit for different use cases (this means any use case
- * in the application should implement this contract).
- *
- * By convention each UseCase implementation will return the result using a {@link DisposableObserver}
- * that will execute its job in a background thread and will post the result in the UI thread.
+ * Similar to [UseCase] but without any parameters.
  */
-abstract class UseCase<Result, in Parameters>(
+abstract class ParameterlessUseCase<Result>(
         private val threadExecutor: ThreadExecutor,
-        private val postExecutionThread: PostExecutionThread) {
-
-    private val disposables: CompositeDisposable = CompositeDisposable()
+        private val postExecutionThread: PostExecutionThread,
+        private val disposables: CompositeDisposable) {
 
     /**
-     * Builds an [io.reactivex.Flowable] which will be used when executing the current {@link UseCase}.
+     * Builds an [io.reactivex.Observable] which will be used when executing the current {@link UseCase}.
      */
-    abstract fun buildUseCaseFlowable(parameters: Parameters): Flowable<Result>
+    abstract fun buildUseCaseFlowable(): Flowable<Result>
 
     /**
      * Executes the current use case.
@@ -34,13 +28,14 @@ abstract class UseCase<Result, in Parameters>(
      * by [buildUseCaseFlowable] method.
      * @param parameters Parameters used to build/execute this use case.
      */
-    fun execute(subscriber: ResourceSubscriber<Result>, parameters: Parameters) {
-        val disposable = this.buildUseCaseFlowable(parameters)
+    fun execute(subscriber: ResourceSubscriber<Result>) {
+        val disposable = this.buildUseCaseFlowable()
                 .subscribeOn(Schedulers.from(threadExecutor))
                 .observeOn(postExecutionThread.getScheduler())
                 .subscribeWith(subscriber)
         addDisposable(disposable)
     }
+
 
     /**
      * Dispose from current [CompositeDisposable].

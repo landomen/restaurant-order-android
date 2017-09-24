@@ -1,7 +1,7 @@
 package si.lanisnik.restaurantorder.domain.repository
 
 import io.reactivex.Flowable
-import si.lanisnik.restaurantorder.domain.model.FoodCategory
+import si.lanisnik.restaurantorder.domain.model.menuitem.FoodCategory
 import java.awt.MenuItem
 
 /**

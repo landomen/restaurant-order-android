@@ -14,7 +14,7 @@ import si.lanisnik.restaurantorder.base.extensions.showErrorDialogWithRetryAndDi
 import si.lanisnik.restaurantorder.categories.adapters.CategoryRecyclerAdapter
 import si.lanisnik.restaurantorder.data.entity.menuitems.GroupedByCategory
 import si.lanisnik.restaurantorder.data.net.RestApiClient
-import si.lanisnik.restaurantorder.domain.model.FoodCategory
+import si.lanisnik.restaurantorder.domain.model.menuitem.FoodCategory
 
 class CategoriesListActivity : BaseActivity() {
 
