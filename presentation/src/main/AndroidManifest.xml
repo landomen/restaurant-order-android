@@ -32,7 +32,7 @@
             android:name="si.lanisnik.restaurantorder.menuitems.details.MenuItemDetailsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="si.lanisnik.restaurantorder.categories.CategoriesListActivity"
+            android:name="si.lanisnik.restaurantorder.ui.categories.CategoriesListActivity"
             android:label="@string/categories_title"
             android:screenOrientation="portrait" />
     </application>

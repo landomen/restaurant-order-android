@@ -60,6 +60,9 @@ ext {
     javaxInjectVersion = '1'
     androidAnnotationsVersion = '21.0.3'
 
+    // Timber
+    timberVersion = '4.5.1'
+
     presentationDependencies = [
             // Kotlin
             kotlinStdLib:       "org.jetbrains.kotlin:kotlin-stdlib-jre7:${kotlinVersion}",
@@ -84,6 +87,9 @@ ext {
 
             // Material Dialogs
             materialDialogs:    'com.afollestad.material-dialogs:core:0.9.4.5',
+
+            // Timber
+            timber:             "com.jakewharton.timber:timber:${timberVersion}",
 
             // Annotations
             javaxAnnotation:    "javax.annotation:jsr250-api:${javaxAnnotationVersion}"

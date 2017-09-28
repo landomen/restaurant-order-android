@@ -1,14 +1,15 @@
 package si.lanisnik.restaurantorder.dashboard
 
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_dashboard.*
 import kotlinx.android.synthetic.main.toolbar.*
 import org.jetbrains.anko.startActivity
 import si.lanisnik.restaurantorder.R
 import si.lanisnik.restaurantorder.base.BaseActivity
-import si.lanisnik.restaurantorder.categories.CategoriesListActivity
+import si.lanisnik.restaurantorder.ui.categories.CategoriesListActivity
 
-class DashboardActivity : BaseActivity() {
+class DashboardActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

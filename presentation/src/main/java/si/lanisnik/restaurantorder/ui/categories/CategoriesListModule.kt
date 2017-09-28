@@ -6,16 +6,19 @@ import si.lanisnik.restaurantorder.domain.interactor.usecases.GetCategories
 import si.lanisnik.restaurantorder.internal.di.scopes.PerActivity
 
 /**
- * Created by Domen Lanišnik on 27/09/2017.
- * domen.lanisnik@gmail.com
+ * Module used to provide dependencies to a specific activity.
  */
 @Module
-abstract class CategoriesListModule {
+open class CategoriesListModule {
 
     @PerActivity
     @Provides
-    fun provideCategoriesListPresenter(getCategories: GetCategories): CategoriesContract.Presenter {
-        return CategoriesListPresenter(getCategories)
-    }
+    fun provideCategoriesListView(categoriesListActivity: CategoriesListActivity): CategoriesContract.View =
+            categoriesListActivity
+
+    @PerActivity
+    @Provides
+    fun provideCategoriesListPresenter(view: CategoriesContract.View, getCategories: GetCategories): CategoriesContract.Presenter =
+            CategoriesListPresenter(view, getCategories)
 
 }

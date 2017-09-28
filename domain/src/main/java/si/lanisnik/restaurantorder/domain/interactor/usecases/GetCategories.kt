@@ -17,8 +17,7 @@ class GetCategories @Inject constructor(
         postExecutionThread: PostExecutionThread) :
         SingleUseCase<List<FoodCategory>, Nothing>(threadExecutor, postExecutionThread) {
 
-    override fun buildUseCaseObservable(params: Nothing?): Single<List<FoodCategory>> {
-        return menuItemRepository.getCategories()
-    }
+    override fun buildUseCaseObservable(params: Nothing?): Single<List<FoodCategory>> =
+            menuItemRepository.getCategories()
 
 }

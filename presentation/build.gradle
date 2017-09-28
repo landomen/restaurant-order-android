@@ -66,6 +66,9 @@ dependencies {
     // Material Dialogs
     compile presentationDependencies.materialDialogs
 
+    // Timber
+    compile presentationDependencies.timber
+
     // Annotations
     provided presentationDependencies.javaxAnnotation
 }
