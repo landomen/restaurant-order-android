@@ -1,24 +1,27 @@
 package si.lanisnik.restaurantorder.domain.interactor.base
 
-import io.reactivex.Flowable
+import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
+import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.subscribers.ResourceSubscriber
 import si.lanisnik.restaurantorder.domain.executor.JobExecutionThread
 import si.lanisnik.restaurantorder.domain.executor.PostExecutionThread
 
 /**
- * Similar to [UseCase] but without any parameters.
+ * Created by Domen Lanišnik on 27/09/2017.
+ * domen.lanisnik@gmail.com
  */
-abstract class ParameterlessUseCase<Result>(
+abstract class SingleUseCase<Result, in Params>(
         private val jobExecutionThread: JobExecutionThread,
-        private val postExecutionThread: PostExecutionThread,
-        private val disposables: CompositeDisposable) {
+        private val postExecutionThread: PostExecutionThread) {
+
+    private val disposables: CompositeDisposable = CompositeDisposable()
 
     /**
-     * Builds an [io.reactivex.Observable] which will be used when executing the current {@link UseCase}.
+     * Builds an [Single] which will be used when executing the current [SingleUseCase].
      */
-    abstract fun buildUseCaseFlowable(): Flowable<Result>
+    abstract fun buildUseCaseObservable(params: Params? = null): Single<Result>
 
     /**
      * Executes the current use case.
@@ -27,14 +30,13 @@ abstract class ParameterlessUseCase<Result>(
      * by [buildUseCaseFlowable] method.
      * @param parameters Parameters used to build/execute this use case.
      */
-    fun execute(subscriber: ResourceSubscriber<Result>) {
-        val disposable = this.buildUseCaseFlowable()
+    fun execute(singleObserver: DisposableSingleObserver<Result>, params: Params? = null) {
+        val disposable = this.buildUseCaseObservable(params)
                 .subscribeOn(jobExecutionThread.getScheduler())
                 .observeOn(postExecutionThread.getScheduler())
-                .subscribeWith(subscriber)
+                .subscribeWith(singleObserver)
         addDisposable(disposable)
     }
-
 
     /**
      * Dispose from current [CompositeDisposable].

@@ -2,6 +2,7 @@ package si.lanisnik.restaurantorder.categories
 
 import android.os.Bundle
 import android.support.annotation.Nullable
+import dagger.android.AndroidInjection
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_categories_list.*
@@ -12,15 +13,17 @@ import si.lanisnik.restaurantorder.base.extensions.changeVisibility
 import si.lanisnik.restaurantorder.base.extensions.enableItemDividers
 import si.lanisnik.restaurantorder.base.extensions.showErrorDialogWithRetryAndDismissCallback
 import si.lanisnik.restaurantorder.categories.adapters.CategoryRecyclerAdapter
-import si.lanisnik.restaurantorder.data.net.model.menuitem.GroupedByCategory
-import si.lanisnik.restaurantorder.data.net.RestApiClient
-import si.lanisnik.restaurantorder.data.repository.MenuItemRepository
-import si.lanisnik.restaurantorder.domain.interactor.usecases.GetCategories
+import si.lanisnik.restaurantorder.data.remote.RestaurantOrderServiceFactory
 import si.lanisnik.restaurantorder.domain.model.menuitem.FoodCategory
+import si.lanisnik.restaurantorder.ui.categories.CategoriesListPresenter
+import javax.inject.Inject
 
 class CategoriesListActivity : BaseActivity() {
 
-    private lateinit var categories: List<GroupedByCategory>
+//    private lateinit var categories: List<GroupedByCategory>
+
+    @Inject
+    lateinit var presenter: CategoriesListPresenter
 
     override fun onCreate(@Nullable savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,28 +32,32 @@ class CategoriesListActivity : BaseActivity() {
         setTitle(R.string.categories_title)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         fetchData()
+
+        AndroidInjection.inject(this)
+
+        presenter.onStart()
     }
 
     private fun fetchData() {
         toggleLoading(true)
-        
 
-        RestApiClient.menuItemsApi.getAllMenuItems()
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ response ->
-                    categories = response.categories
-                    showCategories()
-                    toggleLoading(false)
-                }, {
-                    showFetchingError()
-                })
+
+//        RestaurantOrderServiceFactory.menuItemsApi.getAllMenuItems()
+//                .subscribeOn(Schedulers.newThread())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe({ response ->
+//                    categories = response.categories
+//                    showCategories()
+//                    toggleLoading(false)
+//                }, {
+//                    showFetchingError()
+//                })
     }
 
     private fun showCategories() {
-        categoriesRecyclerView.adapter = CategoryRecyclerAdapter(categories.map { FoodCategory(title = it.category.title) }, {
-
-        })
+//        categoriesRecyclerView.adapter = CategoryRecyclerAdapter(categories.map { FoodCategory(title = it.category.title) }, {
+//
+//        })
         categoriesRecyclerView.enableItemDividers()
     }
 

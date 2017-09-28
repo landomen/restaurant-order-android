@@ -1,9 +1,9 @@
 package si.lanisnik.restaurantorder.domain.interactor.usecases
 
-import io.reactivex.Flowable
+import io.reactivex.Single
+import si.lanisnik.restaurantorder.domain.executor.JobExecutionThread
 import si.lanisnik.restaurantorder.domain.executor.PostExecutionThread
-import si.lanisnik.restaurantorder.domain.executor.ThreadExecutor
-import si.lanisnik.restaurantorder.domain.interactor.base.UseCase
+import si.lanisnik.restaurantorder.domain.interactor.base.SingleUseCase
 import si.lanisnik.restaurantorder.domain.model.menuitem.FoodCategory
 import si.lanisnik.restaurantorder.domain.repository.MenuItemRepository
 import javax.inject.Inject
@@ -13,11 +13,12 @@ import javax.inject.Inject
  */
 class GetCategories @Inject constructor(
         private val menuItemRepository: MenuItemRepository,
-        threadExecutor: ThreadExecutor,
+        threadExecutor: JobExecutionThread,
         postExecutionThread: PostExecutionThread) :
-        UseCase<List<FoodCategory>, Nothing>(threadExecutor, postExecutionThread) {
+        SingleUseCase<List<FoodCategory>, Nothing>(threadExecutor, postExecutionThread) {
 
-    override fun buildUseCaseFlowable(parameters: Nothing): Flowable<List<FoodCategory>> =
-            menuItemRepository.getCategories()
+    override fun buildUseCaseObservable(params: Nothing?): Single<List<FoodCategory>> {
+        return menuItemRepository.getCategories()
+    }
 
 }

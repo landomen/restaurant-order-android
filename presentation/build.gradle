@@ -29,11 +29,9 @@ android {
     productFlavors {
         develop {
             versionNameSuffix "-DEV"
-            buildConfigField "String", "SERVER_BASE_URL", '"http://c0da93db.ngrok.io/"'
         }
 
         staging {
-            buildConfigField "String", "SERVER_BASE_URL", '"http://localhost:8080/"'
         }
     }
 }
@@ -54,6 +52,8 @@ dependencies {
     // Dagger
     compile presentationDependencies.dagger
     kapt presentationDependencies.daggerCompiler
+    compile presentationDependencies.daggerSupport
+    kapt presentationDependencies.daggerProcessor
 
     // Design libraries
     compile presentationDependencies.supportDesign

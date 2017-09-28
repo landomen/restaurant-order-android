@@ -71,6 +71,8 @@ ext {
             // Dagger
             daggerCompiler:     "com.google.dagger:dagger-compiler:${daggerVersion}",
             dagger:             "com.google.dagger:dagger:${daggerVersion}",
+            daggerSupport:      "com.google.dagger:dagger-android-support:${daggerVersion}",
+            daggerProcessor:    "com.google.dagger:dagger-android-processor:${daggerVersion}",
 
             // Design libraries
             supportDesign:      "com.android.support:design:${supportLibraryVersion}",

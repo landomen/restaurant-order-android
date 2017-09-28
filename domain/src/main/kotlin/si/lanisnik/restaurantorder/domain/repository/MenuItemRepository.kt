@@ -1,6 +1,7 @@
 package si.lanisnik.restaurantorder.domain.repository
 
 import io.reactivex.Flowable
+import io.reactivex.Single
 import si.lanisnik.restaurantorder.domain.model.menuitem.FoodCategory
 import si.lanisnik.restaurantorder.domain.model.menuitem.MenuItem
 
@@ -10,7 +11,7 @@ import si.lanisnik.restaurantorder.domain.model.menuitem.MenuItem
  */
 interface MenuItemRepository {
 
-    fun getCategories(): Flowable<List<FoodCategory>>
+    fun getCategories(): Single<List<FoodCategory>>
 
     fun getMenuItems(categoryId: Int): Flowable<List<MenuItem>>
 

@@ -3,10 +3,9 @@ package si.lanisnik.restaurantorder.domain.interactor.base
 import io.reactivex.Flowable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
 import io.reactivex.subscribers.ResourceSubscriber
+import si.lanisnik.restaurantorder.domain.executor.JobExecutionThread
 import si.lanisnik.restaurantorder.domain.executor.PostExecutionThread
-import si.lanisnik.restaurantorder.domain.executor.ThreadExecutor
 
 /**
  * Abstract class for a Use Case (Interactor in terms of Clean Architecture).
@@ -17,7 +16,7 @@ import si.lanisnik.restaurantorder.domain.executor.ThreadExecutor
  * that will execute its job in a background thread and will post the result in the UI thread.
  */
 abstract class UseCase<Result, in Parameters>(
-        private val threadExecutor: ThreadExecutor,
+        private val jobExecutionThread: JobExecutionThread,
         private val postExecutionThread: PostExecutionThread) {
 
     private val disposables: CompositeDisposable = CompositeDisposable()
@@ -36,9 +35,10 @@ abstract class UseCase<Result, in Parameters>(
      */
     fun execute(subscriber: ResourceSubscriber<Result>, parameters: Parameters) {
         val disposable = this.buildUseCaseFlowable(parameters)
-                .subscribeOn(Schedulers.from(threadExecutor))
+                .subscribeOn(jobExecutionThread.getScheduler())
                 .observeOn(postExecutionThread.getScheduler())
                 .subscribeWith(subscriber)
+
         addDisposable(disposable)
     }
 
