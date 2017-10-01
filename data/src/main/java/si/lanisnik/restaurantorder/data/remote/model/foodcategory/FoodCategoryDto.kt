@@ -1,4 +1,4 @@
-package si.lanisnik.restaurantorder.data.remote.model.menuitem
+package si.lanisnik.restaurantorder.data.remote.model.foodcategory
 
 /**
  * Created by Domen Lanišnik on 24/09/2017.

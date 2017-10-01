@@ -18,7 +18,7 @@ android {
 
     productFlavors {
         develop {
-            buildConfigField "String", "SERVER_BASE_URL", '"http://b87ff3e2.ngrok.io/"'
+            buildConfigField "String", "SERVER_BASE_URL", '"http://ddace7a9.ngrok.io/"'
         }
 
         staging {

@@ -1,5 +1,7 @@
 package si.lanisnik.restaurantorder.domain.model.menuitem
 
+import si.lanisnik.restaurantorder.domain.model.foodcategory.FoodCategory
+
 /**
  * Created by Domen Lanišnik on 21/09/2017.
  * domen.lanisnik@gmail.com

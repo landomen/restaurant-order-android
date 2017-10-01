@@ -1,9 +1,9 @@
 package si.lanisnik.restaurantorder.ui.categories
 
 import android.util.Log
-import io.reactivex.observers.DisposableSingleObserver
+import io.reactivex.subscribers.DisposableSubscriber
 import si.lanisnik.restaurantorder.domain.interactor.usecases.GetCategories
-import si.lanisnik.restaurantorder.domain.model.menuitem.FoodCategory
+import si.lanisnik.restaurantorder.domain.model.foodcategory.FoodCategory
 import si.lanisnik.restaurantorder.internal.di.scopes.PerActivity
 import si.lanisnik.restaurantorder.ui.categories.model.FoodCategoryModel
 import javax.inject.Inject
@@ -21,7 +21,7 @@ class CategoriesListPresenter @Inject constructor(
     }
 
     override fun onStart() {
-        getCategories.execute(Subscriber())
+        getCategories.execute(CategoriesSubscriber())
 
     }
 
@@ -29,11 +29,15 @@ class CategoriesListPresenter @Inject constructor(
         getCategories.dispose()
     }
 
-    inner class Subscriber : DisposableSingleObserver<List<FoodCategory>>() {
+    inner class CategoriesSubscriber : DisposableSubscriber<List<FoodCategory>>() {
 
-        override fun onSuccess(t: List<FoodCategory>) {
+        override fun onNext(t: List<FoodCategory>) {
             Log.e("NEKI", "Success")
             view?.showCategories(t.map { FoodCategoryModel(it.id, it.title) })
+        }
+
+        override fun onComplete() {
+
         }
 
         override fun onError(e: Throwable) {
