@@ -1,5 +1,8 @@
 apply plugin: 'kotlin'
 
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
 configurations {
     provided
 }
@@ -27,8 +30,8 @@ dependencies {
     compile domainDependencies.javaxInject
 
     // RxJava
-    compile domainDependencies.rxJava
+    compile domainDependencies.rxKotlin
 
     // Kotlin
-    compile domainDependencies.kotlinStdLib
+    compile domainDependencies.kotlin
 }

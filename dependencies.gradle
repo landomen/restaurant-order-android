@@ -1,0 +1,136 @@
+
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
+
+ext {
+    //Android
+    androidBuildToolsVersion = "26.0.1"
+    androidMinSdkVersion = 21
+    androidTargetSdkVersion = 26
+    androidCompileSdkVersion = 26
+
+    // Design libraries
+    supportLibraryVersion = '26.1.0'
+
+    // Kotlin
+    kotlinVersion = "1.1.50"
+    ankoVersion = '0.10.1'
+
+    // RxJava
+    rxKotlinVersion = '2.1.0'
+    rxAndroidVersion = '2.0.1'
+
+    // Retrofit
+    retrofitVersion = '2.3.0'
+
+    // Dagger
+    daggerVersion = '2.11'
+
+    // Architecture components
+    architectureComponentsVersion = "1.0.0-beta1"
+
+    // Annotations
+    javaxAnnotationVersion = '1.0'
+    javaxInjectVersion = '1'
+    androidAnnotationsVersion = '21.0.3'
+
+    // Timber
+    timberVersion = '4.5.1'
+
+    domainDependencies = [
+            // RxKotlin
+            rxKotlin:           "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}",
+
+            // Kotlin
+            kotlin:             "org.jetbrains.kotlin:kotlin-stdlib-jre8:${kotlinVersion}",
+
+            // Annotations
+            javaxAnnotation:    "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
+            javaxInject:        "javax.inject:javax.inject:${javaxInjectVersion}"
+    ]
+
+    dataDependencies = [
+            // RxKotlin
+            rxKotlin:           "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}",
+
+            // Kotlin
+            kotlin:             "org.jetbrains.kotlin:kotlin-stdlib-jre8:${kotlinVersion}",
+
+            // Annotations
+            javaxAnnotation:    "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
+            javaxInject:        "javax.inject:javax.inject:${javaxInjectVersion}"
+    ]
+
+    cacheDependencies = [
+            // Kotlin
+            kotlin:             "org.jetbrains.kotlin:kotlin-stdlib-jre8:${kotlinVersion}",
+
+            // RxKotlin
+            rxKotlin:           "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}",
+
+            // Annotations
+            javaxAnnotation:    "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
+            javaxInject:        "javax.inject:javax.inject:${javaxInjectVersion}",
+
+            // Architecture components
+            roomRuntime:        "android.arch.persistence.room:runtime:${architectureComponentsVersion}",
+            roomCompiler:       "android.arch.persistence.room:compiler:${architectureComponentsVersion}",
+            roomRxJava2:        "android.arch.persistence.room:rxjava2:${architectureComponentsVersion}"
+    ]
+
+    remoteDependencies = [
+            // Kotlin
+            kotlin:             "org.jetbrains.kotlin:kotlin-stdlib-jre8:${kotlinVersion}",
+
+            // RxKotlin
+            rxKotlin:           "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}",
+
+            // Annotations
+            javaxAnnotation:    "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
+            javaxInject:        "javax.inject:javax.inject:${javaxInjectVersion}",
+
+            // Retrofit
+            retrofit:           "com.squareup.retrofit2:retrofit:${retrofitVersion}",
+            retrofitGson:       "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
+            retrofitRxJava:     "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}",
+
+            // OkHttp
+            okHttp:             'com.squareup.okhttp3:logging-interceptor:3.8.1'
+    ]
+
+    presentationDependencies = [
+            // Kotlin
+            kotlin:             "org.jetbrains.kotlin:kotlin-stdlib-jre8:${kotlinVersion}",
+
+            // RxKotlin
+            rxKotlin:           "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}",
+            rxAndroid:          "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
+
+            // Dagger
+            daggerCompiler:     "com.google.dagger:dagger-compiler:${daggerVersion}",
+            dagger:             "com.google.dagger:dagger:${daggerVersion}",
+            daggerSupport:      "com.google.dagger:dagger-android-support:${daggerVersion}",
+            daggerProcessor:    "com.google.dagger:dagger-android-processor:${daggerVersion}",
+
+            // Design libraries
+            supportDesign:      "com.android.support:design:${supportLibraryVersion}",
+            constraintLayout:   'com.android.support.constraint:constraint-layout:1.0.2',
+
+            // Anko
+            anko:               "org.jetbrains.anko:anko:${ankoVersion}",
+            ankoCommons:        "org.jetbrains.anko:anko-commons:${ankoVersion}",
+
+            // Material Dialogs
+            materialDialogs:    'com.afollestad.material-dialogs:core:0.9.4.5',
+
+            // Timber
+            timber:             "com.jakewharton.timber:timber:${timberVersion}",
+
+            // Annotations
+            javaxAnnotation:    "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
+            javaxInject:        "javax.inject:javax.inject:${javaxInjectVersion}"
+    ]
+}

@@ -1,46 +1,7 @@
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin'
 
-android {
-    defaultPublishConfig "developDebug"
-
-    def globalConfiguration = rootProject.extensions.getByName("ext")
-
-    compileSdkVersion globalConfiguration["androidCompileSdkVersion"]
-    buildToolsVersion globalConfiguration["androidBuildToolsVersion"]
-
-    defaultConfig {
-        minSdkVersion globalConfiguration["androidMinSdkVersion"]
-        targetSdkVersion globalConfiguration["androidTargetSdkVersion"]
-        versionCode 1
-    }
-
-    productFlavors {
-        develop {
-            buildConfigField "String", "SERVER_BASE_URL", '"http://ddace7a9.ngrok.io/"'
-        }
-
-        staging {
-            buildConfigField "String", "SERVER_BASE_URL", '"http://localhost:8080/"'
-        }
-    }
-
-    packagingOptions {
-        exclude 'LICENSE.txt'
-        exclude 'NOTICE'
-        exclude 'META-INF/LICENSE'
-    }
-}
-
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${rootProject.ext.kotlinVersion}"
-    }
-}
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
 
 dependencies {
     def dataDependencies = rootProject.ext.dataDependencies
@@ -48,27 +9,12 @@ dependencies {
     compile project(':domain')
 
     // Kotlin
-    compile dataDependencies.kotlinStdLib
+    compile dataDependencies.kotlin
 
     // RxJava
-    compile dataDependencies.rxJava
-    compile dataDependencies.rxAndroid
-
-    // Retrofit
-    compile dataDependencies.retrofit
-    compile dataDependencies.retrofitGson
-    compile dataDependencies.retrofitRxJava
-
-    // OkHttp
-    compile dataDependencies.okHttp
-
-    // Architecture components (Room)
-    compile dataDependencies.roomRuntime
-    kapt dataDependencies.roomCompiler
-    compile dataDependencies.roomRxJava2
+    compile dataDependencies.rxKotlin
 
     // Annotations
-    provided dataDependencies.javaxAnnotation
+    compile dataDependencies.javaxAnnotation
     compile dataDependencies.javaxInject
-    compile dataDependencies.androidAnnotations
 }

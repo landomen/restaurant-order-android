@@ -28,25 +28,49 @@ android {
 
     productFlavors {
         develop {
+            buildConfigField "String", "SERVER_BASE_URL", '"http://ddace7a9.ngrok.io/"'
             versionNameSuffix "-DEV"
         }
 
         staging {
+            buildConfigField "String", "SERVER_BASE_URL", '"http://localhost:8080/"'
         }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+
+    dexOptions {
+        preDexLibraries = false
+        dexInProcess = false
+        javaMaxHeapSize "4g"
+    }
+
+    lintOptions {
+        quiet true
+        abortOnError false
+        ignoreWarnings true
+        disable 'InvalidPackage'            //Some libraries have issues with this.
+        disable 'OldTargetApi'              //Lint gives this warning but SDK 20 would be Android L Beta.
+        disable 'IconDensities'             //For testing purpose. This is safe to remove.
+        disable 'IconMissingDensityFolder'  //For testing purpose. This is safe to remove.
     }
 }
 
 dependencies {
     def presentationDependencies = rootProject.ext.presentationDependencies
 
-    compile project(':domain')
     compile project(':data')
+    compile project(':cache')
+    compile project(':remote')
 
     // Kotlin
-    compile presentationDependencies.kotlinStdLib
+    compile presentationDependencies.kotlin
 
     // RxJava
-    compile presentationDependencies.rxJava
+    compile presentationDependencies.rxKotlin
     compile presentationDependencies.rxAndroid
 
     // Dagger

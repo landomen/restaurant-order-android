@@ -8,7 +8,7 @@ import dagger.android.support.AndroidSupportInjectionModule
 import si.lanisnik.restaurantorder.RestaurantOrderApp
 import si.lanisnik.restaurantorder.domain.executor.JobExecutionThread
 import si.lanisnik.restaurantorder.domain.executor.PostExecutionThread
-import si.lanisnik.restaurantorder.domain.repository.MenuItemRepository
+import si.lanisnik.restaurantorder.domain.repository.FoodCategoryRepository
 import si.lanisnik.restaurantorder.internal.di.modules.ActivityBindingModule
 import si.lanisnik.restaurantorder.internal.di.modules.ApplicationModule
 import javax.inject.Singleton
@@ -31,17 +31,17 @@ interface ApplicationComponent {
         fun build(): ApplicationComponent
     }
 
-    // region Exposed to sub-graphs
-
-    fun context(): Context
-    fun jobExecutionThread(): JobExecutionThread
-    fun postExecutionThread(): PostExecutionThread
-
-    // region Repositories
-
-    fun menuItemRepository(): MenuItemRepository
-
-    // endregion Repositories
-
-    // endregion
+//    // region Exposed to sub-graphs
+//
+//    fun context(): Context
+//    fun jobExecutionThread(): JobExecutionThread
+//    fun postExecutionThread(): PostExecutionThread
+//
+//    // region Repositories
+//
+//    fun foodCategoryRepository(): FoodCategoryRepository
+//
+//    // endregion Repositories
+//
+//    // endregion
 }

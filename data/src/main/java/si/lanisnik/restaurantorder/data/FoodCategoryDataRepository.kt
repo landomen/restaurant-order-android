@@ -2,8 +2,8 @@ package si.lanisnik.restaurantorder.data
 
 import io.reactivex.Completable
 import io.reactivex.Flowable
-import si.lanisnik.restaurantorder.data.remote.model.foodcategory.FoodCategoryDto
-import si.lanisnik.restaurantorder.data.remote.service.FoodCategoriesService
+import si.lanisnik.restaurantorder.data.mapper.FoodCategoryEntityMapper
+import si.lanisnik.restaurantorder.data.source.foodcategory.FoodCategoryDataStoreFactory
 import si.lanisnik.restaurantorder.domain.model.foodcategory.FoodCategory
 import si.lanisnik.restaurantorder.domain.repository.FoodCategoryRepository
 import javax.inject.Inject
@@ -14,15 +14,25 @@ import javax.inject.Singleton
  * domen.lanisnik@gmail.com
  */
 @Singleton
-class FoodCategoryDataRepository @Inject constructor(private val categoriesService: FoodCategoriesService) : FoodCategoryRepository {
+class FoodCategoryDataRepository @Inject constructor(private val factory: FoodCategoryDataStoreFactory,
+                                                     private val mapper: FoodCategoryEntityMapper) : FoodCategoryRepository {
+    override fun clearCategories(): Completable =
+            factory.retrieveCacheDataStore().clearCategories()
 
     override fun getCategories(): Flowable<List<FoodCategory>> {
-        return categoriesService.getFoodCategories()
-                .flatMap { categoriesResponse -> Flowable.just(categoriesResponse.categories) }
-                .map { list: List<FoodCategoryDto> -> list.map { FoodCategory(it.id, it.title) } }
+        return factory.retrieveCacheDataStore().isCached()
+                .flatMapPublisher {
+                    factory.retrieveDataStore(it).getCategories()
+                }
+                .flatMap {
+                    Flowable.just(it.map { mapper.mapFromEntity(it) })
+                }
+                .flatMap {
+                    saveCategories(it).toSingle { it }.toFlowable()
+                }
     }
 
-    override fun saveCategories(categories: List<FoodCategory>): Completable {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun saveCategories(categories: List<FoodCategory>): Completable =
+            factory.retrieveCacheDataStore().saveCategories(categories.map { mapper.mapToEntity(it) })
+
 }

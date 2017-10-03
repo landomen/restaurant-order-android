@@ -2,7 +2,6 @@ package si.lanisnik.restaurantorder.ui.categories
 
 import android.os.Bundle
 import android.support.annotation.Nullable
-import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_categories_list.*
 import kotlinx.android.synthetic.main.toolbar.*
 import si.lanisnik.restaurantorder.R
@@ -34,11 +33,13 @@ class CategoriesListActivity : BaseActivity(), CategoriesContract.View, Categori
 
     override fun initUi() {
         setupRecyclerView()
+        toggleLoading(true)
     }
 
     override fun showCategories(categories: List<FoodCategoryModel>) {
         adapter.categories = categories
         adapter.listener = this
+        toggleLoading(false)
     }
 
     override fun onCategoryClicked(category: FoodCategoryModel) {
@@ -51,9 +52,9 @@ class CategoriesListActivity : BaseActivity(), CategoriesContract.View, Categori
 
     private fun showFetchingError() {
         showErrorDialogWithRetryAndDismissCallback(R.string.error_loading_failed, {
-//            fetchData()
+            //            fetchData()
         }, {
-//            finish()
+            //            finish()
         })
     }
 

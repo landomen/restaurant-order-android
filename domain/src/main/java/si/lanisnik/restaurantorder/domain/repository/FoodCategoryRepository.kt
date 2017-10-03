@@ -11,6 +11,8 @@ import si.lanisnik.restaurantorder.domain.model.foodcategory.FoodCategory
  */
 interface FoodCategoryRepository {
 
+    fun clearCategories(): Completable
+
     fun getCategories(): Flowable<List<FoodCategory>>
 
     fun saveCategories(categories: List<FoodCategory>): Completable
