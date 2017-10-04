@@ -1,11 +1,11 @@
-package si.lanisnik.restaurantorder.ui.categories
+package si.lanisnik.restaurantorder.foodcategory
 
 import android.util.Log
 import io.reactivex.subscribers.DisposableSubscriber
 import si.lanisnik.restaurantorder.domain.interactor.foodcategory.GetCategories
 import si.lanisnik.restaurantorder.domain.model.foodcategory.FoodCategory
-import si.lanisnik.restaurantorder.internal.di.scopes.PerActivity
-import si.lanisnik.restaurantorder.ui.categories.model.FoodCategoryModel
+import si.lanisnik.restaurantorder.internal.injection.scopes.PerActivity
+import si.lanisnik.restaurantorder.foodcategory.model.FoodCategoryModel
 import javax.inject.Inject
 
 /**

@@ -1,9 +1,9 @@
-package si.lanisnik.restaurantorder.ui.categories
+package si.lanisnik.restaurantorder.foodcategory
 
 import dagger.Module
 import dagger.Provides
 import si.lanisnik.restaurantorder.domain.interactor.foodcategory.GetCategories
-import si.lanisnik.restaurantorder.internal.di.scopes.PerActivity
+import si.lanisnik.restaurantorder.internal.injection.scopes.PerActivity
 
 /**
  * Module used to provide dependencies to a specific activity.

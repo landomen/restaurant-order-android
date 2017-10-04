@@ -1,4 +1,4 @@
-package si.lanisnik.restaurantorder.internal.di.scopes
+package si.lanisnik.restaurantorder.internal.injection.scopes
 
 import javax.inject.Scope
 

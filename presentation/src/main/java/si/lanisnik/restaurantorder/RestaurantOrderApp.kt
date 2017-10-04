@@ -5,7 +5,7 @@ import android.app.Application
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
-import si.lanisnik.restaurantorder.internal.di.components.DaggerApplicationComponent
+import si.lanisnik.restaurantorder.internal.injection.components.DaggerApplicationComponent
 import timber.log.Timber
 import javax.inject.Inject
 

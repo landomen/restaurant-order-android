@@ -1,11 +1,11 @@
-package si.lanisnik.restaurantorder.ui.categories.adapters
+package si.lanisnik.restaurantorder.foodcategory.adapters
 
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 import si.lanisnik.restaurantorder.R
 import si.lanisnik.restaurantorder.base.extensions.inflate
-import si.lanisnik.restaurantorder.ui.categories.holders.CategoryViewHolder
-import si.lanisnik.restaurantorder.ui.categories.model.FoodCategoryModel
+import si.lanisnik.restaurantorder.foodcategory.holders.CategoryViewHolder
+import si.lanisnik.restaurantorder.foodcategory.model.FoodCategoryModel
 import javax.inject.Inject
 import kotlin.properties.Delegates
 

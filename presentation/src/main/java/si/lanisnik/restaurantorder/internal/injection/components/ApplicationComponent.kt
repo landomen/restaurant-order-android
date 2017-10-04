@@ -1,16 +1,12 @@
-package si.lanisnik.restaurantorder.internal.di.components
+package si.lanisnik.restaurantorder.internal.injection.components
 
 import android.app.Application
-import android.content.Context
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.support.AndroidSupportInjectionModule
 import si.lanisnik.restaurantorder.RestaurantOrderApp
-import si.lanisnik.restaurantorder.domain.executor.JobExecutionThread
-import si.lanisnik.restaurantorder.domain.executor.PostExecutionThread
-import si.lanisnik.restaurantorder.domain.repository.FoodCategoryRepository
-import si.lanisnik.restaurantorder.internal.di.modules.ActivityBindingModule
-import si.lanisnik.restaurantorder.internal.di.modules.ApplicationModule
+import si.lanisnik.restaurantorder.internal.injection.modules.ActivityBindingModule
+import si.lanisnik.restaurantorder.internal.injection.modules.ApplicationModule
 import javax.inject.Singleton
 
 

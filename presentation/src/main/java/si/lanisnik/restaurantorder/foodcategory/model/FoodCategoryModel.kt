@@ -1,4 +1,4 @@
-package si.lanisnik.restaurantorder.ui.categories.model
+package si.lanisnik.restaurantorder.foodcategory.model
 
 /**
  * Created by Domen Lanišnik on 28/09/2017.

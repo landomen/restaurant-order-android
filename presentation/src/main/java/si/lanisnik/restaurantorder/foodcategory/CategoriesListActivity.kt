@@ -1,4 +1,4 @@
-package si.lanisnik.restaurantorder.ui.categories
+package si.lanisnik.restaurantorder.foodcategory
 
 import android.os.Bundle
 import android.support.annotation.Nullable
@@ -9,8 +9,8 @@ import si.lanisnik.restaurantorder.base.BaseActivity
 import si.lanisnik.restaurantorder.base.extensions.changeVisibility
 import si.lanisnik.restaurantorder.base.extensions.enableItemDividers
 import si.lanisnik.restaurantorder.base.extensions.showErrorDialogWithRetryAndDismissCallback
-import si.lanisnik.restaurantorder.ui.categories.adapters.CategoriesRecyclerAdapter
-import si.lanisnik.restaurantorder.ui.categories.model.FoodCategoryModel
+import si.lanisnik.restaurantorder.foodcategory.adapters.CategoriesRecyclerAdapter
+import si.lanisnik.restaurantorder.foodcategory.model.FoodCategoryModel
 import javax.inject.Inject
 
 class CategoriesListActivity : BaseActivity(), CategoriesContract.View, CategoriesRecyclerAdapter.OnCategoryClickListener {

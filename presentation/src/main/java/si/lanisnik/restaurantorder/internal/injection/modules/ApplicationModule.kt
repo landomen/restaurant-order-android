@@ -1,4 +1,4 @@
-package si.lanisnik.restaurantorder.internal.di.modules
+package si.lanisnik.restaurantorder.internal.injection.modules
 
 import android.app.Application
 import android.content.Context

@@ -1,4 +1,4 @@
-package si.lanisnik.restaurantorder.ui.base
+package si.lanisnik.restaurantorder.base
 
 /**
  * Interface for all MVP presenters to implement.

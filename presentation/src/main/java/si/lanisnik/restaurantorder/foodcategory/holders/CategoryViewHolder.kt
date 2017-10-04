@@ -1,9 +1,9 @@
-package si.lanisnik.restaurantorder.ui.categories.holders
+package si.lanisnik.restaurantorder.foodcategory.holders
 
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import kotlinx.android.synthetic.main.recycler_item_category.view.*
-import si.lanisnik.restaurantorder.ui.categories.model.FoodCategoryModel
+import si.lanisnik.restaurantorder.foodcategory.model.FoodCategoryModel
 
 /**
  * Created by Domen Lanišnik on 17/09/2017.
