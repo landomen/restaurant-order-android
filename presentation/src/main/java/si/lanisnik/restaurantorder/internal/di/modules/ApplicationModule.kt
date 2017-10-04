@@ -15,13 +15,13 @@ import si.lanisnik.restaurantorder.domain.executor.JobExecutionThread
 import si.lanisnik.restaurantorder.domain.executor.PostExecutionThread
 import si.lanisnik.restaurantorder.domain.repository.FoodCategoryRepository
 import si.lanisnik.restaurantorder.internal.execution.MainThread
-import si.lanisnik.restaurantorder.remote.FoodCategoryRemoteImpl
+import si.lanisnik.restaurantorder.remote.foodcategory.FoodCategoryRemoteImpl
 import si.lanisnik.restaurantorder.remote.RestaurantOrderServiceFactory
-import si.lanisnik.restaurantorder.remote.mapper.FoodCategoryRemoteMapper
-import si.lanisnik.restaurantorder.remote.service.CustomerService
-import si.lanisnik.restaurantorder.remote.service.FoodCategoriesService
-import si.lanisnik.restaurantorder.remote.service.MenuItemsService
-import si.lanisnik.restaurantorder.remote.service.OrdersService
+import si.lanisnik.restaurantorder.remote.foodcategory.mapper.FoodCategoryRemoteMapper
+import si.lanisnik.restaurantorder.remote.customer.service.CustomerService
+import si.lanisnik.restaurantorder.remote.foodcategory.service.FoodCategoriesService
+import si.lanisnik.restaurantorder.remote.menuitem.service.MenuItemsService
+import si.lanisnik.restaurantorder.remote.order.service.OrdersService
 import javax.inject.Singleton
 
 /**

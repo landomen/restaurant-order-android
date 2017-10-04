@@ -2,7 +2,7 @@ package si.lanisnik.restaurantorder.ui.categories
 
 import dagger.Module
 import dagger.Provides
-import si.lanisnik.restaurantorder.domain.interactor.usecases.GetCategories
+import si.lanisnik.restaurantorder.domain.interactor.foodcategory.GetCategories
 import si.lanisnik.restaurantorder.internal.di.scopes.PerActivity
 
 /**

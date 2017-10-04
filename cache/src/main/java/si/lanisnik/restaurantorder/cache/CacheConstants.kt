@@ -8,5 +8,5 @@ object CacheConstants {
     /**
      * How long the cached data is valid.
      */
-    const val EXPIRATION_TIME = (24 * 3600 * 1000).toLong() // 1 day
+    const val EXPIRATION_TIME = (12 * 3600 * 1000).toLong() // 12 hours
 }

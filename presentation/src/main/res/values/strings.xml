@@ -1,6 +1,6 @@
 <resources>
     <!-- General -->
-    <string name="app_name">Pizzerija Gobica</string>
+    <string name="app_name">Restaurant Order</string>
     <string name="general_loading">Nalaganje…</string>
     <string name="general_dialog_notification_title">Obvestilo</string>
     <string name="general_close">Zapri</string>
