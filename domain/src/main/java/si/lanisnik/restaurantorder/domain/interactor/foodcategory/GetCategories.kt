@@ -15,10 +15,9 @@ class GetCategories @Inject constructor(
         private val categoryRepository: FoodCategoryRepository,
         threadExecutor: JobExecutionThread,
         postExecutionThread: PostExecutionThread) :
-        FlowableUseCase<List<FoodCategory>, Nothing>(threadExecutor, postExecutionThread) {
+        FlowableUseCase<List<FoodCategory>, Nothing?>(threadExecutor, postExecutionThread) {
 
-    override fun buildUseCaseObservable(params: Nothing?): Flowable<List<FoodCategory>> {
-        return categoryRepository.getCategories()
-    }
+    override fun buildUseCaseObservable(params: Nothing?): Flowable<List<FoodCategory>> =
+            categoryRepository.getCategories()
 
 }

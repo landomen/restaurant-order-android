@@ -26,7 +26,7 @@ object RestaurantOrderServiceFactory {
     fun <S> makeService(service: Class<S>): S = retrofit.create(service)
 
     private fun makeRetrofit(): Retrofit = Retrofit.Builder()
-            .baseUrl("http://4431a782.ngrok.io/")
+            .baseUrl("http://d59574a3.ngrok.io/")
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(makeGsonConverterFactory())
             .client(makeOkHttpClient())

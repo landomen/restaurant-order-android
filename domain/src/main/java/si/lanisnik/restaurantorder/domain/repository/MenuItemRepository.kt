@@ -11,8 +11,10 @@ import si.lanisnik.restaurantorder.domain.model.menuitem.MenuItem
  */
 interface MenuItemRepository {
 
+    fun clearMenuItems(categoryId: Int): Completable
+
     fun getMenuItems(categoryId: Int): Flowable<List<MenuItem>>
 
-    fun saveMenuItems(menuItems: List<MenuItem>): Completable
+    fun saveMenuItems(categoryId: Int, menuItems: List<MenuItem>): Completable
 
 }

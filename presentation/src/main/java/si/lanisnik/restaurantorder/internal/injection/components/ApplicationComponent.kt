@@ -7,14 +7,16 @@ import dagger.android.support.AndroidSupportInjectionModule
 import si.lanisnik.restaurantorder.RestaurantOrderApp
 import si.lanisnik.restaurantorder.internal.injection.modules.ActivityBindingModule
 import si.lanisnik.restaurantorder.internal.injection.modules.ApplicationModule
+import si.lanisnik.restaurantorder.internal.injection.modules.FoodCategoryRepositoryModule
+import si.lanisnik.restaurantorder.internal.injection.scopes.PerApplication
 import javax.inject.Singleton
 
 
 /**
  * A component whose lifetime is the life of the application.
  */
-@Singleton  // Constraints this component to one-per-application or unscoped bindings.
-@Component(modules = arrayOf(ApplicationModule::class, ActivityBindingModule::class,
+@PerApplication  // Constraints this component to one-per-application or unscoped bindings.
+@Component(modules = arrayOf(ApplicationModule::class, FoodCategoryRepositoryModule::class, ActivityBindingModule::class,
         AndroidSupportInjectionModule::class))
 interface ApplicationComponent {
     fun inject(application: RestaurantOrderApp)

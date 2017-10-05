@@ -1,6 +1,6 @@
 package si.lanisnik.restaurantorder.remote.menuitem.service
 
-import io.reactivex.Single
+import io.reactivex.Flowable
 import retrofit2.http.GET
 import retrofit2.http.Query
 import si.lanisnik.restaurantorder.remote.menuitem.model.MenuItemsResponse
@@ -12,6 +12,6 @@ import si.lanisnik.restaurantorder.remote.menuitem.model.MenuItemsResponse
 interface MenuItemsService {
 
     @GET("menu-items/category")
-    fun getMenuItems(@Query("id") categoryId: Int): Single<MenuItemsResponse>
+    fun getMenuItems(@Query("id") categoryId: Int): Flowable<MenuItemsResponse>
 
 }

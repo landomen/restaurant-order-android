@@ -7,13 +7,11 @@ import si.lanisnik.restaurantorder.data.source.foodcategory.FoodCategoryDataStor
 import si.lanisnik.restaurantorder.domain.model.foodcategory.FoodCategory
 import si.lanisnik.restaurantorder.domain.repository.FoodCategoryRepository
 import javax.inject.Inject
-import javax.inject.Singleton
 
 /**
  * Created by Domen Lanišnik on 29/09/2017.
  * domen.lanisnik@gmail.com
  */
-@Singleton
 class FoodCategoryDataRepository @Inject constructor(private val factory: FoodCategoryDataStoreFactory,
                                                      private val mapper: FoodCategoryEntityMapper) : FoodCategoryRepository {
     override fun clearCategories(): Completable =

@@ -1,9 +1,8 @@
-package si.lanisnik.restaurantorder.menuitems.details
+package si.lanisnik.restaurantorder.menuitem.details
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import si.lanisnik.restaurantorder.R
-import si.lanisnik.restaurantorder.base.BaseActivity
 
 class MenuItemDetailsActivity : AppCompatActivity() {
 

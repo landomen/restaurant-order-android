@@ -1,4 +1,4 @@
-package si.lanisnik.restaurantorder.cache
+package si.lanisnik.restaurantorder.cache.util
 
 /**
  * Created by Domen Lanišnik on 02/10/2017.

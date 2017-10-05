@@ -7,7 +7,7 @@ import android.arch.persistence.room.TypeConverters
 import android.content.Context
 import si.lanisnik.restaurantorder.cache.dao.CacheValidityDao
 import si.lanisnik.restaurantorder.cache.dao.CachedFoodCategoryDao
-import si.lanisnik.restaurantorder.cache.dao.MenuItemsDao
+import si.lanisnik.restaurantorder.cache.dao.CachedMenuItemDao
 import si.lanisnik.restaurantorder.cache.db.converters.RoomTypeConverters
 import si.lanisnik.restaurantorder.cache.model.foodcategory.CachedFoodCategory
 import si.lanisnik.restaurantorder.cache.model.menuitem.CachedMenuItem
@@ -23,7 +23,7 @@ import javax.inject.Inject
 abstract class RestaurantOrderDatabase @Inject constructor() : RoomDatabase() {
 
     abstract fun foodCategoryDao(): CachedFoodCategoryDao
-    abstract fun menuItemsDao(): MenuItemsDao
+    abstract fun menuItemDao(): CachedMenuItemDao
     abstract fun validityDao(): CacheValidityDao
 
     companion object {

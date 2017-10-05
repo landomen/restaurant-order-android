@@ -11,6 +11,7 @@ import si.lanisnik.restaurantorder.base.extensions.enableItemDividers
 import si.lanisnik.restaurantorder.base.extensions.showErrorDialogWithRetryAndDismissCallback
 import si.lanisnik.restaurantorder.foodcategory.adapters.CategoriesRecyclerAdapter
 import si.lanisnik.restaurantorder.foodcategory.model.FoodCategoryModel
+import si.lanisnik.restaurantorder.menuitem.list.MenuItemsListActivity
 import javax.inject.Inject
 
 class CategoriesListActivity : BaseActivity(), CategoriesContract.View, CategoriesRecyclerAdapter.OnCategoryClickListener {
@@ -43,7 +44,7 @@ class CategoriesListActivity : BaseActivity(), CategoriesContract.View, Categori
     }
 
     override fun onCategoryClicked(category: FoodCategoryModel) {
-        // TODO Open menu items list activity
+        startActivity(MenuItemsListActivity.create(this, category.id))
     }
 
     private fun toggleLoading(visible: Boolean) {
@@ -52,9 +53,9 @@ class CategoriesListActivity : BaseActivity(), CategoriesContract.View, Categori
 
     private fun showFetchingError() {
         showErrorDialogWithRetryAndDismissCallback(R.string.error_loading_failed, {
-            //            fetchData()
+//            fetchData()
         }, {
-            //            finish()
+//            finish()
         })
     }
 

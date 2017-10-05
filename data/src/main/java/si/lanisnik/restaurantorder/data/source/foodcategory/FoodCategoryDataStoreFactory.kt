@@ -18,7 +18,7 @@ class FoodCategoryDataStoreFactory @Inject constructor(
      * has not expired
      */
     fun retrieveDataStore(isCached: Boolean): FoodCategoryDataStore {
-        if (isCached && foodCategoryCache.isValid()) {
+        if (isCached && !foodCategoryCache.isExpired()) {
             return retrieveCacheDataStore()
         }
         return retrieveRemoteDataStore()
