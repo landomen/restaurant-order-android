@@ -4,9 +4,11 @@
     <dimen name="fab_margin">16dp</dimen>
 
     <!-- Margins and paddings -->
+    <dimen name="space_small">5dp</dimen>
     <dimen name="space_normal">10dp</dimen>
 
     <!-- Text -->
     <dimen name="text_size_normal">14sp</dimen>
+    <dimen name="text_size_title">15sp</dimen>
 
 </resources>

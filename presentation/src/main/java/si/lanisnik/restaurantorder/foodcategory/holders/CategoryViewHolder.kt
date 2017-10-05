@@ -1,17 +1,19 @@
 package si.lanisnik.restaurantorder.foodcategory.holders
 
-import android.support.v7.widget.RecyclerView
 import android.view.View
-import kotlinx.android.synthetic.main.recycler_item_category.view.*
+import kotlinx.android.synthetic.main.recycler_item_food_category.view.*
+import si.lanisnik.restaurantorder.base.holder.BaseViewHolder
 import si.lanisnik.restaurantorder.foodcategory.model.FoodCategoryModel
 
 /**
  * Created by Domen Lanišnik on 17/09/2017.
  * domen.lanisnik@gmail.com
  */
-class CategoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class CategoryViewHolder(itemView: View) : BaseViewHolder<FoodCategoryModel>(itemView) {
 
-    fun bind(category: FoodCategoryModel) {
-        itemView.categoryItemNameText.text = category.title
+    private val nameTextView by lazy { itemView.categoryItemNameText }
+
+    override fun bindModel(model: FoodCategoryModel) {
+        nameTextView.text = model.title
     }
 }

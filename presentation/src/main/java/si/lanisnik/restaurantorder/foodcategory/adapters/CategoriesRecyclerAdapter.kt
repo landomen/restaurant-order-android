@@ -31,7 +31,7 @@ class CategoriesRecyclerAdapter @Inject constructor() : RecyclerView.Adapter<Cat
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder =
-            CategoryViewHolder(parent.inflate(R.layout.recycler_item_category))
+            CategoryViewHolder(parent.inflate(R.layout.recycler_item_food_category))
 
     interface OnCategoryClickListener {
         fun onCategoryClicked(category: FoodCategoryModel)

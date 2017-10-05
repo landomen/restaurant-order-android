@@ -9,7 +9,7 @@
 
     <TextView
         android:id="@+id/categoryItemNameText"
-        style="@style/DefaultText"
+        style="@style/DefaultTitleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
