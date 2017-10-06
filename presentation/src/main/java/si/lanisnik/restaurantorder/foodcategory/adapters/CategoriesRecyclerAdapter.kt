@@ -24,7 +24,7 @@ class CategoriesRecyclerAdapter @Inject constructor() : RecyclerView.Adapter<Cat
 
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
         val category = categories[position]
-        holder.bind(category)
+        holder.bindModel(category)
         holder.itemView.setOnClickListener {
             listener?.onCategoryClicked(category)
         }
