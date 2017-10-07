@@ -7,6 +7,11 @@
         <item name="colorAccent">@color/accent</item>
     </style>
 
+    <style name="ToolbarStyle" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+        <!-- Customize color of navigation drawer icon and back arrow -->
+        <item name="colorControlNormal">@color/white</item>
+    </style>
+
     <!-- General -->
     <style name="DefaultText">
         <item name="android:textColor">@color/primary_text</item>

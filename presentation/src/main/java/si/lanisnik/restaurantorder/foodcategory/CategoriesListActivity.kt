@@ -36,8 +36,9 @@ class CategoriesListActivity : BaseActivity(), CategoriesRecyclerAdapter.OnCateg
 
     override fun initToolbar() {
         setSupportActionBar(toolbar)
-        setTitle(R.string.categories_title)
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        toolbar.setTitle(R.string.categories_title)
+        toolbar.setNavigationOnClickListener { finish() }
     }
 
     override fun initUi() {
