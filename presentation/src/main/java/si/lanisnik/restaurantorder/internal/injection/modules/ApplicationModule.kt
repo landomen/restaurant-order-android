@@ -10,6 +10,7 @@ import si.lanisnik.restaurantorder.data.executor.JobThread
 import si.lanisnik.restaurantorder.domain.executor.JobExecutionThread
 import si.lanisnik.restaurantorder.domain.executor.PostExecutionThread
 import si.lanisnik.restaurantorder.internal.execution.MainThread
+import si.lanisnik.restaurantorder.internal.injection.modules.foodcategory.FoodCategoryRepositoryModule
 import si.lanisnik.restaurantorder.internal.injection.scopes.PerApplication
 
 /**

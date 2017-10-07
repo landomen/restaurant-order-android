@@ -1,4 +1,4 @@
-package si.lanisnik.restaurantorder.internal.injection.modules
+package si.lanisnik.restaurantorder.internal.injection.modules.foodcategory
 
 import dagger.Module
 import dagger.Provides

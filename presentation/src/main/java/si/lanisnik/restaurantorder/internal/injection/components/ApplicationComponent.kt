@@ -7,9 +7,8 @@ import dagger.android.support.AndroidSupportInjectionModule
 import si.lanisnik.restaurantorder.RestaurantOrderApp
 import si.lanisnik.restaurantorder.internal.injection.modules.ActivityBindingModule
 import si.lanisnik.restaurantorder.internal.injection.modules.ApplicationModule
-import si.lanisnik.restaurantorder.internal.injection.modules.FoodCategoryRepositoryModule
+import si.lanisnik.restaurantorder.internal.injection.modules.foodcategory.FoodCategoryRepositoryModule
 import si.lanisnik.restaurantorder.internal.injection.scopes.PerApplication
-import javax.inject.Singleton
 
 
 /**

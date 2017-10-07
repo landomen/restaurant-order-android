@@ -30,7 +30,7 @@ ext {
     daggerVersion = '2.11'
 
     // Architecture components
-    architectureComponentsVersion = "1.0.0-beta1"
+    architectureComponentsVersion = "1.0.0-beta2"
 
     // Annotations
     javaxAnnotationVersion = '1.0'
@@ -128,6 +128,11 @@ ext {
 
             // Timber
             timber:             "com.jakewharton.timber:timber:${timberVersion}",
+
+            // Architecture Components
+//            archRuntime:        "android.arch.lifecycle:runtime:${architectureComponentsVersion}",
+            archExtensions:     "android.arch.lifecycle:extensions:${architectureComponentsVersion}",
+            archCompiler:       "android.arch.lifecycle:compiler:${architectureComponentsVersion}",
 
             // Annotations
             javaxAnnotation:    "javax.annotation:jsr250-api:${javaxAnnotationVersion}",

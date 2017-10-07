@@ -93,6 +93,11 @@ dependencies {
     // Timber
     compile presentationDependencies.timber
 
+    // Architecture components
+//    compile presentationDependencies.archRuntime
+    compile presentationDependencies.archExtensions
+    kapt presentationDependencies.archCompiler
+
     // Annotations
     provided presentationDependencies.javaxAnnotation
 }

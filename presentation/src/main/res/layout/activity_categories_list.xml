@@ -19,8 +19,8 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
         tools:listitem="@layout/recycler_item_food_category" />
 
-    <si.lanisnik.restaurantorder.base.views.LoadingView
-        android:id="@+id/categoriesLoadingView"
+    <si.lanisnik.restaurantorder.base.views.LoadingStateView
+        android:id="@+id/categoriesLoadingStateView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
