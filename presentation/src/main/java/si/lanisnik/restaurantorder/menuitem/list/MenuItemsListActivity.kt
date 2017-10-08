@@ -74,7 +74,7 @@ class MenuItemsListActivity : BaseActivity(), MenuitemRecyclerAdapter.OnMenuItem
     }
 
     private fun setToolbarTitle(title: String) {
-        toolbar.title = title
+        setTitle(title)
     }
 
     private fun initRecyclerView() {
