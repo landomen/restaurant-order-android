@@ -36,11 +36,9 @@ class FoodCategoryCacheImpl @Inject constructor(private val mapper: FoodCategory
         Completable.complete()
     }
 
-    override fun isCached(): Single<Boolean> = Single.defer { Single.just(database.foodCategoryDao().getCategories().isNotEmpty()) }
+    override fun isCached(): Single<Boolean> = Single.defer { Single.just(database.foodCategoryDao().getCategories().isNotEmpty() && !isCacheExpired(simpleStorage.getLong(LongKey.LAST_CACHE_TIME_FOOD_CATEGORY))) }
 
     override fun setLastCacheTime(time: Long) {
         simpleStorage.putLong(LongKey.LAST_CACHE_TIME_FOOD_CATEGORY, time)
     }
-
-    override fun isExpired(): Boolean = isCacheExpired(simpleStorage.getLong(LongKey.LAST_CACHE_TIME_FOOD_CATEGORY))
 }

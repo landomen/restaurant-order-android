@@ -18,15 +18,21 @@ class FoodCategoryDataRepository @Inject constructor(private val factory: FoodCa
             factory.retrieveCacheDataStore().clearCategories()
 
     override fun getCategories(): Flowable<List<FoodCategory>> {
-        return factory.retrieveCacheDataStore().isCached()
-                .flatMapPublisher {
-                    factory.retrieveDataStore(it).getCategories()
-                }
-                .flatMap {
-                    Flowable.just(it.map { mapper.mapFromEntity(it) })
-                }
-                .flatMap {
-                    saveCategories(it).toSingle { it }.toFlowable()
+        return factory.retrieveCacheDataStore()
+                .isCached()
+                .flatMapPublisher { cached ->
+                    var categoriesFlowable = factory.retrieveDataStore(cached)
+                            .getCategories()
+                            .flatMap {
+                                Flowable.just(it.map { mapper.mapFromEntity(it) })
+                            }
+                    if (!cached) {
+                        // save only if retrieved from remote
+                        categoriesFlowable = categoriesFlowable.flatMap {
+                            saveCategories(it).toSingle { it }.toFlowable()
+                        }
+                    }
+                    categoriesFlowable
                 }
     }
 

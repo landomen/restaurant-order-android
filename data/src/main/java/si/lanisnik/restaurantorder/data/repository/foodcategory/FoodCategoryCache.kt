@@ -21,5 +21,4 @@ interface FoodCategoryCache {
 
     fun setLastCacheTime(time: Long)
 
-    fun isExpired(): Boolean
 }
