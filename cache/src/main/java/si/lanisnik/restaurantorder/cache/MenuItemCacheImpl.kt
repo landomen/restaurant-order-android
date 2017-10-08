@@ -37,12 +37,12 @@ class MenuItemCacheImpl @Inject constructor(private val mapper: MenuItemCacheMap
     }
 
     override fun isCached(categoryId: Int): Single<Boolean> = Single.defer {
-        Single.just(database.menuItemDao().getAllMenuItems(categoryId).isNotEmpty())
+        Single.just(database.menuItemDao().getAllMenuItems(categoryId).isNotEmpty() &&
+                !isCacheExpired(simpleStorage.getLong(LongKey.LAST_CACHE_TIME_MENU_ITEM, suffix = categoryId.toString())))
     }
 
     override fun setLastCacheTime(categoryId: Int, time: Long) {
         simpleStorage.putLong(LongKey.LAST_CACHE_TIME_MENU_ITEM, time, categoryId.toString())
     }
 
-    override fun isExpired(categoryId: Int): Boolean = isCacheExpired(simpleStorage.getLong(LongKey.LAST_CACHE_TIME_MENU_ITEM, suffix = categoryId.toString()))
 }

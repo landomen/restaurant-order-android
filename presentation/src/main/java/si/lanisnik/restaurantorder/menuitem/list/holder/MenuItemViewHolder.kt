@@ -13,7 +13,7 @@ class MenuItemViewHolder(itemView: View) : BaseViewHolder<MenuItemModel>(itemVie
 
     private val titleTextView by lazy { itemView.itemMenuItemTitle }
     private val descriptionTextView by lazy { itemView.itemMenuItemDescription }
-    private val priceTextView by lazy { itemView.itemMenuItemDescription }
+    private val priceTextView by lazy { itemView.itemMenuItemPrice }
 
     override fun bindModel(model: MenuItemModel) {
         titleTextView.text = model.title

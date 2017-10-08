@@ -19,15 +19,20 @@ class MenuItemDataRepository @Inject constructor(private val factory: MenuItemDa
             factory.retrieveCacheDataStore().clearMenuItems(categoryId)
 
     override fun getMenuItems(categoryId: Int): Flowable<List<MenuItem>> {
-        return factory.retrieveCacheDataStore().isCached(categoryId)
-                .flatMapPublisher {
-                    factory.retrieveDataStore(categoryId, it).getMenuItems(categoryId)
-                }
-                .flatMap {
-                    Flowable.just(it.map { mapper.mapFromEntity(it) })
-                }
-                .flatMap {
-                    saveMenuItems(categoryId, it).toSingle { it }.toFlowable()
+        return factory.retrieveCacheDataStore()
+                .isCached(categoryId)
+                .flatMapPublisher { cached ->
+                    var menuItemsFlowable = factory.retrieveDataStore(cached)
+                            .getMenuItems(categoryId)
+                            .flatMap {
+                                Flowable.just(it.map { mapper.mapFromEntity(it) })
+                            }
+                    if (!cached) {
+                        menuItemsFlowable = menuItemsFlowable.flatMap {
+                            saveMenuItems(categoryId, it).toSingle { it }.toFlowable()
+                        }
+                    }
+                    menuItemsFlowable
                 }
     }
 

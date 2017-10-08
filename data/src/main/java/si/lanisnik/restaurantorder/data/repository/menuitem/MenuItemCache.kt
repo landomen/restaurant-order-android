@@ -21,5 +21,4 @@ interface MenuItemCache {
 
     fun setLastCacheTime(categoryId: Int, time: Long)
 
-    fun isExpired(categoryId: Int): Boolean
 }

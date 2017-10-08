@@ -10,7 +10,7 @@ import si.lanisnik.restaurantorder.cache.model.menuitem.CachedMenuItem
 @Dao
 interface CachedMenuItemDao {
 
-    @Query("SELECT * FROM ${DatabaseConstants.TABLE_MENU_ITEM} WHERE id = :categoryId")
+    @Query("SELECT * FROM ${DatabaseConstants.TABLE_MENU_ITEM} WHERE categoryId = :categoryId")
     fun getAllMenuItems(categoryId: Int): List<CachedMenuItem>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

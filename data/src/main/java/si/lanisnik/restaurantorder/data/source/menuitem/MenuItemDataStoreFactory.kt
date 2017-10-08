@@ -17,8 +17,8 @@ class MenuItemDataStoreFactory @Inject constructor(
      * Returns a DataStore based on whether or not there is content in the cache and the cache
      * has not expired
      */
-    fun retrieveDataStore(categoryId: Int, isCached: Boolean): MenuItemDataStore {
-        if (isCached && !menuItemCache.isExpired(categoryId)) {
+    fun retrieveDataStore(isCached: Boolean): MenuItemDataStore {
+        if (isCached) {
             return retrieveCacheDataStore()
         }
         return retrieveRemoteDataStore()
