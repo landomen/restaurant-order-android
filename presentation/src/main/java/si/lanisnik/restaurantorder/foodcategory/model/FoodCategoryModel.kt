@@ -1,10 +1,14 @@
 package si.lanisnik.restaurantorder.foodcategory.model
 
+import org.parceler.Parcel
+import org.parceler.ParcelConstructor
+
 /**
  * Created by Domen Lanišnik on 28/09/2017.
  * domen.lanisnik@gmail.com
  */
-data class FoodCategoryModel(
-        val id: Int = 0,
-        val title: String = ""
+@Parcel(Parcel.Serialization.BEAN)
+data class FoodCategoryModel @ParcelConstructor constructor(
+        val id: Int,
+        val title: String
 )

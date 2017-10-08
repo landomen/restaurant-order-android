@@ -94,9 +94,12 @@ dependencies {
     compile presentationDependencies.timber
 
     // Architecture components
-//    compile presentationDependencies.archRuntime
     compile presentationDependencies.archExtensions
     kapt presentationDependencies.archCompiler
+
+    // Parceler
+    compile presentationDependencies.parceler
+    kapt presentationDependencies.parcelerProcessor
 
     // Annotations
     provided presentationDependencies.javaxAnnotation

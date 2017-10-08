@@ -5,7 +5,7 @@ import dagger.android.ContributesAndroidInjector
 import si.lanisnik.restaurantorder.foodcategory.CategoriesListActivity
 import si.lanisnik.restaurantorder.internal.injection.modules.foodcategory.FoodCategoryListActivityModule
 import si.lanisnik.restaurantorder.internal.injection.scopes.PerActivity
-import si.lanisnik.restaurantorder.menuitem.list.MenuItemListModule
+import si.lanisnik.restaurantorder.internal.injection.modules.menuitem.MenuItemListActivityModule
 import si.lanisnik.restaurantorder.menuitem.list.MenuItemsListActivity
 
 /**
@@ -20,6 +20,6 @@ abstract class ActivityBindingModule {
     abstract fun categoriesListActivity(): CategoriesListActivity
 
     @PerActivity
-    @ContributesAndroidInjector(modules = arrayOf(MenuItemListModule::class))
+    @ContributesAndroidInjector(modules = arrayOf(MenuItemListActivityModule::class))
     abstract fun menuItemListActivity(): MenuItemsListActivity
 }

@@ -16,6 +16,8 @@ class GetMenuItems @Inject constructor(private val menuItemRepository: MenuItemR
                                        postExecutionThread: PostExecutionThread) :
         FlowableUseCase<List<MenuItem>, Int>(threadExecutor, postExecutionThread) {
 
-    override fun buildUseCaseObservable(categoryId: Int?): Flowable<List<MenuItem>> =
-            menuItemRepository.getMenuItems(categoryId!!)
+    override fun buildUseCaseObservable(categoryId: Int?): Flowable<List<MenuItem>> {
+        checkNotNull(categoryId)
+        return menuItemRepository.getMenuItems(categoryId!!)
+    }
 }

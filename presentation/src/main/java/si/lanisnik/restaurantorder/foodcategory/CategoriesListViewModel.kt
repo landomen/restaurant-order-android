@@ -8,6 +8,7 @@ import si.lanisnik.restaurantorder.base.data.Resource
 import si.lanisnik.restaurantorder.base.data.ResourceState
 import si.lanisnik.restaurantorder.domain.interactor.foodcategory.GetCategories
 import si.lanisnik.restaurantorder.domain.model.foodcategory.FoodCategory
+import si.lanisnik.restaurantorder.mapper.FoodCategoryMapper
 import si.lanisnik.restaurantorder.foodcategory.model.FoodCategoryModel
 import javax.inject.Inject
 
@@ -15,7 +16,8 @@ import javax.inject.Inject
  * Created by Domen Lanišnik on 07/10/2017.
  * domen.lanisnik@gmail.com
  */
-class CategoriesListViewModel @Inject constructor(private val getCategories: GetCategories) : ViewModel() {
+class CategoriesListViewModel @Inject constructor(private val getCategories: GetCategories,
+                                                  private val mapper: FoodCategoryMapper) : ViewModel() {
 
     private val categoriesLiveData: MutableLiveData<Resource<List<FoodCategoryModel>>> = MutableLiveData()
 
@@ -34,9 +36,16 @@ class CategoriesListViewModel @Inject constructor(private val getCategories: Get
     fun getCategories(): LiveData<Resource<List<FoodCategoryModel>>> = categoriesLiveData
 
     /**
+     * Try to fetch data again.
+     */
+    fun retry() {
+        loadCategories()
+    }
+
+    /**
      * Starts retrieving categories.
      */
-    fun loadCategories() {
+    private fun loadCategories() {
         categoriesLiveData.postValue(Resource(ResourceState.LOADING))
         getCategories.execute(CategoriesSubscriber())
     }
@@ -45,7 +54,7 @@ class CategoriesListViewModel @Inject constructor(private val getCategories: Get
 
         override fun onNext(t: List<FoodCategory>) {
             categoriesLiveData.postValue(Resource(ResourceState.SUCCESS,
-                    t.map { FoodCategoryModel(it.id, it.title) }))
+                    t.map { mapper.mapToModel(it) }))
         }
 
         override fun onComplete() {

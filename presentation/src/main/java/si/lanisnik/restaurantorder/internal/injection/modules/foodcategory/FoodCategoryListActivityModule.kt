@@ -4,6 +4,7 @@ import dagger.Module
 import dagger.Provides
 import si.lanisnik.restaurantorder.domain.interactor.foodcategory.GetCategories
 import si.lanisnik.restaurantorder.foodcategory.CategoriesListViewModelFactory
+import si.lanisnik.restaurantorder.mapper.FoodCategoryMapper
 import si.lanisnik.restaurantorder.internal.injection.scopes.PerActivity
 
 /**
@@ -14,7 +15,7 @@ open class FoodCategoryListActivityModule {
 
     @PerActivity
     @Provides
-    fun provideCategoriesListViewModelFactory(getCategories: GetCategories): CategoriesListViewModelFactory =
-            CategoriesListViewModelFactory(getCategories)
+    fun provideCategoriesListViewModelFactory(getCategories: GetCategories, mapper: FoodCategoryMapper): CategoriesListViewModelFactory =
+            CategoriesListViewModelFactory(getCategories, mapper)
 
 }

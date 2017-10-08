@@ -20,7 +20,7 @@
         tools:listitem="@layout/recycler_item_menu_item" />
 
     <si.lanisnik.restaurantorder.base.views.LoadingStateView
-        android:id="@+id/menuItemLoadingView"
+        android:id="@+id/menuItemLoadingStateView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"

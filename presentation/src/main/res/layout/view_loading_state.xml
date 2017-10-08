@@ -29,6 +29,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/space_normal"
         android:background="@color/accent"
+        android:visibility="gone"
+        tools:visibility="visible"
         android:padding="@dimen/space_normal"
         android:text="@string/general_retry"
         android:textColor="@color/white" />

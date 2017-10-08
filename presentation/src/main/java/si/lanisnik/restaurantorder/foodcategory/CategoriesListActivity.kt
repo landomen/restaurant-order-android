@@ -47,11 +47,11 @@ class CategoriesListActivity : BaseActivity(), CategoriesRecyclerAdapter.OnCateg
     }
 
     override fun onCategoryClicked(category: FoodCategoryModel) {
-        startActivity(MenuItemsListActivity.create(this, category.id))
+        startActivity(MenuItemsListActivity.create(this, category))
     }
 
     override fun onRetryClicked() {
-        viewModel.loadCategories()
+        viewModel.retry()
     }
 
     private fun setupObservers() {
