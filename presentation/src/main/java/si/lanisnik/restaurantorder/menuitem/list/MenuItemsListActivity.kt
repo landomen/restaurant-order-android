@@ -6,7 +6,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_menu_items_list.*
-import kotlinx.android.synthetic.main.toolbar.*
 import org.jetbrains.anko.intentFor
 import org.parceler.Parcels
 import si.lanisnik.restaurantorder.R
@@ -49,9 +48,9 @@ class MenuItemsListActivity : BaseActivity(), MenuitemRecyclerAdapter.OnMenuItem
     override fun getContentView(): Int = R.layout.activity_menu_items_list
 
     override fun initToolbar() {
-        setSupportActionBar(toolbar)
+        setSupportActionBar(menuItemsToolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        toolbar.setNavigationOnClickListener { finish() }
+        menuItemsToolbar.setNavigationOnClickListener { finish() }
     }
 
     override fun initUi() {
@@ -74,7 +73,7 @@ class MenuItemsListActivity : BaseActivity(), MenuitemRecyclerAdapter.OnMenuItem
     }
 
     private fun setToolbarTitle(title: String) {
-        toolbar.title = title
+        setTitle(title)
     }
 
     private fun initRecyclerView() {

@@ -5,7 +5,6 @@ import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.annotation.Nullable
 import kotlinx.android.synthetic.main.activity_categories_list.*
-import kotlinx.android.synthetic.main.toolbar.*
 import si.lanisnik.restaurantorder.R
 import si.lanisnik.restaurantorder.base.BaseActivity
 import si.lanisnik.restaurantorder.base.data.Resource
@@ -35,10 +34,10 @@ class CategoriesListActivity : BaseActivity(), CategoriesRecyclerAdapter.OnCateg
     override fun getContentView(): Int = R.layout.activity_categories_list
 
     override fun initToolbar() {
-        setSupportActionBar(toolbar)
+        setSupportActionBar(categoriesToolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        toolbar.setTitle(R.string.categories_title)
-        toolbar.setNavigationOnClickListener { finish() }
+        categoriesToolbar.setTitle(R.string.categories_title)
+        categoriesToolbar.setNavigationOnClickListener { finish() }
     }
 
     override fun initUi() {
