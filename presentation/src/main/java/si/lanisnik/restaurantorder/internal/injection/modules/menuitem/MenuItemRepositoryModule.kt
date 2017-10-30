@@ -41,5 +41,6 @@ class MenuItemRepositoryModule {
 
     @Provides
     @PerApplication
-    fun provideMenuItemsService(): MenuItemsService = RestaurantOrderServiceFactory.makeService(MenuItemsService::class.java)
+    fun provideMenuItemsService(serviceFactory: RestaurantOrderServiceFactory): MenuItemsService =
+            serviceFactory.makeService(MenuItemsService::class.java)
 }

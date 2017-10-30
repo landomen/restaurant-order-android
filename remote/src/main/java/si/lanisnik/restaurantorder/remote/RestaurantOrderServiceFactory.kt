@@ -1,23 +1,26 @@
 package si.lanisnik.restaurantorder.remote
 
-import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import si.lanisnik.restaurantorder.remote.interceptor.AuthenticationInterceptor
 import java.util.concurrent.TimeUnit
+import javax.inject.Inject
 
 /**
  * Provides "make" methods to create instances of different services
  * which define the Rest API endpoints.
  */
-object RestaurantOrderServiceFactory {
+class RestaurantOrderServiceFactory @Inject constructor(baseUrl: String,
+                                                        private val loggingEnabled: Boolean,
+                                                        private val authenticationInterceptor: AuthenticationInterceptor) {
 
     private val retrofit: Retrofit
 
     init {
-        retrofit = makeRetrofit()
+        retrofit = makeRetrofit(baseUrl)
     }
 
     /**
@@ -25,8 +28,8 @@ object RestaurantOrderServiceFactory {
      */
     fun <S> makeService(service: Class<S>): S = retrofit.create(service)
 
-    private fun makeRetrofit(): Retrofit = Retrofit.Builder()
-            .baseUrl("http://2fe952f4.ngrok.io/")
+    private fun makeRetrofit(baseUrl: String): Retrofit = Retrofit.Builder()
+            .baseUrl(baseUrl)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(makeGsonConverterFactory())
             .client(makeOkHttpClient())
@@ -40,23 +43,16 @@ object RestaurantOrderServiceFactory {
                     .writeTimeout(NetConstants.TIMEOUT_SECONDS, TimeUnit.SECONDS)
                     .connectTimeout(NetConstants.TIMEOUT_SECONDS, TimeUnit.SECONDS)
                     .addInterceptor(makeLoggingInterceptor())
-                    .addInterceptor(makeRequestInterceptor())
+                    .addInterceptor(authenticationInterceptor)
                     .build()
 
-    private fun makeRequestInterceptor(): Interceptor = Interceptor { chain ->
-        val original = chain.request()
-        val requestBuilder = original.newBuilder()
-
-        // automatically add authorization header to every request that demands it
-        if (original.header(NetConstants.HEADER_AUTHORIZATION)?.contains(NetConstants.REPLACE_CHAR) == true) {
-            // TODO Add authorization header value
-//                requestBuilder.header(NetConstants.HEADER_AUTHORIZATION, "")
+    private fun makeLoggingInterceptor(): HttpLoggingInterceptor {
+        return HttpLoggingInterceptor().apply {
+            level = if (loggingEnabled)
+                HttpLoggingInterceptor.Level.BODY
+            else
+                HttpLoggingInterceptor.Level.NONE
         }
-        chain.proceed(requestBuilder.build())
-    }
-
-    private fun makeLoggingInterceptor(): HttpLoggingInterceptor = HttpLoggingInterceptor().apply {
-        level = if (true) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE
     }
 
 }

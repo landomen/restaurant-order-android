@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import dagger.Module
 import dagger.Provides
+import si.lanisnik.restaurantorder.BuildConfig
 import si.lanisnik.restaurantorder.cache.db.RestaurantOrderDatabase
 import si.lanisnik.restaurantorder.cache.preferences.SimpleStorage
 import si.lanisnik.restaurantorder.data.executor.JobThread
@@ -13,6 +14,8 @@ import si.lanisnik.restaurantorder.internal.execution.MainThread
 import si.lanisnik.restaurantorder.internal.injection.modules.foodcategory.FoodCategoryRepositoryModule
 import si.lanisnik.restaurantorder.internal.injection.modules.menuitem.MenuItemRepositoryModule
 import si.lanisnik.restaurantorder.internal.injection.scopes.PerApplication
+import si.lanisnik.restaurantorder.remote.RestaurantOrderServiceFactory
+import si.lanisnik.restaurantorder.remote.interceptor.AuthenticationInterceptor
 
 /**
  * Dagger module that provides objects which will live during the application lifecycle.
@@ -40,13 +43,10 @@ open class ApplicationModule {
     @PerApplication
     fun provideSimpleStorage(context: Context): SimpleStorage = SimpleStorage(context)
 
-//    @Provides
-//    @PerApplication
-//    fun provideCustomerService(): CustomerService = RestaurantOrderServiceFactory.makeService(CustomerService::class.java)
-//
-//    @Provides
-//    @PerApplication
-//    fun provideOrdersService(): OrdersService = RestaurantOrderServiceFactory.makeService(OrdersService::class.java)
+    @Provides
+    @PerApplication
+    fun provideServiceFactory(authenticationInterceptor: AuthenticationInterceptor): RestaurantOrderServiceFactory =
+            RestaurantOrderServiceFactory(BuildConfig.SERVER_BASE_URL, BuildConfig.DEBUG, authenticationInterceptor)
 
     // endregion
 }

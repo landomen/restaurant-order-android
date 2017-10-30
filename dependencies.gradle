@@ -16,7 +16,7 @@ ext {
     supportLibraryVersion = '26.1.0'
 
     // Kotlin
-    kotlinVersion = "1.1.50"
+    kotlinVersion = "1.1.51"
     ankoVersion = '0.10.1'
 
     // RxJava
@@ -34,6 +34,9 @@ ext {
 
     // Parceler
     parcelerVersion = '1.1.9'
+
+    // Glide
+    glideVersion = '4.2.0'
 
     // Annotations
     javaxAnnotationVersion = '1.0'
@@ -139,6 +142,10 @@ ext {
             // Parceler
             parceler:           "org.parceler:parceler-api:$parcelerVersion",
             parcelerProcessor:  "org.parceler:parceler:$parcelerVersion",
+
+            // Glide
+            glide:              "com.github.bumptech.glide:glide:$glideVersion",
+            glideProcessor:     "com.github.bumptech.glide:compiler:$glideVersion",
 
             // Annotations
             javaxAnnotation:    "javax.annotation:jsr250-api:${javaxAnnotationVersion}",

@@ -26,9 +26,10 @@ android {
         }
     }
 
+    flavorDimensions "default"
     productFlavors {
         develop {
-            buildConfigField "String", "SERVER_BASE_URL", '"http://ddace7a9.ngrok.io/"'
+            buildConfigField "String", "SERVER_BASE_URL", '"http://bd5cd4f9.ngrok.io/"'
             versionNameSuffix "-DEV"
         }
 
@@ -57,6 +58,7 @@ android {
         disable 'IconDensities'             //For testing purpose. This is safe to remove.
         disable 'IconMissingDensityFolder'  //For testing purpose. This is safe to remove.
     }
+    buildToolsVersion '26.0.2'
 }
 
 dependencies {
@@ -100,6 +102,10 @@ dependencies {
     // Parceler
     compile presentationDependencies.parceler
     kapt presentationDependencies.parcelerProcessor
+
+    // Glide
+    compile presentationDependencies.glide
+    kapt presentationDependencies.glideProcessor
 
     // Annotations
     provided presentationDependencies.javaxAnnotation

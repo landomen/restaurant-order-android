@@ -42,5 +42,6 @@ class FoodCategoryRepositoryModule {
 
     @Provides
     @PerApplication
-    fun provideFoodCategoryService(): FoodCategoriesService = RestaurantOrderServiceFactory.makeService(FoodCategoriesService::class.java)
+    fun provideFoodCategoryService(serviceFactory: RestaurantOrderServiceFactory): FoodCategoriesService =
+            serviceFactory.makeService(FoodCategoriesService::class.java)
 }
