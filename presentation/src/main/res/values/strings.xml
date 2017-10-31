@@ -17,5 +17,6 @@
     <string name="menu_item_description">Opis / sestavine</string>
     <string name="menu_item_price">Cena</string>
     <string name="menu_item_comment">Vaše želje</string>
+    <string name="menu_item_count">Količina</string>
 
 </resources>

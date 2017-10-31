@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="horizontal"
+    tools:parentTag="android.widget.LinearLayout">
+
+    <ImageButton
+        android:id="@+id/pickerLowerButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        android:foreground="?attr/selectableItemBackground"
+        android:padding="@dimen/space_small"
+        android:src="@drawable/ic_remove"
+        android:tint="@color/accent" />
+
+    <TextView
+        android:id="@+id/pickerValueText"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="1"
+        tools:ignore="HardcodedText" />
+
+    <ImageButton
+        android:id="@+id/pickerHigherButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        android:foreground="?attr/selectableItemBackground"
+        android:padding="@dimen/space_small"
+        android:src="@drawable/ic_add"
+        android:tint="@color/accent" />
+
+</merge>
