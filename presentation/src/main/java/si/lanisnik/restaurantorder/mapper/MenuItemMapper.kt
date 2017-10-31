@@ -1,7 +1,7 @@
 package si.lanisnik.restaurantorder.mapper
 
 import si.lanisnik.restaurantorder.domain.model.menuitem.MenuItem
-import si.lanisnik.restaurantorder.menuitem.model.MenuItemModel
+import si.lanisnik.restaurantorder.ui.menuitem.model.MenuItemModel
 import javax.inject.Inject
 
 /**

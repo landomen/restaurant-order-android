@@ -1,8 +1,7 @@
 package si.lanisnik.restaurantorder.mapper
 
 import si.lanisnik.restaurantorder.domain.model.foodcategory.FoodCategory
-import si.lanisnik.restaurantorder.foodcategory.model.FoodCategoryModel
-import si.lanisnik.restaurantorder.mapper.PresentationMapper
+import si.lanisnik.restaurantorder.ui.foodcategory.model.FoodCategoryModel
 import javax.inject.Inject
 
 /**

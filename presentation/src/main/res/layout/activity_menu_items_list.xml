@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".menuitem.list.MenuItemsListActivity">
+    tools:context=".ui.menuitem.list.MenuItemsListActivity">
 
     <include layout="@layout/toolbar" />
 
@@ -19,7 +19,7 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
         tools:listitem="@layout/recycler_item_menu_item" />
 
-    <si.lanisnik.restaurantorder.base.views.LoadingStateView
+    <si.lanisnik.restaurantorder.ui.base.views.LoadingStateView
         android:id="@+id/menuItemLoadingStateView"
         android:layout_width="0dp"
         android:layout_height="0dp"
