@@ -24,8 +24,8 @@ abstract class BaseActivity : AppCompatActivity(), HasActivityInjector {
         super.onCreate(savedInstanceState)
         setContentView(getContentView())
         AndroidInjection.inject(this)
-        initUi()
         initToolbar()
+        initUi()
     }
 
     @LayoutRes abstract protected fun getContentView(): Int

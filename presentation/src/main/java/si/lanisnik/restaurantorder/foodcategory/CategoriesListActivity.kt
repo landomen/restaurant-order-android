@@ -17,13 +17,15 @@ import si.lanisnik.restaurantorder.base.extensions.show
 import si.lanisnik.restaurantorder.base.views.LoadingStateView
 import si.lanisnik.restaurantorder.foodcategory.adapters.CategoriesRecyclerAdapter
 import si.lanisnik.restaurantorder.foodcategory.model.FoodCategoryModel
-import si.lanisnik.restaurantorder.menuitem.list.MenuItemsListActivity
+import si.lanisnik.restaurantorder.menuitem.navigator.MenuItemNavigator
 import javax.inject.Inject
 
 class CategoriesListActivity : BaseActivity(), CategoriesRecyclerAdapter.OnCategoryClickListener, LoadingStateView.RetryListener {
 
     @Inject lateinit var adapter: CategoriesRecyclerAdapter
     @Inject lateinit var viewModelFactory: CategoriesListViewModelFactory
+    @Inject lateinit var menuItemNavigator: MenuItemNavigator
+
     private lateinit var viewModel: CategoriesListViewModel
 
     override fun onCreate(@Nullable savedInstanceState: Bundle?) {
@@ -47,7 +49,7 @@ class CategoriesListActivity : BaseActivity(), CategoriesRecyclerAdapter.OnCateg
     }
 
     override fun onCategoryClicked(category: FoodCategoryModel) {
-        startActivity(MenuItemsListActivity.create(this, category))
+        menuItemNavigator.navigateToList(this, category)
     }
 
     override fun onRetryClicked() {

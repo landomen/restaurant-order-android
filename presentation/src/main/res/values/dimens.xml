@@ -2,12 +2,16 @@
 <resources>
     <!-- Material guidelines -->
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="app_bar_height">180dp</dimen>
 
     <!-- Margins and paddings -->
     <dimen name="space_small">5dp</dimen>
     <dimen name="space_normal">10dp</dimen>
+    <dimen name="space_medium">15dp</dimen>
+    <dimen name="space_large">20dp</dimen>
 
     <!-- Text -->
+    <dimen name="text_size_small">13sp</dimen>
     <dimen name="text_size_normal">14sp</dimen>
     <dimen name="text_size_title">15sp</dimen>
 

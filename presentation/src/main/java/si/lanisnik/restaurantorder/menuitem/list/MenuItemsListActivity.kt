@@ -2,41 +2,27 @@ package si.lanisnik.restaurantorder.menuitem.list
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_menu_items_list.*
 import kotlinx.android.synthetic.main.toolbar.*
-import org.jetbrains.anko.intentFor
-import org.parceler.Parcels
 import si.lanisnik.restaurantorder.R
 import si.lanisnik.restaurantorder.base.BaseActivity
+import si.lanisnik.restaurantorder.base.constants.ActivityConstants.EXTRA_FOOD_CATEGORY
 import si.lanisnik.restaurantorder.base.data.Resource
 import si.lanisnik.restaurantorder.base.data.ResourceState
-import si.lanisnik.restaurantorder.base.extensions.enableItemDividers
-import si.lanisnik.restaurantorder.base.extensions.hide
-import si.lanisnik.restaurantorder.base.extensions.isNotNullAndEmpty
-import si.lanisnik.restaurantorder.base.extensions.show
+import si.lanisnik.restaurantorder.base.extensions.*
 import si.lanisnik.restaurantorder.base.views.LoadingStateView
 import si.lanisnik.restaurantorder.foodcategory.model.FoodCategoryModel
 import si.lanisnik.restaurantorder.menuitem.list.adapter.MenuitemRecyclerAdapter
 import si.lanisnik.restaurantorder.menuitem.model.MenuItemModel
+import si.lanisnik.restaurantorder.menuitem.navigator.MenuItemNavigator
 import javax.inject.Inject
 
 class MenuItemsListActivity : BaseActivity(), MenuitemRecyclerAdapter.OnMenuItemSelectedListener, LoadingStateView.RetryListener {
 
-    companion object {
-        private const val EXTRA_FOOD_CATEGORY = "si.lanisnik.restaurantorder.menuitem.list.FoodCategory"
-
-        /**
-         * Create intent to open [MenuItemsListActivity] based on the selected category.
-         */
-        fun create(context: Context, foodCategory: FoodCategoryModel): Intent =
-                context.intentFor<MenuItemsListActivity>(EXTRA_FOOD_CATEGORY to Parcels.wrap(foodCategory))
-    }
-
     @Inject lateinit var adapter: MenuitemRecyclerAdapter
     @Inject lateinit var viewModelFactory: MenuItemsListViewModelFactory
+    @Inject lateinit var menuItemNavigator: MenuItemNavigator
     private lateinit var viewModel: MenuItemListViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,8 +45,8 @@ class MenuItemsListActivity : BaseActivity(), MenuitemRecyclerAdapter.OnMenuItem
         menuItemLoadingStateView.retryListener = this
     }
 
-    override fun onMenuItemSelected(id: Int) {
-        // TODO Open details
+    override fun onMenuItemSelected(item: MenuItemModel) {
+        menuItemNavigator.navigateToDetails(this, item)
     }
 
     override fun onRetryClicked() {
@@ -68,7 +54,7 @@ class MenuItemsListActivity : BaseActivity(), MenuitemRecyclerAdapter.OnMenuItem
     }
 
     private fun initViewModel() {
-        val foodCategory = Parcels.unwrap<FoodCategoryModel>(intent.getParcelableExtra(EXTRA_FOOD_CATEGORY))
+        val foodCategory: FoodCategoryModel = unwrapParcel(EXTRA_FOOD_CATEGORY)
         setToolbarTitle(foodCategory.title)
         viewModel.initialize(foodCategory)
     }

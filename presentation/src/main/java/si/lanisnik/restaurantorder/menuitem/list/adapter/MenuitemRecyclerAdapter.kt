@@ -26,7 +26,7 @@ class MenuitemRecyclerAdapter @Inject constructor() : RecyclerView.Adapter<MenuI
         val menuItem = items[position]
         holder.bindModel(menuItem)
         holder.itemView.setOnClickListener {
-            listener?.onMenuItemSelected(menuItem.id)
+            listener?.onMenuItemSelected(menuItem)
         }
     }
 
@@ -34,6 +34,6 @@ class MenuitemRecyclerAdapter @Inject constructor() : RecyclerView.Adapter<MenuI
             MenuItemViewHolder(parent.inflate(R.layout.recycler_item_menu_item))
 
     interface OnMenuItemSelectedListener {
-        fun onMenuItemSelected(id: Int)
+        fun onMenuItemSelected(item: MenuItemModel)
     }
 }

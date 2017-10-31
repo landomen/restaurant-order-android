@@ -12,4 +12,10 @@
 
     <!-- Categories -->
     <string name="categories_title">Meni</string>
+
+    <!-- Menu item -->
+    <string name="menu_item_description">Opis / sestavine</string>
+    <string name="menu_item_price">Cena</string>
+    <string name="menu_item_comment">Vaše želje</string>
+
 </resources>

@@ -5,6 +5,7 @@ import dagger.Provides
 import si.lanisnik.restaurantorder.domain.interactor.menuitem.GetMenuItems
 import si.lanisnik.restaurantorder.internal.injection.scopes.PerActivity
 import si.lanisnik.restaurantorder.mapper.MenuItemMapper
+import si.lanisnik.restaurantorder.menuitem.details.MenuItemDetailsViewModelFactory
 import si.lanisnik.restaurantorder.menuitem.list.MenuItemsListViewModelFactory
 
 /**
@@ -12,10 +13,15 @@ import si.lanisnik.restaurantorder.menuitem.list.MenuItemsListViewModelFactory
  * domen.lanisnik@gmail.com
  */
 @Module
-class MenuItemListActivityModule {
+class MenuItemActivityModule {
 
     @PerActivity
     @Provides
     fun provideMenuItemListViewModelFactory(getMenuItems: GetMenuItems, mapper: MenuItemMapper): MenuItemsListViewModelFactory =
             MenuItemsListViewModelFactory(getMenuItems, mapper)
+
+    @PerActivity
+    @Provides
+    fun provideMenuItemDetailsViewModelFactory(): MenuItemDetailsViewModelFactory =
+            MenuItemDetailsViewModelFactory()
 }

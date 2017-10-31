@@ -18,6 +18,6 @@ class MenuItemViewHolder(itemView: View) : BaseViewHolder<MenuItemModel>(itemVie
     override fun bindModel(model: MenuItemModel) {
         titleTextView.text = model.title
         descriptionTextView.text = model.description
-        priceTextView.text = "${model.price}€"
+        priceTextView.text = model.getFormattedPrice()
     }
 }
