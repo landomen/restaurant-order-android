@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Texts -->
     <style name="DefaultText">
         <item name="android:textColor">@color/primary_text</item>
         <item name="android:textSize">@dimen/text_size_normal</item>
@@ -20,6 +21,14 @@
     <style name="LabelText">
         <item name="android:textColor">@color/primary</item>
         <item name="android:textSize">@dimen/text_size_small</item>
+    </style>
+
+    <!-- Buttons -->
+    <style name="DefaultButton">
+        <item name="android:background">@drawable/background_button</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/text_size_normal</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
 </resources>

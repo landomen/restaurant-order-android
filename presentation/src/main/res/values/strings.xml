@@ -5,6 +5,15 @@
     <string name="general_close">Zapri</string>
     <string name="general_retry">Poskusi znova</string>
 
+    <!-- Placeholders -->
+    <string name="placeholder_email">Email</string>
+    <string name="placeholder_password">Geslo</string>
+    <string name="placeholder_password_confirmation">Potrditev gesla</string>
+    <string name="placeholder_first_name">Ime</string>
+    <string name="placeholder_last_name">Priimek</string>
+    <string name="placeholder_delivery_address">Naslov za dostavo</string>
+    <string name="placeholder_phone_number">Telefonska št.</string>
+
     <!-- Loading -->
     <string name="result_loading">Pridobivanje podatkov…</string>
     <string name="result_loading_error">Pri pridobivanju podatkov je prišlo do napake.</string>
@@ -18,5 +27,15 @@
     <string name="menu_item_price">Cena</string>
     <string name="menu_item_comment">Vaše želje</string>
     <string name="menu_item_count">Količina</string>
+
+    <!-- Login -->
+    <string name="login">Prijava</string>
+    <string name="login_no_account">Še nimate računa?</string>
+    <string name="login_register">Registrirajte se</string>
+
+    <!-- Register -->
+    <string name="register">Registracija</string>
+    <string name="register_has_account">Že imate račun?</string>
+    <string name="register_login">Prijavite se</string>
 
 </resources>

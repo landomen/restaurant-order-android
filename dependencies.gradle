@@ -123,7 +123,7 @@ ext {
 
             // Design libraries
             supportDesign:      "com.android.support:design:${supportLibraryVersion}",
-            constraintLayout:   'com.android.support.constraint:constraint-layout:1.0.2',
+            constraintLayout:   'com.android.support.constraint:constraint-layout:1.1.0-beta3',
 
             // Anko
             anko:               "org.jetbrains.anko:anko:${ankoVersion}",
