@@ -10,10 +10,7 @@ import si.lanisnik.restaurantorder.R
 import si.lanisnik.restaurantorder.ui.base.BaseActivity
 import si.lanisnik.restaurantorder.ui.base.data.Resource
 import si.lanisnik.restaurantorder.ui.base.data.ResourceState
-import si.lanisnik.restaurantorder.ui.base.extensions.enableItemDividers
-import si.lanisnik.restaurantorder.ui.base.extensions.hide
-import si.lanisnik.restaurantorder.ui.base.extensions.isNotNullAndEmpty
-import si.lanisnik.restaurantorder.ui.base.extensions.show
+import si.lanisnik.restaurantorder.ui.base.extensions.*
 import si.lanisnik.restaurantorder.ui.base.views.LoadingStateView
 import si.lanisnik.restaurantorder.ui.foodcategory.adapters.CategoriesRecyclerAdapter
 import si.lanisnik.restaurantorder.ui.foodcategory.model.FoodCategoryModel
@@ -38,7 +35,7 @@ class CategoriesListActivity : BaseActivity(), CategoriesRecyclerAdapter.OnCateg
 
     override fun initToolbar() {
         setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        enableBackArrow()
         toolbar.setTitle(R.string.categories_title)
         toolbar.setNavigationOnClickListener { finish() }
     }

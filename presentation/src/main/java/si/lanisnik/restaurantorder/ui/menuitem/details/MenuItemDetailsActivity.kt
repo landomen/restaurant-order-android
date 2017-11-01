@@ -8,6 +8,7 @@ import kotlinx.android.synthetic.main.content_menu_item_details.*
 import si.lanisnik.restaurantorder.R
 import si.lanisnik.restaurantorder.ui.base.BaseActivity
 import si.lanisnik.restaurantorder.ui.base.constants.ActivityConstants.EXTRA_MENU_ITEM
+import si.lanisnik.restaurantorder.ui.base.extensions.enableBackArrow
 import si.lanisnik.restaurantorder.ui.base.extensions.unwrapParcel
 import javax.inject.Inject
 
@@ -27,7 +28,7 @@ class MenuItemDetailsActivity : BaseActivity() {
 
     override fun initToolbar() {
         setSupportActionBar(menuItemToolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        enableBackArrow()
         menuItemToolbar.setNavigationOnClickListener { finish() }
     }
 

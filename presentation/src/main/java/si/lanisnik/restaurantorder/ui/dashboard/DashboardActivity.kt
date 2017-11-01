@@ -1,27 +1,36 @@
 package si.lanisnik.restaurantorder.ui.dashboard
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_dashboard.*
 import kotlinx.android.synthetic.main.toolbar.*
-import org.jetbrains.anko.startActivity
 import si.lanisnik.restaurantorder.R
-import si.lanisnik.restaurantorder.ui.foodcategory.CategoriesListActivity
+import si.lanisnik.restaurantorder.ui.base.BaseActivity
+import si.lanisnik.restaurantorder.ui.dashboard.navigator.DashboardNavigator
+import si.lanisnik.restaurantorder.ui.onboarding.navigator.OnboardingNavigator
+import javax.inject.Inject
 
-class DashboardActivity : AppCompatActivity() {
+class DashboardActivity : BaseActivity() {
+
+    @Inject lateinit var navigator: DashboardNavigator
+    @Inject lateinit var onboardingNavigator: OnboardingNavigator
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_dashboard)
-        setSupportActionBar(toolbar)
-        setTitle(R.string.app_name)
-
-        initUi()
     }
 
-    private fun initUi() {
+    override fun getContentView(): Int = R.layout.activity_dashboard
+
+    override fun initToolbar() {
+        setSupportActionBar(toolbar)
+        setTitle(R.string.app_name)
+    }
+
+    override fun initUi() {
         floatingActionButton.setOnClickListener {
-            startActivity<CategoriesListActivity>()
+            navigator.navigateToCategories(this)
+        }
+        dashboardLoginButton.setOnClickListener {
+            onboardingNavigator.navigateToLogin(this)
         }
     }
 

@@ -36,7 +36,7 @@ class MenuItemsListActivity : BaseActivity(), MenuitemRecyclerAdapter.OnMenuItem
 
     override fun initToolbar() {
         setSupportActionBar(toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        enableBackArrow()
         toolbar.setNavigationOnClickListener { finish() }
     }
 
