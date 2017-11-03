@@ -2,7 +2,7 @@ package si.lanisnik.restaurantorder.data.repository.customer
 
 import io.reactivex.Completable
 import io.reactivex.Single
-import si.lanisnik.restaurantorder.domain.model.customer.Customer
+import si.lanisnik.restaurantorder.data.entity.customer.CustomerEntity
 
 /**
  * Created by Domen Lanišnik on 02/11/2017.
@@ -10,10 +10,10 @@ import si.lanisnik.restaurantorder.domain.model.customer.Customer
  */
 interface CustomerCache {
 
-    fun getCustomer(): Single<Customer>
+    fun getCustomer(): Single<CustomerEntity>
 
     fun isValid(): Single<Boolean>
 
-    fun saveCustomer(customer: Customer): Completable
+    fun saveCustomer(customer: CustomerEntity): Completable
 
 }

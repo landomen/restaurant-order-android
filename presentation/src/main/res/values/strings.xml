@@ -4,6 +4,7 @@
     <string name="general_dialog_notification_title">Obvestilo</string>
     <string name="general_close">Zapri</string>
     <string name="general_retry">Poskusi znova</string>
+    <string name="general_error">Prišlo je do nepričakovane napake.</string>
 
     <!-- Placeholders -->
     <string name="placeholder_email">Email</string>
@@ -33,6 +34,8 @@
     <string name="login_no_account">Še nimate računa?</string>
     <string name="login_register">Registrirajte se</string>
     <string name="login_invalid_input">Manjkajoči ali nepravilni podatki</string>
+    <string name="login_not_authorized">Email in geslo se ne ujemata</string>
+    <string name="logging_in">Prijavljanje …</string>
 
     <!-- Register -->
     <string name="register">Registracija</string>

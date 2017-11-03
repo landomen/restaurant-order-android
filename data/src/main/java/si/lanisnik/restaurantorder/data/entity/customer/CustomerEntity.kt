@@ -7,7 +7,7 @@ package si.lanisnik.restaurantorder.data.entity.customer
 data class CustomerEntity(
         val id: Int,
         val email: String,
-        val password: String,
+        val password: String? = null,
         val firstName: String,
         val lastName: String,
         val phoneNumber: String,

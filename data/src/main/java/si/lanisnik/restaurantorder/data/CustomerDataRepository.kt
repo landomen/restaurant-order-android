@@ -3,6 +3,7 @@ package si.lanisnik.restaurantorder.data
 import io.reactivex.Completable
 import io.reactivex.Single
 import si.lanisnik.restaurantorder.data.component.AuthorizationComponent
+import si.lanisnik.restaurantorder.data.mapper.CustomerEntityMapper
 import si.lanisnik.restaurantorder.data.repository.customer.CustomerCache
 import si.lanisnik.restaurantorder.data.repository.customer.CustomerRemote
 import si.lanisnik.restaurantorder.domain.model.customer.Customer
@@ -15,6 +16,7 @@ import javax.inject.Inject
  */
 class CustomerDataRepository @Inject constructor(private val cache: CustomerCache,
                                                  private val remote: CustomerRemote,
+                                                 private val entityMapper: CustomerEntityMapper,
                                                  private val authorizationComponent: AuthorizationComponent) : CustomerRepository {
 
     override fun login(email: String, password: String): Completable {
@@ -27,11 +29,11 @@ class CustomerDataRepository @Inject constructor(private val cache: CustomerCach
     }
 
     override fun register(customer: Customer): Completable {
-        return remote.register(customer)
+        return remote.register(entityMapper.mapToEntity(customer))
                 .flatMapCompletable {
                     cache.saveCustomer(it)
                 }.doOnComplete {
-            saveCredentials(customer.email, customer.password)
+            saveCredentials(customer.email, customer.password!!)
         }
     }
 
@@ -49,6 +51,8 @@ class CustomerDataRepository @Inject constructor(private val cache: CustomerCach
             } else {
                 cache.getCustomer()
             }
+        }.map {
+            entityMapper.mapFromEntity(it)
         }
     }
 

@@ -1,7 +1,11 @@
 package si.lanisnik.restaurantorder.ui.onboarding.navigator
 
 import android.content.Context
+import org.jetbrains.anko.clearTask
+import org.jetbrains.anko.intentFor
+import org.jetbrains.anko.newTask
 import org.jetbrains.anko.startActivity
+import si.lanisnik.restaurantorder.ui.dashboard.DashboardActivity
 import si.lanisnik.restaurantorder.ui.onboarding.login.LoginActivity
 import si.lanisnik.restaurantorder.ui.onboarding.register.RegisterActivity
 import si.lanisnik.restaurantorder.ui.onboarding.register.RegisterActivity.Companion.EXTRA_STARTED_FROM_LOGIN
@@ -19,6 +23,10 @@ class OnboardingNavigator @Inject constructor() {
 
     fun navigateToRegister(context: Context, fromLogin: Boolean) {
         context.startActivity<RegisterActivity>(EXTRA_STARTED_FROM_LOGIN to fromLogin)
+    }
+
+    fun navigateToDashboard(context: Context) {
+        context.startActivity(context.intentFor<DashboardActivity>().newTask().clearTask())
     }
 
 }

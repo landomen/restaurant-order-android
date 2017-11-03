@@ -103,5 +103,4 @@
         app:layout_constraintStart_toEndOf="@+id/loginNoAccountText"
         app:layout_constraintTop_toBottomOf="@id/loginButton" />
 
-
 </android.support.constraint.ConstraintLayout>

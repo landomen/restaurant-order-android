@@ -6,6 +6,7 @@ import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
 import io.realm.Realm
+import io.realm.RealmConfiguration
 import si.lanisnik.restaurantorder.internal.injection.components.DaggerApplicationComponent
 import timber.log.Timber
 import javax.inject.Inject
@@ -38,5 +39,9 @@ class RestaurantOrderApp : Application(), HasActivityInjector {
 
     private fun setupRealm() {
         Realm.init(this)
+        Realm.setDefaultConfiguration(RealmConfiguration.Builder().
+                deleteRealmIfMigrationNeeded().
+                build()
+        )
     }
 }

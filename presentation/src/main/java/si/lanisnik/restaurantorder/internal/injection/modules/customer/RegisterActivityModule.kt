@@ -1,4 +1,4 @@
-package si.lanisnik.restaurantorder.internal.injection.modules.onboarding
+package si.lanisnik.restaurantorder.internal.injection.modules.customer
 
 import dagger.Module
 

@@ -12,6 +12,7 @@ import si.lanisnik.restaurantorder.data.executor.JobThread
 import si.lanisnik.restaurantorder.domain.executor.JobExecutionThread
 import si.lanisnik.restaurantorder.domain.executor.PostExecutionThread
 import si.lanisnik.restaurantorder.internal.execution.MainThread
+import si.lanisnik.restaurantorder.internal.injection.modules.customer.CustomerRepositoryModule
 import si.lanisnik.restaurantorder.internal.injection.modules.foodcategory.FoodCategoryRepositoryModule
 import si.lanisnik.restaurantorder.internal.injection.modules.menuitem.MenuItemRepositoryModule
 import si.lanisnik.restaurantorder.internal.injection.scopes.PerApplication
@@ -21,7 +22,11 @@ import si.lanisnik.restaurantorder.remote.interceptor.AuthenticationInterceptor
 /**
  * Dagger module that provides objects which will live during the application lifecycle.
  */
-@Module(includes = arrayOf(FoodCategoryRepositoryModule::class, MenuItemRepositoryModule::class))
+@Module(includes = arrayOf(
+        FoodCategoryRepositoryModule::class,
+        MenuItemRepositoryModule::class,
+        CustomerRepositoryModule::class
+))
 open class ApplicationModule {
 
     @Provides

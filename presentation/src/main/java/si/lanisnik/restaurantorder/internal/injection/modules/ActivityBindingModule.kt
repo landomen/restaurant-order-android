@@ -5,8 +5,8 @@ import dagger.android.ContributesAndroidInjector
 import si.lanisnik.restaurantorder.internal.injection.modules.dashboard.DashboardActivityModule
 import si.lanisnik.restaurantorder.internal.injection.modules.foodcategory.FoodCategoryListActivityModule
 import si.lanisnik.restaurantorder.internal.injection.modules.menuitem.MenuItemActivityModule
-import si.lanisnik.restaurantorder.internal.injection.modules.onboarding.LoginActivityModule
-import si.lanisnik.restaurantorder.internal.injection.modules.onboarding.RegisterActivityModule
+import si.lanisnik.restaurantorder.internal.injection.modules.customer.LoginActivityModule
+import si.lanisnik.restaurantorder.internal.injection.modules.customer.RegisterActivityModule
 import si.lanisnik.restaurantorder.internal.injection.scopes.PerActivity
 import si.lanisnik.restaurantorder.ui.dashboard.DashboardActivity
 import si.lanisnik.restaurantorder.ui.foodcategory.CategoriesListActivity
