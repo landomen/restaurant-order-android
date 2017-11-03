@@ -2,6 +2,7 @@ package si.lanisnik.restaurantorder.ui.menuitem.model
 
 import org.parceler.Parcel
 import org.parceler.ParcelConstructor
+import si.lanisnik.restaurantorder.ui.foodcategory.model.FoodCategoryModel
 
 /**
  * Created by Domen Lanišnik on 05/10/2017.
@@ -13,7 +14,7 @@ class MenuItemModel @ParcelConstructor constructor(val id: Int = 0,
                                                    val description: String,
                                                    val image: String? = null,
                                                    val price: Double,
-                                                   val categoryId: Int) {
+                                                   val category: FoodCategoryModel) {
 
     fun getFormattedPrice(): String = "$price€"
 

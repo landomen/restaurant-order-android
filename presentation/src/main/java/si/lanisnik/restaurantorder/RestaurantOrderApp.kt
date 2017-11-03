@@ -5,6 +5,7 @@ import android.app.Application
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
+import io.realm.Realm
 import si.lanisnik.restaurantorder.internal.injection.components.DaggerApplicationComponent
 import timber.log.Timber
 import javax.inject.Inject
@@ -25,6 +26,7 @@ class RestaurantOrderApp : Application(), HasActivityInjector {
                 .build()
                 .inject(this)
         setupTimber()
+        setupRealm()
     }
 
     override fun activityInjector(): AndroidInjector<Activity> = activityDispatchingAndroidInjector
@@ -32,5 +34,9 @@ class RestaurantOrderApp : Application(), HasActivityInjector {
     private fun setupTimber() {
         if (BuildConfig.DEBUG)
             Timber.plant(Timber.DebugTree())
+    }
+
+    private fun setupRealm() {
+        Realm.init(this)
     }
 }

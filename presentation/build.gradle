@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'realm-android'
 
 android {
     def globalConfiguration = rootProject.extensions.getByName("ext")
@@ -29,7 +30,7 @@ android {
     flavorDimensions "default"
     productFlavors {
         develop {
-            buildConfigField "String", "SERVER_BASE_URL", '"http://16ca2bb2.ngrok.io/"'
+            buildConfigField "String", "SERVER_BASE_URL", '"http://6959118f.ngrok.io/"'
             versionNameSuffix "-DEV"
         }
 
@@ -39,8 +40,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_7
-        targetCompatibility JavaVersion.VERSION_1_7
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
     dexOptions {

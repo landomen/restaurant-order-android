@@ -2,6 +2,7 @@ package si.lanisnik.restaurantorder.remote.interceptor
 
 import okhttp3.Interceptor
 import okhttp3.Response
+import si.lanisnik.restaurantorder.data.component.AuthorizationComponent
 import si.lanisnik.restaurantorder.remote.NetConstants
 import javax.inject.Inject
 
@@ -11,7 +12,7 @@ import javax.inject.Inject
  * Created by Domen Lanišnik on 30/10/2017.
  * domen.lanisnik@gmail.com
  */
-class AuthenticationInterceptor @Inject constructor() : Interceptor {
+class AuthenticationInterceptor @Inject constructor(private val authorizationComponent: AuthorizationComponent) : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
         val original = chain.request()
@@ -19,8 +20,7 @@ class AuthenticationInterceptor @Inject constructor() : Interceptor {
 
         // automatically add authorization header to every request that demands it
         if (original.header(NetConstants.HEADER_AUTHORIZATION)?.contains(NetConstants.REPLACE_CHAR) == true) {
-            // TODO Add authorization header value
-//                requestBuilder.header(NetConstants.HEADER_AUTHORIZATION, "")
+            requestBuilder.header(NetConstants.HEADER_AUTHORIZATION, authorizationComponent.getAuthorization())
         }
         return chain.proceed(requestBuilder.build())
     }

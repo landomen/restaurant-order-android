@@ -1,5 +1,6 @@
 package si.lanisnik.restaurantorder.domain.repository
 
+import io.reactivex.Completable
 import io.reactivex.Single
 import si.lanisnik.restaurantorder.domain.model.customer.Customer
 
@@ -9,7 +10,9 @@ import si.lanisnik.restaurantorder.domain.model.customer.Customer
  */
 interface CustomerRepository {
 
-    fun login(username: String, password: String): Single<Customer>
+    fun login(email: String, password: String): Completable
 
-    fun register(customer: Customer): Single<Customer>
+    fun register(customer: Customer): Completable
+
+    fun getCustomer(): Single<Customer>
 }

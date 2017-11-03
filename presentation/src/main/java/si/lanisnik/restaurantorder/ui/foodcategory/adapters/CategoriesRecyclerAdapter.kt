@@ -16,7 +16,7 @@ import kotlin.properties.Delegates
 class CategoriesRecyclerAdapter @Inject constructor() : RecyclerView.Adapter<CategoryViewHolder>() {
 
     var listener: OnCategoryClickListener? = null
-    var categories: List<FoodCategoryModel> by Delegates.observable(listOf()) { _, _, new ->
+    var categories: List<FoodCategoryModel> by Delegates.observable(listOf()) { _, _, _ ->
         notifyDataSetChanged()
     }
 

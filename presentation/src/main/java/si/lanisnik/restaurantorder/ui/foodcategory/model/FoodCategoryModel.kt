@@ -8,7 +8,4 @@ import org.parceler.ParcelConstructor
  * domen.lanisnik@gmail.com
  */
 @Parcel(Parcel.Serialization.BEAN)
-data class FoodCategoryModel @ParcelConstructor constructor(
-        val id: Int,
-        val title: String
-)
+data class FoodCategoryModel @ParcelConstructor constructor(val id: Int, val title: String)

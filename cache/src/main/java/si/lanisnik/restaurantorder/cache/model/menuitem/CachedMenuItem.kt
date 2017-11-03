@@ -1,23 +1,28 @@
 package si.lanisnik.restaurantorder.cache.model.menuitem
 
-import android.arch.persistence.room.Entity
-import android.arch.persistence.room.ForeignKey
-import android.arch.persistence.room.PrimaryKey
-import si.lanisnik.restaurantorder.cache.db.constants.DatabaseConstants
+import io.realm.RealmObject
+import io.realm.annotations.PrimaryKey
 import si.lanisnik.restaurantorder.cache.model.foodcategory.CachedFoodCategory
 
 /**
  * Created by Domen Lanišnik on 24/09/2017.
  * domen.lanisnik@gmail.com
  */
-@Entity(tableName = DatabaseConstants.TABLE_MENU_ITEM,
-        foreignKeys = arrayOf(ForeignKey(entity = CachedFoodCategory::class, parentColumns = arrayOf("id"), childColumns = arrayOf("categoryId"))))
-data class CachedMenuItem(
-        @PrimaryKey
-        var id: Int,
-        var title: String,
-        var description: String,
-        var image: String?,
-        var price: Double,
-        var categoryId: Int
-)
+open class CachedMenuItem() : RealmObject() {
+    @PrimaryKey
+    var id: Int = 0
+    var title: String = ""
+    var description: String = ""
+    var image: String? = null
+    var price: Double = 0.0
+    var category: CachedFoodCategory? = null
+
+    constructor(id: Int, title: String, description: String, image: String?, price: Double, category: CachedFoodCategory?) : this() {
+        this.id = id
+        this.title = title
+        this.description = description
+        this.image = image
+        this.price = price
+        this.category = category
+    }
+}

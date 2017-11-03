@@ -14,5 +14,5 @@ open class MenuItemRemoteMapper @Inject constructor(private val foodCategoryRemo
 
     override fun mapFromRemote(remoteModel: MenuItemDto): MenuItemEntity =
             MenuItemEntity(remoteModel.id, remoteModel.title, remoteModel.description,
-                    remoteModel.image, remoteModel.price, remoteModel.category.id)
+                    remoteModel.image, remoteModel.price, foodCategoryRemoteMapper.mapFromRemote(remoteModel.category))
 }

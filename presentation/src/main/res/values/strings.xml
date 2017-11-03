@@ -32,6 +32,7 @@
     <string name="login">Prijava</string>
     <string name="login_no_account">Še nimate računa?</string>
     <string name="login_register">Registrirajte se</string>
+    <string name="login_invalid_input">Manjkajoči ali nepravilni podatki</string>
 
     <!-- Register -->
     <string name="register">Registracija</string>

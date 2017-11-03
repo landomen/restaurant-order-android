@@ -7,5 +7,6 @@ package si.lanisnik.restaurantorder.cache.preferences.keys
  * domen.lanisnik@gmail.com
  */
 enum class StringKey : StorageKey {
-    FCM_TOKEN
+    FCM_TOKEN,
+    CREDENTIALS
 }

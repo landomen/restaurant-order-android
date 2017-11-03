@@ -8,8 +8,9 @@ import javax.inject.Inject
  * Created by Domen Lanišnik on 08/10/2017.
  * domen.lanisnik@gmail.com
  */
-class MenuItemMapper @Inject constructor() : PresentationMapper<MenuItem, MenuItemModel> {
+class MenuItemMapper @Inject constructor(private val foodCategoryMapper: FoodCategoryMapper) : PresentationMapper<MenuItem, MenuItemModel> {
 
     override fun mapToModel(model: MenuItem): MenuItemModel =
-            MenuItemModel(model.id, model.title, model.description, model.image, model.price, model.categoryId)
+            MenuItemModel(model.id, model.title, model.description,
+                    model.image, model.price, foodCategoryMapper.mapToModel(model.category))
 }

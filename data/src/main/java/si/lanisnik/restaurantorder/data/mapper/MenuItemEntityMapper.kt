@@ -8,13 +8,14 @@ import javax.inject.Inject
  * Created by Domen Lanišnik on 05/10/2017.
  * domen.lanisnik@gmail.com
  */
-class MenuItemEntityMapper @Inject constructor() : EntityMapper<MenuItemEntity, MenuItem> {
+class MenuItemEntityMapper @Inject constructor(private val foodCategoryMapper: FoodCategoryEntityMapper) :
+        EntityMapper<MenuItemEntity, MenuItem> {
 
     override fun mapFromEntity(model: MenuItemEntity): MenuItem =
             MenuItem(model.id, model.title, model.description,
-                    model.image, model.price, model.category)
+                    model.image, model.price, foodCategoryMapper.mapFromEntity(model.category))
 
     override fun mapToEntity(model: MenuItem): MenuItemEntity =
             MenuItemEntity(model.id, model.title, model.description,
-                    model.image, model.price, model.categoryId)
+                    model.image, model.price, foodCategoryMapper.mapToEntity(model.category))
 }

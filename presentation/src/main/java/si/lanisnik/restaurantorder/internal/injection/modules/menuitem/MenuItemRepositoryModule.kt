@@ -3,7 +3,6 @@ package si.lanisnik.restaurantorder.internal.injection.modules.menuitem
 import dagger.Module
 import dagger.Provides
 import si.lanisnik.restaurantorder.cache.MenuItemCacheImpl
-import si.lanisnik.restaurantorder.cache.db.RestaurantOrderDatabase
 import si.lanisnik.restaurantorder.cache.mapper.menuitem.MenuItemCacheMapper
 import si.lanisnik.restaurantorder.cache.preferences.SimpleStorage
 import si.lanisnik.restaurantorder.data.MenuItemDataRepository
@@ -29,10 +28,9 @@ class MenuItemRepositoryModule {
 
     @Provides
     @PerApplication
-    fun provideMenuItemCache(database: RestaurantOrderDatabase,
-                             mapper: MenuItemCacheMapper,
+    fun provideMenuItemCache(mapper: MenuItemCacheMapper,
                              simpleStorage: SimpleStorage): MenuItemCache =
-            MenuItemCacheImpl(mapper, database, simpleStorage)
+            MenuItemCacheImpl(mapper, simpleStorage)
 
     @Provides
     @PerApplication

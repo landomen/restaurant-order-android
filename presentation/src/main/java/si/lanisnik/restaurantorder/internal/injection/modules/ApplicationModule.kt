@@ -5,8 +5,9 @@ import android.content.Context
 import dagger.Module
 import dagger.Provides
 import si.lanisnik.restaurantorder.BuildConfig
-import si.lanisnik.restaurantorder.cache.db.RestaurantOrderDatabase
+import si.lanisnik.restaurantorder.cache.component.AuthorizationComponentImpl
 import si.lanisnik.restaurantorder.cache.preferences.SimpleStorage
+import si.lanisnik.restaurantorder.data.component.AuthorizationComponent
 import si.lanisnik.restaurantorder.data.executor.JobThread
 import si.lanisnik.restaurantorder.domain.executor.JobExecutionThread
 import si.lanisnik.restaurantorder.domain.executor.PostExecutionThread
@@ -37,11 +38,12 @@ open class ApplicationModule {
 
     @Provides
     @PerApplication
-    fun provideRestaurantOrderDatabase(context: Context): RestaurantOrderDatabase = RestaurantOrderDatabase.getInstance(context.applicationContext)
+    fun provideSimpleStorage(context: Context): SimpleStorage = SimpleStorage(context)
 
     @Provides
     @PerApplication
-    fun provideSimpleStorage(context: Context): SimpleStorage = SimpleStorage(context)
+    fun provideAuthorizationComponent(simpleStorage: SimpleStorage): AuthorizationComponent =
+            AuthorizationComponentImpl(simpleStorage)
 
     @Provides
     @PerApplication
