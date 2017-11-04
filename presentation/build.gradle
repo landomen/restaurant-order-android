@@ -108,6 +108,9 @@ dependencies {
     compile presentationDependencies.glide
     kapt presentationDependencies.glideProcessor
 
+    // Phone number utils
+    implementation presentationDependencies.phoneNumberUtils
+
     // Annotations
     provided presentationDependencies.javaxAnnotation
 }

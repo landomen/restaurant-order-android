@@ -10,7 +10,7 @@ import si.lanisnik.restaurantorder.domain.exception.NotAuthorizedException
 import si.lanisnik.restaurantorder.domain.interactor.customer.LoginCustomer
 import si.lanisnik.restaurantorder.ui.base.data.SimpleResource
 import si.lanisnik.restaurantorder.ui.base.extensions.isValidEmail
-import si.lanisnik.restaurantorder.ui.base.extensions.isValidPassword
+import si.lanisnik.restaurantorder.ui.onboarding.model.InputError
 import javax.inject.Inject
 
 /**
@@ -20,6 +20,7 @@ import javax.inject.Inject
 class LoginViewModel @Inject constructor(private val loginCustomer: LoginCustomer) : ViewModel() {
 
     private val liveData: MutableLiveData<SimpleResource> = MutableLiveData()
+    private val validationLiveData: MutableLiveData<InputError> = MutableLiveData()
 
     override fun onCleared() {
         loginCustomer.unsubscribe()
@@ -28,18 +29,27 @@ class LoginViewModel @Inject constructor(private val loginCustomer: LoginCustome
 
     fun getLoginObservable(): LiveData<SimpleResource> = liveData
 
-    fun isInputValid(email: String, password: String): Boolean =
-            email.isValidEmail() && password.isValidPassword()
+    fun getValidationObservable(): LiveData<InputError> = validationLiveData
 
-    fun performLogin(email: String, password: String) {
+    fun login(email: String, password: String) {
+        if (email.isEmpty() || password.isEmpty()) {
+            validationLiveData.postValue(InputError.MISSING)
+        } else if (!email.isValidEmail()) {
+            validationLiveData.postValue(InputError.EMAIL)
+        } else {
+            performLogin(email, password)
+        }
+    }
+
+    private fun performLogin(email: String, password: String) {
         liveData.postValue(SimpleResource.loading())
         loginCustomer.execute(Action {
             liveData.postValue(SimpleResource.success())
-        }, Consumer { t ->
-            if (t is NotAuthorizedException)
-                liveData.postValue(SimpleResource.error(R.string.login_not_authorized))
-            else
-                liveData.postValue(SimpleResource.error(R.string.general_error))
+        }, Consumer {
+            when (it) {
+                is NotAuthorizedException -> liveData.postValue(SimpleResource.error(R.string.login_not_authorized))
+                else -> liveData.postValue(SimpleResource.error(R.string.error_general))
+            }
         }, LoginCustomer.Params(email, password))
     }
 }

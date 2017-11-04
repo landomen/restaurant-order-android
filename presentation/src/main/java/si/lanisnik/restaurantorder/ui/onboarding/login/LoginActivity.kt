@@ -11,6 +11,7 @@ import si.lanisnik.restaurantorder.ui.base.BaseActivity
 import si.lanisnik.restaurantorder.ui.base.data.ResourceState
 import si.lanisnik.restaurantorder.ui.base.data.SimpleResource
 import si.lanisnik.restaurantorder.ui.base.extensions.*
+import si.lanisnik.restaurantorder.ui.onboarding.model.InputError
 import si.lanisnik.restaurantorder.ui.onboarding.navigator.OnboardingNavigator
 import javax.inject.Inject
 
@@ -44,29 +45,22 @@ class LoginActivity : BaseActivity() {
         loginRegisterText.setOnClickListener {
             onboardingNavigator.navigateToRegister(this, true)
         }
-        loginButton.setOnClickListener {
-            onLoginClicked()
-        }
+        loginPasswordEditText.onDoneAction { onLoginClicked() }
+        loginButton.setOnClickListener { onLoginClicked() }
     }
 
     private fun onLoginClicked() {
-        val email = loginEmailEditText.input()
-        val password = loginPasswordEditText.input()
-        if (viewModel.isInputValid(email, password)) {
-            viewModel.performLogin(email, password)
-        } else {
-            loginButton.snackbar(R.string.login_invalid_input)
-        }
+        viewModel.login(loginEmailEditText.input(), loginPasswordEditText.input())
         hideKeyboard()
     }
 
     private fun setupObservers() {
-        viewModel.getLoginObservable()
-                .observe(this, Observer {
-                    it?.let {
-                        handleState(it)
-                    }
-                })
+        viewModel.getValidationObservable().observe(this, Observer {
+            handleValidationError(it!!)
+        })
+        viewModel.getLoginObservable().observe(this, Observer {
+            handleState(it!!)
+        })
     }
 
     private fun handleState(state: SimpleResource) {
@@ -93,6 +87,10 @@ class LoginActivity : BaseActivity() {
     private fun showErrorState(errorMessage: Int) {
         loadingDialog.dismiss()
         loginButton.snackbar(errorMessage)
+    }
+
+    private fun handleValidationError(error: InputError) {
+        loginButton.snackbar(error.message)
     }
 
 }

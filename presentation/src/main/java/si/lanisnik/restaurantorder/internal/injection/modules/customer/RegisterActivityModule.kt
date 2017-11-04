@@ -4,7 +4,9 @@ import dagger.Module
 import dagger.Provides
 import si.lanisnik.restaurantorder.domain.interactor.customer.RegisterCustomer
 import si.lanisnik.restaurantorder.internal.injection.scopes.PerActivity
+import si.lanisnik.restaurantorder.mapper.CustomerModelMapper
 import si.lanisnik.restaurantorder.ui.onboarding.register.RegisterViewModelFactory
+import si.lanisnik.restaurantorder.ui.utilities.PhoneNumberValidator
 
 /**
  * Created by Domen Lanišnik on 01/11/2017.
@@ -15,7 +17,9 @@ class RegisterActivityModule {
 
     @PerActivity
     @Provides
-    fun provideRegisterViewModelFactory(registerCustomer: RegisterCustomer): RegisterViewModelFactory =
-            RegisterViewModelFactory(registerCustomer)
+    fun provideRegisterViewModelFactory(registerCustomer: RegisterCustomer,
+                                        customerModelMapper: CustomerModelMapper,
+                                        phoneNumberValidator: PhoneNumberValidator): RegisterViewModelFactory =
+            RegisterViewModelFactory(registerCustomer, customerModelMapper, phoneNumberValidator)
 
 }

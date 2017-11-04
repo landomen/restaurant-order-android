@@ -22,4 +22,16 @@ class CustomerModelMapper @Inject constructor() : PresentationMapper<Customer, C
         )
     }
 
+    override fun mapFromModel(model: CustomerModel): Customer {
+        return Customer(
+                model.id,
+                model.email,
+                model.password,
+                model.firstName,
+                model.lastName,
+                model.phoneNumber,
+                model.address
+        )
+    }
+
 }

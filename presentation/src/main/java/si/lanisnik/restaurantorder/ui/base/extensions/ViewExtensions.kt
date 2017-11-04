@@ -7,8 +7,11 @@ import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import org.jetbrains.anko.layoutInflater
+
+// region General
 
 fun View.show() {
     visibility = View.VISIBLE
@@ -29,14 +32,29 @@ fun View.changeVisibility(show: Boolean) {
         hide()
 }
 
+fun View.snackbar(@StringRes message: Int) =
+        Snackbar.make(this, message, Snackbar.LENGTH_SHORT).show()
+
 fun ViewGroup.inflate(@LayoutRes layout: Int, attachToRoot: Boolean = false): View =
         context.layoutInflater.inflate(layout, this, attachToRoot)
+
+// endregion
+
+// region Edit text
+
+fun EditText.input(): String = text.trim().toString()
+
+fun EditText.onDoneAction(listener: () -> Unit) {
+    setOnEditorActionListener { _, actionId, _ ->
+        if (actionId == EditorInfo.IME_ACTION_DONE)
+            listener.invoke()
+        false
+    }
+}
+
+// endregion
 
 fun RecyclerView.enableItemDividers() {
     addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
 }
 
-fun EditText.input(): String = text.trim().toString()
-
-fun View.snackbar(@StringRes message: Int) =
-        Snackbar.make(this, message, Snackbar.LENGTH_SHORT).show()
