@@ -15,9 +15,9 @@ open class CachedCustomer() : RealmObject() {
     var firstName: String = ""
     var lastName: String = ""
     var phoneNumber: String = ""
-    var address: String = ""
+    var address: String? = null
 
-    constructor(id: Int, email: String, password: String?, firstName: String, lastName: String, phoneNumber: String, address: String) : this() {
+    constructor(id: Int, email: String, password: String?, firstName: String, lastName: String, phoneNumber: String, address: String?) : this() {
         this.id = id
         this.email = email
         this.password = password

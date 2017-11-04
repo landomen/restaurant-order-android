@@ -36,9 +36,9 @@ class RegisterViewModel @Inject constructor(private val registerCustomer: Regist
 
     fun getValidationObservable(): LiveData<InputError> = validationLiveData
 
-    fun register(firstName: String, lastName: String, address: String, email: String,
+    fun register(firstName: String, lastName: String, email: String,
                  phoneNumber: String, password: String, passwordConfirmation: String) {
-        if (firstName.isEmpty() || lastName.isEmpty() || address.isEmpty() || email.isEmpty()
+        if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty()
                 || phoneNumber.isEmpty() || password.isEmpty() || passwordConfirmation.isEmpty()) {
             validationLiveData.postValue(InputError.MISSING)
         } else if (!email.isValidEmail()) {
@@ -48,7 +48,7 @@ class RegisterViewModel @Inject constructor(private val registerCustomer: Regist
         } else if (password != passwordConfirmation) {
             validationLiveData.postValue(InputError.PASSWORD_CONFIRMATION)
         } else {
-            val customer = CustomerModel(0, email, password, firstName, lastName, phoneNumber, address)
+            val customer = CustomerModel(0, email, password, firstName, lastName, phoneNumber)
             performRegistration(customer)
         }
     }

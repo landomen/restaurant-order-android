@@ -35,7 +35,7 @@ class CustomerRemoteImpl @Inject constructor(private val service: CustomerServic
     }
 
     override fun register(customer: CustomerEntity): Single<CustomerEntity> {
-        val request = RegisterRequest(customer.firstName, customer.lastName, customer.email, customer.phoneNumber, customer.address, customer.password!!)
+        val request = RegisterRequest(customer.firstName, customer.lastName, customer.email, customer.phoneNumber, customer.password!!)
         return service.register(request)
                 .onErrorResumeNext { t: Throwable ->
                     if (t is HttpException && t.code() == HttpStatus.CONFLICT)

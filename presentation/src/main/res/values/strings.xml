@@ -49,5 +49,6 @@
     <string name="register_login">Prijavite se</string>
     <string name="register_conflict">Ta email naslov je že v uporabi</string>
     <string name="register_in_progress">Poteka registracija…</string>
+    <string name="register_disclaimer">Z oddajo prijave za registracijo potrjujete, da se strinjate s pogoji uporabe.</string>
 
 </resources>

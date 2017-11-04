@@ -72,7 +72,6 @@ class RegisterActivity : BaseActivity() {
         viewModel.register(
                 registerFirstNameEditText.input(),
                 registerLastNameEditText.input(),
-                registerAddressEditText.input(),
                 registerEmailEditText.input(),
                 registerPhoneNumberEditText.input(),
                 registerPasswordEditText.input(),
