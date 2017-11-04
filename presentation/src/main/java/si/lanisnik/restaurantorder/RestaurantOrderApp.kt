@@ -2,6 +2,7 @@ package si.lanisnik.restaurantorder
 
 import android.app.Activity
 import android.app.Application
+import com.squareup.leakcanary.LeakCanary
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
@@ -21,6 +22,11 @@ class RestaurantOrderApp : Application(), HasActivityInjector {
 
     override fun onCreate() {
         super.onCreate()
+        if (LeakCanary.isInAnalyzerProcess(this)) {
+            // This process is dedicated to LeakCanary for heap analysis.
+            // You should not init your app in this process.
+            return
+        }
         DaggerApplicationComponent
                 .builder()
                 .application(this)
@@ -28,6 +34,7 @@ class RestaurantOrderApp : Application(), HasActivityInjector {
                 .inject(this)
         setupTimber()
         setupRealm()
+        setupLeakCanary()
     }
 
     override fun activityInjector(): AndroidInjector<Activity> = activityDispatchingAndroidInjector
@@ -43,5 +50,9 @@ class RestaurantOrderApp : Application(), HasActivityInjector {
                 deleteRealmIfMigrationNeeded().
                 build()
         )
+    }
+
+    private fun setupLeakCanary() {
+        LeakCanary.install(this)
     }
 }

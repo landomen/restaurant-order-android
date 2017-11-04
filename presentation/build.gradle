@@ -111,6 +111,10 @@ dependencies {
     // Phone number utils
     implementation presentationDependencies.phoneNumberUtils
 
+    // Leak Canary
+    debugCompile presentationDependencies.leakCanaryDebug
+    releaseCompile presentationDependencies.leakCanaryRelease
+
     // Annotations
     provided presentationDependencies.javaxAnnotation
 }
