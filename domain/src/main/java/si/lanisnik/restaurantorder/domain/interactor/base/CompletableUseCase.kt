@@ -19,7 +19,7 @@ abstract class CompletableUseCase<in Params>(
     /**
      * Builds a [Completable] which will be used when the current [CompletableUseCase] is executed.
      */
-    protected abstract fun buildUseCaseObservable(params: Params?): Completable
+    protected abstract fun buildUseCaseObservable(params: Params): Completable
 
     /**
      * Executes the current use case.
@@ -28,7 +28,7 @@ abstract class CompletableUseCase<in Params>(
      * @param onError
      * @param params Parameters used to build/execute this use case.
      */
-    fun execute(onComplete: Action, onError: Consumer<Throwable>, params: Params? = null) {
+    fun execute(onComplete: Action, onError: Consumer<Throwable>, params: Params) {
         subscription = this.buildUseCaseObservable(params)
                 .subscribeOn(jobExecutionThread.getScheduler())
                 .observeOn(postExecutionThread.getScheduler())

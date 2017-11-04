@@ -5,7 +5,6 @@ import retrofit2.http.Body
 import retrofit2.http.Headers
 import retrofit2.http.POST
 import si.lanisnik.restaurantorder.remote.NetConstants
-import si.lanisnik.restaurantorder.remote.base.model.SimpleIdResponse
 import si.lanisnik.restaurantorder.remote.customer.model.CustomerDto
 import si.lanisnik.restaurantorder.remote.customer.model.LoginRequest
 import si.lanisnik.restaurantorder.remote.customer.model.RegisterRequest
@@ -20,7 +19,7 @@ interface CustomerService {
     fun login(@Body request: LoginRequest): Single<CustomerDto>
 
     @POST("customer/register")
-    fun register(@Body request: RegisterRequest): Single<SimpleIdResponse>
+    fun register(@Body request: RegisterRequest): Single<CustomerDto>
 
     @POST("customer/profile")
     @Headers(NetConstants.HEADER_AUTHORIZATION_PLACEHOLDER)

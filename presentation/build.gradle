@@ -30,7 +30,7 @@ android {
     flavorDimensions "default"
     productFlavors {
         develop {
-            buildConfigField "String", "SERVER_BASE_URL", '"http://6959118f.ngrok.io/"'
+            buildConfigField "String", "SERVER_BASE_URL", '"http://8c0c1aa9.ngrok.io/"'
             versionNameSuffix "-DEV"
         }
 

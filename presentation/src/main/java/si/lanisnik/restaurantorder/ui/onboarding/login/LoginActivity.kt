@@ -2,7 +2,6 @@ package si.lanisnik.restaurantorder.ui.onboarding.login
 
 import android.app.Dialog
 import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.toolbar.*
@@ -11,10 +10,7 @@ import si.lanisnik.restaurantorder.R
 import si.lanisnik.restaurantorder.ui.base.BaseActivity
 import si.lanisnik.restaurantorder.ui.base.data.ResourceState
 import si.lanisnik.restaurantorder.ui.base.data.SimpleResource
-import si.lanisnik.restaurantorder.ui.base.extensions.enableBackArrow
-import si.lanisnik.restaurantorder.ui.base.extensions.hideKeyboard
-import si.lanisnik.restaurantorder.ui.base.extensions.input
-import si.lanisnik.restaurantorder.ui.base.extensions.snackbar
+import si.lanisnik.restaurantorder.ui.base.extensions.*
 import si.lanisnik.restaurantorder.ui.onboarding.navigator.OnboardingNavigator
 import javax.inject.Inject
 
@@ -31,7 +27,7 @@ class LoginActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProviders.of(this, viewModelFactory)[LoginViewModel::class.java]
+        viewModel = createViewModel(viewModelFactory)
         setupObservers()
     }
 

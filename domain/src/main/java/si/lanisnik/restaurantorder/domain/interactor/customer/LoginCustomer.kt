@@ -18,10 +18,8 @@ class LoginCustomer @Inject constructor(private val customerRepository: Customer
                                         postExecutionThread: PostExecutionThread) :
         CompletableUseCase<LoginCustomer.Params>(threadExecutor, postExecutionThread) {
 
-    override fun buildUseCaseObservable(params: Params?): Completable {
-        checkNotNull(params)
-        return customerRepository.login(params!!.email, params.password)
-    }
-    
+    override fun buildUseCaseObservable(params: Params): Completable =
+            customerRepository.login(params.email, params.password)
+
     data class Params(val email: String, val password: String)
 }
