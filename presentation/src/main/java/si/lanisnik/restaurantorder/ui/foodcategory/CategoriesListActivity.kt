@@ -1,9 +1,6 @@
 package si.lanisnik.restaurantorder.ui.foodcategory
 
 import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
-import android.os.Bundle
-import android.support.annotation.Nullable
 import kotlinx.android.synthetic.main.activity_categories_list.*
 import kotlinx.android.synthetic.main.toolbar.*
 import si.lanisnik.restaurantorder.R
@@ -25,12 +22,6 @@ class CategoriesListActivity : BaseActivity(), CategoriesRecyclerAdapter.OnCateg
 
     private lateinit var viewModel: CategoriesListViewModel
 
-    override fun onCreate(@Nullable savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        viewModel = ViewModelProviders.of(this, viewModelFactory)[CategoriesListViewModel::class.java]
-        setupObservers()
-    }
-
     override fun getContentView(): Int = R.layout.activity_categories_list
 
     override fun initToolbar() {
@@ -45,18 +36,22 @@ class CategoriesListActivity : BaseActivity(), CategoriesRecyclerAdapter.OnCateg
         categoriesLoadingStateView.retryListener = this
     }
 
+    override fun initViewModel() {
+        viewModel = createViewModel(viewModelFactory)
+    }
+
     override fun onCategoryClicked(category: FoodCategoryModel) {
         menuItemNavigator.navigateToList(this, category)
     }
 
-    override fun onRetryClicked() {
-        viewModel.retry()
-    }
-
-    private fun setupObservers() {
+    override fun setupObservers() {
         viewModel.getCategories().observe(this, Observer<Resource<List<FoodCategoryModel>>> {
             it?.let { handleDataState(it.status, it.data) }
         })
+    }
+
+    override fun onRetryClicked() {
+        viewModel.retry()
     }
 
     private fun handleDataState(state: ResourceState, data: List<FoodCategoryModel>?) {

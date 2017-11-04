@@ -1,8 +1,6 @@
 package si.lanisnik.restaurantorder.ui.menuitem.list
 
 import android.arch.lifecycle.Observer
-import android.arch.lifecycle.ViewModelProviders
-import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_menu_items_list.*
 import kotlinx.android.synthetic.main.toolbar.*
 import si.lanisnik.restaurantorder.R
@@ -25,13 +23,6 @@ class MenuItemsListActivity : BaseActivity(), MenuitemRecyclerAdapter.OnMenuItem
     @Inject lateinit var menuItemNavigator: MenuItemNavigator
     private lateinit var viewModel: MenuItemListViewModel
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        viewModel = ViewModelProviders.of(this, viewModelFactory)[MenuItemListViewModel::class.java]
-        initViewModel()
-        setupObservers()
-    }
-
     override fun getContentView(): Int = R.layout.activity_menu_items_list
 
     override fun initToolbar() {
@@ -45,18 +36,26 @@ class MenuItemsListActivity : BaseActivity(), MenuitemRecyclerAdapter.OnMenuItem
         menuItemLoadingStateView.retryListener = this
     }
 
+    override fun initViewModel() {
+        viewModel = createViewModel(viewModelFactory)
+
+        val foodCategory: FoodCategoryModel = unwrapParcel(EXTRA_FOOD_CATEGORY)
+        setToolbarTitle(foodCategory.title)
+        viewModel.initialize(foodCategory)
+    }
+
+    override fun setupObservers() {
+        viewModel.getMenuItems().observe(this, Observer<Resource<List<MenuItemModel>>> {
+            it?.let { handleDataState(it.status, it.data) }
+        })
+    }
+
     override fun onMenuItemSelected(item: MenuItemModel) {
         menuItemNavigator.navigateToDetails(this, item)
     }
 
     override fun onRetryClicked() {
         viewModel.retry()
-    }
-
-    private fun initViewModel() {
-        val foodCategory: FoodCategoryModel = unwrapParcel(EXTRA_FOOD_CATEGORY)
-        setToolbarTitle(foodCategory.title)
-        viewModel.initialize(foodCategory)
     }
 
     private fun setToolbarTitle(title: String) {
@@ -67,12 +66,6 @@ class MenuItemsListActivity : BaseActivity(), MenuitemRecyclerAdapter.OnMenuItem
         adapter.listener = this
         menuItemsRecyclerView.adapter = adapter
         menuItemsRecyclerView.enableItemDividers()
-    }
-
-    private fun setupObservers() {
-        viewModel.getMenuItems().observe(this, Observer<Resource<List<MenuItemModel>>> {
-            it?.let { handleDataState(it.status, it.data) }
-        })
     }
 
     private fun handleDataState(state: ResourceState, data: List<MenuItemModel>?) {

@@ -1,11 +1,8 @@
 package si.lanisnik.restaurantorder.ui.onboarding.password
 
-import android.app.Dialog
 import android.arch.lifecycle.Observer
-import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_reset_password.*
 import kotlinx.android.synthetic.main.toolbar.*
-import org.jetbrains.anko.indeterminateProgressDialog
 import si.lanisnik.restaurantorder.R
 import si.lanisnik.restaurantorder.ui.base.BaseActivity
 import si.lanisnik.restaurantorder.ui.base.data.ResourceState
@@ -23,13 +20,6 @@ class ResetPasswordActivity : BaseActivity() {
 
     @Inject lateinit var viewModelFactory: ResetPasswordViewModelFactory
     private lateinit var viewModel: ResetPasswordViewModel
-    private lateinit var loadingDialog: Dialog
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        viewModel = createViewModel(viewModelFactory)
-        setupObservers()
-    }
 
     override fun getContentView(): Int = R.layout.activity_reset_password
 
@@ -45,7 +35,11 @@ class ResetPasswordActivity : BaseActivity() {
         resetPasswordButton.setOnClickListener { onResetClicked() }
     }
 
-    private fun setupObservers() {
+    override fun initViewModel() {
+        viewModel = createViewModel(viewModelFactory)
+    }
+
+    override fun setupObservers() {
         viewModel.getValidationObservable().observe(this, Observer {
             handleValidationError(it!!)
         })
@@ -72,22 +66,18 @@ class ResetPasswordActivity : BaseActivity() {
     }
 
     private fun showLoadingState() {
-        loadingDialog = indeterminateProgressDialog(R.string.general_loading) {
-            setCancelable(false)
-            setCanceledOnTouchOutside(false)
-        }
-        loadingDialog.show()
+        showLoadingDialog()
     }
 
     private fun showSuccessState() {
-        loadingDialog.dismiss()
+        hideLoadingDialog()
         DialogHelper.showSuccessDialog(this, R.string.reset_password_success) {
             finish()
         }
     }
 
     private fun showErrorState(errorMessage: Int) {
-        loadingDialog.dismiss()
+        hideLoadingDialog()
         resetPasswordButton.snackbar(errorMessage)
     }
 }

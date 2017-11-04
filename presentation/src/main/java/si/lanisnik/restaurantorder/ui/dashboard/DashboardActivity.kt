@@ -1,6 +1,5 @@
 package si.lanisnik.restaurantorder.ui.dashboard
 
-import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_dashboard.*
 import kotlinx.android.synthetic.main.toolbar.*
 import si.lanisnik.restaurantorder.R
@@ -13,10 +12,6 @@ class DashboardActivity : BaseActivity() {
 
     @Inject lateinit var navigator: DashboardNavigator
     @Inject lateinit var onboardingNavigator: OnboardingNavigator
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun getContentView(): Int = R.layout.activity_dashboard
 
@@ -34,4 +29,11 @@ class DashboardActivity : BaseActivity() {
         }
     }
 
+    override fun initViewModel() {
+        // TODO
+    }
+
+    override fun setupObservers() {
+        // TODO
+    }
 }

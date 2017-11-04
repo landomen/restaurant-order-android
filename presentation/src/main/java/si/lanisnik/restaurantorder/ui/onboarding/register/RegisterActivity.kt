@@ -1,11 +1,9 @@
 package si.lanisnik.restaurantorder.ui.onboarding.register
 
-import android.app.Dialog
 import android.arch.lifecycle.Observer
 import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.android.synthetic.main.toolbar.*
-import org.jetbrains.anko.indeterminateProgressDialog
 import si.lanisnik.restaurantorder.R
 import si.lanisnik.restaurantorder.ui.base.BaseActivity
 import si.lanisnik.restaurantorder.ui.base.data.ResourceState
@@ -28,7 +26,6 @@ class RegisterActivity : BaseActivity() {
     @Inject lateinit var onboardingNavigator: OnboardingNavigator
     @Inject lateinit var viewModelFactory: RegisterViewModelFactory
     private lateinit var viewModel: RegisterViewModel
-    private lateinit var loadingDialog: Dialog
     private var startedFromLogin = false
 
     override fun getContentView(): Int = R.layout.activity_register
@@ -36,8 +33,6 @@ class RegisterActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         startedFromLogin = intent.getBooleanExtra(EXTRA_STARTED_FROM_LOGIN, false)
-        viewModel = createViewModel(viewModelFactory)
-        setupObservers()
     }
 
     override fun initToolbar() {
@@ -58,7 +53,11 @@ class RegisterActivity : BaseActivity() {
         }
     }
 
-    private fun setupObservers() {
+    override fun initViewModel() {
+        viewModel = createViewModel(viewModelFactory)
+    }
+
+    override fun setupObservers() {
         viewModel.getValidationObservable().observe(this, Observer {
             handleValidationError(it!!)
         })
@@ -92,20 +91,16 @@ class RegisterActivity : BaseActivity() {
     }
 
     private fun showLoadingState() {
-        loadingDialog = indeterminateProgressDialog(R.string.register_in_progress) {
-            setCancelable(false)
-            setCanceledOnTouchOutside(false)
-        }
-        loadingDialog.show()
+        showLoadingDialog()
     }
 
     private fun showSuccessState() {
-        loadingDialog.dismiss()
+        hideLoadingDialog()
         onboardingNavigator.navigateToDashboard(this)
     }
 
     private fun showErrorState(errorMessage: Int) {
-        loadingDialog.dismiss()
+        hideLoadingDialog()
         registerButton.snackbar(errorMessage)
     }
 }

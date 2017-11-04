@@ -1,11 +1,8 @@
 package si.lanisnik.restaurantorder.ui.onboarding.login
 
-import android.app.Dialog
 import android.arch.lifecycle.Observer
-import android.os.Bundle
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.toolbar.*
-import org.jetbrains.anko.indeterminateProgressDialog
 import si.lanisnik.restaurantorder.R
 import si.lanisnik.restaurantorder.ui.base.BaseActivity
 import si.lanisnik.restaurantorder.ui.base.data.ResourceState
@@ -24,13 +21,6 @@ class LoginActivity : BaseActivity() {
     @Inject lateinit var onboardingNavigator: OnboardingNavigator
     @Inject lateinit var viewModelFactory: LoginViewModelFactory
     private lateinit var viewModel: LoginViewModel
-    private lateinit var loadingDialog: Dialog
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        viewModel = createViewModel(viewModelFactory)
-        setupObservers()
-    }
 
     override fun getContentView(): Int = R.layout.activity_login
 
@@ -52,18 +42,22 @@ class LoginActivity : BaseActivity() {
         loginButton.setOnClickListener { onLoginClicked() }
     }
 
-    private fun onLoginClicked() {
-        viewModel.login(loginEmailEditText.input(), loginPasswordEditText.input())
-        hideKeyboard()
+    override fun initViewModel() {
+        viewModel = createViewModel(viewModelFactory)
     }
 
-    private fun setupObservers() {
+    override fun setupObservers() {
         viewModel.getValidationObservable().observe(this, Observer {
             handleValidationError(it!!)
         })
         viewModel.getLoginObservable().observe(this, Observer {
             handleState(it!!)
         })
+    }
+
+    private fun onLoginClicked() {
+        viewModel.login(loginEmailEditText.input(), loginPasswordEditText.input())
+        hideKeyboard()
     }
 
     private fun handleState(state: SimpleResource) {
@@ -75,20 +69,16 @@ class LoginActivity : BaseActivity() {
     }
 
     private fun showLoadingState() {
-        loadingDialog = indeterminateProgressDialog(R.string.logging_in) {
-            setCancelable(false)
-            setCanceledOnTouchOutside(false)
-        }
-        loadingDialog.show()
+        showLoadingDialog()
     }
 
     private fun showSuccessState() {
-        loadingDialog.dismiss()
+        hideLoadingDialog()
         onboardingNavigator.navigateToDashboard(this)
     }
 
     private fun showErrorState(errorMessage: Int) {
-        loadingDialog.dismiss()
+        hideLoadingDialog()
         loginButton.snackbar(errorMessage)
     }
 
