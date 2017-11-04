@@ -4,7 +4,7 @@ import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import si.lanisnik.restaurantorder.domain.interactor.customer.RegisterCustomer
 import si.lanisnik.restaurantorder.mapper.CustomerModelMapper
-import si.lanisnik.restaurantorder.ui.utilities.PhoneNumberValidator
+import si.lanisnik.restaurantorder.ui.base.utilities.PhoneNumberValidator
 import javax.inject.Inject
 
 /**

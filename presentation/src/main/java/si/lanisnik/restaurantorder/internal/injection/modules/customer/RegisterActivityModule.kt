@@ -6,7 +6,7 @@ import si.lanisnik.restaurantorder.domain.interactor.customer.RegisterCustomer
 import si.lanisnik.restaurantorder.internal.injection.scopes.PerActivity
 import si.lanisnik.restaurantorder.mapper.CustomerModelMapper
 import si.lanisnik.restaurantorder.ui.onboarding.register.RegisterViewModelFactory
-import si.lanisnik.restaurantorder.ui.utilities.PhoneNumberValidator
+import si.lanisnik.restaurantorder.ui.base.utilities.PhoneNumberValidator
 
 /**
  * Created by Domen Lanišnik on 01/11/2017.

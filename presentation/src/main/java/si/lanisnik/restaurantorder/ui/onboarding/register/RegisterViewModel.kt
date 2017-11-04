@@ -13,7 +13,7 @@ import si.lanisnik.restaurantorder.ui.base.data.SimpleResource
 import si.lanisnik.restaurantorder.ui.base.extensions.isValidEmail
 import si.lanisnik.restaurantorder.ui.customer.model.CustomerModel
 import si.lanisnik.restaurantorder.ui.onboarding.model.InputError
-import si.lanisnik.restaurantorder.ui.utilities.PhoneNumberValidator
+import si.lanisnik.restaurantorder.ui.base.utilities.PhoneNumberValidator
 import javax.inject.Inject
 
 /**

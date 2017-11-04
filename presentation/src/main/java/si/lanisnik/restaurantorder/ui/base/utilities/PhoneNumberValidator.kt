@@ -1,4 +1,4 @@
-package si.lanisnik.restaurantorder.ui.utilities
+package si.lanisnik.restaurantorder.ui.base.utilities
 
 import android.content.Context
 import io.michaelrocks.libphonenumber.android.PhoneNumberUtil
