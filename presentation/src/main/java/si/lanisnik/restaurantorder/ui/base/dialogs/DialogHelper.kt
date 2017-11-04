@@ -12,41 +12,29 @@ import si.lanisnik.restaurantorder.ui.base.other.SimpleListener
  */
 object DialogHelper {
 
-    // region Public methods
+    fun showSuccessDialog(context: Context, @StringRes content: Int, listener: SimpleListener?) {
+        val builder = createBaseDialog(context, listener == null, content)
+                .positiveText(R.string.general_ok)
+        listener?.let {
+            builder.onPositive(wrapCallback(it))
+        }
+        builder.show()
+    }
 
-    fun showErrorDialogWithRetryAndDismissCallback(context: Context, @StringRes content: Int,
-                                                   onRetry: SimpleListener,
-                                                   onDismiss: SimpleListener) {
-        if (content > 0) {
-            createBaseErrorDialog(context, content)
-                    .onNegative(wrapCallback(onDismiss))
-                    .onPositive(wrapCallback(onRetry))
-                    .positiveText(R.string.general_retry)
-                    .show()
+    private fun createBaseDialog(context: Context,
+                                 cancelable: Boolean,
+                                 @StringRes content: Int): MaterialDialog.Builder {
+        return MaterialDialog.Builder(context)
+                .cancelable(cancelable)
+                .canceledOnTouchOutside(cancelable)
+                .content(content)
+    }
+
+    private fun wrapCallback(callback: SimpleListener): MaterialDialog.SingleButtonCallback {
+        return MaterialDialog.SingleButtonCallback { dialog, _ ->
+            dialog.dismiss()
+            callback.invoke()
         }
     }
 
-    // endregion
-
-    // region Private methods
-
-    private fun createBaseErrorDialog(context: Context, @StringRes content: Int): MaterialDialog.Builder =
-            createBaseDialog(context, false)
-                    .content(content)
-                    .negativeText(R.string.general_close)
-
-
-    private fun createBaseDialog(context: Context, cancelable: Boolean): MaterialDialog.Builder =
-            MaterialDialog.Builder(context)
-                    .cancelable(cancelable)
-                    .canceledOnTouchOutside(cancelable)
-                    .title(R.string.general_dialog_notification_title)
-
-    private fun wrapCallback(callback: SimpleListener): MaterialDialog.SingleButtonCallback =
-            MaterialDialog.SingleButtonCallback { dialog, _ ->
-                dialog.dismiss()
-                callback.invoke()
-            }
-
-    // endregion
 }

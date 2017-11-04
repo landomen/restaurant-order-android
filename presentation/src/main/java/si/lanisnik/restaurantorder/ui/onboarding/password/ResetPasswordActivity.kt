@@ -3,7 +3,6 @@ package si.lanisnik.restaurantorder.ui.onboarding.password
 import android.app.Dialog
 import android.arch.lifecycle.Observer
 import android.os.Bundle
-import com.afollestad.materialdialogs.MaterialDialog
 import kotlinx.android.synthetic.main.activity_reset_password.*
 import kotlinx.android.synthetic.main.toolbar.*
 import org.jetbrains.anko.indeterminateProgressDialog
@@ -11,6 +10,7 @@ import si.lanisnik.restaurantorder.R
 import si.lanisnik.restaurantorder.ui.base.BaseActivity
 import si.lanisnik.restaurantorder.ui.base.data.ResourceState
 import si.lanisnik.restaurantorder.ui.base.data.SimpleResource
+import si.lanisnik.restaurantorder.ui.base.dialogs.DialogHelper
 import si.lanisnik.restaurantorder.ui.base.extensions.*
 import si.lanisnik.restaurantorder.ui.onboarding.model.InputError
 import javax.inject.Inject
@@ -81,16 +81,9 @@ class ResetPasswordActivity : BaseActivity() {
 
     private fun showSuccessState() {
         loadingDialog.dismiss()
-        MaterialDialog.Builder(this)
-                .content(R.string.reset_password_success)
-                .canceledOnTouchOutside(false)
-                .cancelable(false)
-                .positiveText(R.string.general_ok)
-                .onPositive { dialog, _ ->
-                    dialog.dismiss()
-                    finish()
-                }
-                .show()
+        DialogHelper.showSuccessDialog(this, R.string.reset_password_success) {
+            finish()
+        }
     }
 
     private fun showErrorState(errorMessage: Int) {
