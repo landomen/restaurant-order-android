@@ -10,6 +10,7 @@ import si.lanisnik.restaurantorder.data.repository.customer.CustomerRemote
 import si.lanisnik.restaurantorder.domain.repository.CustomerRepository
 import si.lanisnik.restaurantorder.internal.injection.scopes.PerApplication
 import si.lanisnik.restaurantorder.remote.RestaurantOrderServiceFactory
+import si.lanisnik.restaurantorder.remote.base.RemoteExceptionMapper
 import si.lanisnik.restaurantorder.remote.customer.CustomerRemoteImpl
 import si.lanisnik.restaurantorder.remote.customer.mapper.CustomerRemoteMapper
 import si.lanisnik.restaurantorder.remote.customer.service.CustomerService
@@ -33,8 +34,9 @@ class CustomerRepositoryModule {
     @Provides
     @PerApplication
     fun provideCustomerRemote(service: CustomerService,
-                              mapper: CustomerRemoteMapper): CustomerRemote =
-            CustomerRemoteImpl(service, mapper)
+                              mapper: CustomerRemoteMapper,
+                              exceptionMapper: RemoteExceptionMapper): CustomerRemote =
+            CustomerRemoteImpl(service, mapper, exceptionMapper)
 
     @Provides
     @PerApplication

@@ -6,5 +6,6 @@ package si.lanisnik.restaurantorder.remote
  */
 object HttpStatus {
     const val UNAUTHORIZED = 401
+    const val NOT_FOUND = 404
     const val CONFLICT = 409
 }

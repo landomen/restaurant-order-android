@@ -1,16 +1,16 @@
 package si.lanisnik.restaurantorder.remote.customer
 
+import io.reactivex.Completable
 import io.reactivex.Single
 import okhttp3.Credentials
-import retrofit2.HttpException
 import si.lanisnik.restaurantorder.data.entity.customer.CustomerEntity
 import si.lanisnik.restaurantorder.data.repository.customer.CustomerRemote
-import si.lanisnik.restaurantorder.domain.exception.ConflictException
-import si.lanisnik.restaurantorder.domain.exception.NotAuthorizedException
-import si.lanisnik.restaurantorder.remote.HttpStatus
+import si.lanisnik.restaurantorder.remote.base.RemoteExceptionMapper
 import si.lanisnik.restaurantorder.remote.customer.mapper.CustomerRemoteMapper
+import si.lanisnik.restaurantorder.remote.customer.model.ChangePasswordRequest
 import si.lanisnik.restaurantorder.remote.customer.model.LoginRequest
 import si.lanisnik.restaurantorder.remote.customer.model.RegisterRequest
+import si.lanisnik.restaurantorder.remote.customer.model.ResetPasswordRequest
 import si.lanisnik.restaurantorder.remote.customer.service.CustomerService
 import javax.inject.Inject
 
@@ -19,15 +19,13 @@ import javax.inject.Inject
  * domen.lanisnik@gmail.com
  */
 class CustomerRemoteImpl @Inject constructor(private val service: CustomerService,
-                                             private val customerMapper: CustomerRemoteMapper) : CustomerRemote {
+                                             private val customerMapper: CustomerRemoteMapper,
+                                             private val exceptionMapper: RemoteExceptionMapper) : CustomerRemote {
 
     override fun login(email: String, password: String): Single<CustomerEntity> {
         return service.login(LoginRequest(email, password))
-                .onErrorResumeNext { t: Throwable ->
-                    if (t is HttpException && t.code() == HttpStatus.UNAUTHORIZED)
-                        Single.error(NotAuthorizedException())
-                    else
-                        Single.error(t)
+                .onErrorResumeNext {
+                    Single.error(exceptionMapper.mapException(it))
                 }
                 .map {
                     customerMapper.mapFromRemote(it)
@@ -37,16 +35,25 @@ class CustomerRemoteImpl @Inject constructor(private val service: CustomerServic
     override fun register(customer: CustomerEntity): Single<CustomerEntity> {
         val request = RegisterRequest(customer.firstName, customer.lastName, customer.email, customer.phoneNumber, customer.password!!)
         return service.register(request)
-                .onErrorResumeNext { t: Throwable ->
-                    if (t is HttpException && t.code() == HttpStatus.CONFLICT)
-                        Single.error(ConflictException())
-                    else
-                        Single.error(t)
+                .onErrorResumeNext {
+                    Single.error(exceptionMapper.mapException(it))
                 }
                 .map {
                     customerMapper.mapFromRemote(it)
                 }
     }
+
+    override fun resetPassword(email: String): Completable =
+            service.resetPassword(ResetPasswordRequest(email))
+                    .onErrorResumeNext {
+                        Completable.error(exceptionMapper.mapException(it))
+                    }
+
+    override fun changePassword(currentPassword: String, newPassword: String): Completable =
+            service.changePassword(ChangePasswordRequest(currentPassword, newPassword))
+                    .onErrorResumeNext {
+                        Completable.error(exceptionMapper.mapException(it))
+                    }
 
     override fun getCustomer(): Single<CustomerEntity> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.

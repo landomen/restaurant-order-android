@@ -45,7 +45,6 @@ class RegisterActivity : BaseActivity() {
         enableBackArrow()
         setTitle(R.string.register)
         toolbar.setNavigationOnClickListener { finish() }
-
     }
 
     override fun initUi() {

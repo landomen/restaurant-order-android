@@ -43,6 +43,9 @@
         <activity
             android:name="si.lanisnik.restaurantorder.ui.onboarding.register.RegisterActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.onboarding.password.ResetPasswordActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

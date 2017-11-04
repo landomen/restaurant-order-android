@@ -14,5 +14,9 @@ interface CustomerRepository {
 
     fun register(customer: Customer): Completable
 
+    fun resetPassword(email: String): Completable
+
+    fun changePassword(currentPassword: String, newPassword: String): Completable
+
     fun getCustomer(): Single<Customer>
 }

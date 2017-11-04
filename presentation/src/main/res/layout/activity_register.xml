@@ -141,12 +141,14 @@
                     style="@style/DefaultText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:imeOptions="actionDone"
                     android:inputType="textPassword" />
 
             </android.support.design.widget.TextInputLayout>
 
             <TextView
                 android:id="@+id/registerDisclaimerText"
+                style="@style/DefaultLightText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_large"

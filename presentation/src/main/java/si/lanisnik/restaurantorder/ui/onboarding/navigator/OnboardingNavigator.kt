@@ -7,6 +7,7 @@ import org.jetbrains.anko.newTask
 import org.jetbrains.anko.startActivity
 import si.lanisnik.restaurantorder.ui.dashboard.DashboardActivity
 import si.lanisnik.restaurantorder.ui.onboarding.login.LoginActivity
+import si.lanisnik.restaurantorder.ui.onboarding.password.ResetPasswordActivity
 import si.lanisnik.restaurantorder.ui.onboarding.register.RegisterActivity
 import si.lanisnik.restaurantorder.ui.onboarding.register.RegisterActivity.Companion.EXTRA_STARTED_FROM_LOGIN
 import javax.inject.Inject
@@ -27,6 +28,10 @@ class OnboardingNavigator @Inject constructor() {
 
     fun navigateToDashboard(context: Context) {
         context.startActivity(context.intentFor<DashboardActivity>().newTask().clearTask())
+    }
+
+    fun navigateToResetPassword(context: Context) {
+        context.startActivity<ResetPasswordActivity>()
     }
 
 }

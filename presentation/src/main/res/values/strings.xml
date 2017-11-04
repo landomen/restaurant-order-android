@@ -4,6 +4,8 @@
     <string name="general_dialog_notification_title">Obvestilo</string>
     <string name="general_close">Zapri</string>
     <string name="general_retry">Poskusi znova</string>
+    <string name="general_loading">Prosimo, počakajte…</string>
+    <string name="general_ok">V redu</string>
 
     <!-- Error -->
     <string name="error_general">Prišlo je do nepričakovane napake.</string>
@@ -50,5 +52,12 @@
     <string name="register_conflict">Ta email naslov je že v uporabi</string>
     <string name="register_in_progress">Poteka registracija…</string>
     <string name="register_disclaimer">Z oddajo prijave za registracijo potrjujete, da se strinjate s pogoji uporabe.</string>
+
+    <!-- Reset password -->
+    <string name="reset_password">Pozabljeno geslo</string>
+    <string name="reset_password_instruction">Izpolnite spodnji obrazec. Novo geslo bo poslano na vaš e-mail naslov.</string>
+    <string name="reset_password_send">Pošlji</string>
+    <string name="reset_password_not_found">Vnešen email naslov ne obstaja</string>
+    <string name="reset_password_success">Na vnešen e-mail naslov je bilo poslano novo geslo, s katerim se lahko prijavite.</string>
 
 </resources>

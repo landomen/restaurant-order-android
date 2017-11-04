@@ -23,6 +23,10 @@
         <item name="android:textSize">@dimen/text_size_small</item>
     </style>
 
+    <style name="DefaultActionText" parent="DefaultLightText">
+        <item name="android:textColor">@color/accent</item>
+    </style>
+
     <!-- Buttons -->
     <style name="DefaultButton">
         <item name="android:background">@drawable/background_button</item>

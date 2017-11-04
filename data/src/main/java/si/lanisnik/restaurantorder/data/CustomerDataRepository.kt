@@ -37,6 +37,18 @@ class CustomerDataRepository @Inject constructor(private val cache: CustomerCach
         }
     }
 
+    override fun resetPassword(email: String): Completable = remote.resetPassword(email)
+
+    override fun changePassword(currentPassword: String, newPassword: String): Completable {
+        return remote.changePassword(currentPassword, newPassword)
+                .andThen(cache.getCustomer())
+                .flatMapCompletable { customer ->
+                    // update authorization credentials
+                    saveCredentials(customer.email, newPassword)
+                    Completable.complete()
+                }
+    }
+
     override fun getCustomer(): Single<Customer> {
         return cache.isValid().flatMap { cacheValid ->
             // check if cache is still valid (and available)

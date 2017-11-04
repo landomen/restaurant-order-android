@@ -2,17 +2,19 @@ package si.lanisnik.restaurantorder.internal.injection.modules
 
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
+import si.lanisnik.restaurantorder.internal.injection.modules.customer.LoginActivityModule
+import si.lanisnik.restaurantorder.internal.injection.modules.customer.RegisterActivityModule
+import si.lanisnik.restaurantorder.internal.injection.modules.customer.ResetPasswordActivityModule
 import si.lanisnik.restaurantorder.internal.injection.modules.dashboard.DashboardActivityModule
 import si.lanisnik.restaurantorder.internal.injection.modules.foodcategory.FoodCategoryListActivityModule
 import si.lanisnik.restaurantorder.internal.injection.modules.menuitem.MenuItemActivityModule
-import si.lanisnik.restaurantorder.internal.injection.modules.customer.LoginActivityModule
-import si.lanisnik.restaurantorder.internal.injection.modules.customer.RegisterActivityModule
 import si.lanisnik.restaurantorder.internal.injection.scopes.PerActivity
 import si.lanisnik.restaurantorder.ui.dashboard.DashboardActivity
 import si.lanisnik.restaurantorder.ui.foodcategory.CategoriesListActivity
 import si.lanisnik.restaurantorder.ui.menuitem.details.MenuItemDetailsActivity
 import si.lanisnik.restaurantorder.ui.menuitem.list.MenuItemsListActivity
 import si.lanisnik.restaurantorder.ui.onboarding.login.LoginActivity
+import si.lanisnik.restaurantorder.ui.onboarding.password.ResetPasswordActivity
 import si.lanisnik.restaurantorder.ui.onboarding.register.RegisterActivity
 
 /**
@@ -35,6 +37,10 @@ abstract class ActivityBindingModule {
     @PerActivity
     @ContributesAndroidInjector(modules = arrayOf(RegisterActivityModule::class))
     abstract fun registerActivity(): RegisterActivity
+
+    @PerActivity
+    @ContributesAndroidInjector(modules = arrayOf(ResetPasswordActivityModule::class))
+    abstract fun resetPasswordActivity(): ResetPasswordActivity
 
     // endregion
 

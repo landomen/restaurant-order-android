@@ -46,7 +46,7 @@
         android:id="@+id/loginPasswordInputLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/space_large"
+        android:layout_marginTop="@dimen/space_small"
         android:hint="@string/placeholder_password"
         app:layout_constraintBottom_toTopOf="@+id/loginButton"
         app:layout_constraintEnd_toStartOf="@id/guidelineEnd"
@@ -58,6 +58,7 @@
             style="@style/DefaultText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:imeOptions="actionDone"
             android:inputType="textPassword" />
 
     </android.support.design.widget.TextInputLayout>
@@ -67,7 +68,7 @@
         style="@style/DefaultButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/space_large"
+        android:layout_marginTop="@dimen/space_normal"
         android:text="@string/login"
         app:layout_constraintBottom_toTopOf="@+id/loginRegisterText"
         app:layout_constraintEnd_toStartOf="@id/guidelineEnd"
@@ -90,17 +91,29 @@
 
     <TextView
         android:id="@+id/loginRegisterText"
-        style="@style/DefaultText"
+        style="@style/DefaultActionText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_small"
         android:background="?attr/selectableItemBackground"
         android:padding="@dimen/space_small"
         android:text="@string/login_register"
-        android:textColor="@color/accent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/loginResetPasswordText"
         app:layout_constraintEnd_toStartOf="@+id/guidelineEnd"
         app:layout_constraintStart_toEndOf="@+id/loginNoAccountText"
         app:layout_constraintTop_toBottomOf="@id/loginButton" />
+
+    <TextView
+        android:id="@+id/loginResetPasswordText"
+        style="@style/DefaultActionText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:padding="@dimen/space_small"
+        android:text="@string/reset_password"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/guidelineEnd"
+        app:layout_constraintStart_toStartOf="@+id/guidelineStart"
+        app:layout_constraintTop_toBottomOf="@id/loginRegisterText" />
 
 </android.support.constraint.ConstraintLayout>

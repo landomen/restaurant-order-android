@@ -1,9 +1,10 @@
-package si.lanisnik.restaurantorder.ui.onboarding.login
+package si.lanisnik.restaurantorder.ui.onboarding.password
 
 import android.app.Dialog
 import android.arch.lifecycle.Observer
 import android.os.Bundle
-import kotlinx.android.synthetic.main.activity_login.*
+import com.afollestad.materialdialogs.MaterialDialog
+import kotlinx.android.synthetic.main.activity_reset_password.*
 import kotlinx.android.synthetic.main.toolbar.*
 import org.jetbrains.anko.indeterminateProgressDialog
 import si.lanisnik.restaurantorder.R
@@ -12,18 +13,16 @@ import si.lanisnik.restaurantorder.ui.base.data.ResourceState
 import si.lanisnik.restaurantorder.ui.base.data.SimpleResource
 import si.lanisnik.restaurantorder.ui.base.extensions.*
 import si.lanisnik.restaurantorder.ui.onboarding.model.InputError
-import si.lanisnik.restaurantorder.ui.onboarding.navigator.OnboardingNavigator
 import javax.inject.Inject
 
 /**
- * Created by Domen Lanišnik on 01/11/2017.
+ * Created by Domen Lanišnik on 04/11/2017.
  * domen.lanisnik@gmail.com
  */
-class LoginActivity : BaseActivity() {
+class ResetPasswordActivity : BaseActivity() {
 
-    @Inject lateinit var onboardingNavigator: OnboardingNavigator
-    @Inject lateinit var viewModelFactory: LoginViewModelFactory
-    private lateinit var viewModel: LoginViewModel
+    @Inject lateinit var viewModelFactory: ResetPasswordViewModelFactory
+    private lateinit var viewModel: ResetPasswordViewModel
     private lateinit var loadingDialog: Dialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,38 +31,36 @@ class LoginActivity : BaseActivity() {
         setupObservers()
     }
 
-    override fun getContentView(): Int = R.layout.activity_login
+    override fun getContentView(): Int = R.layout.activity_reset_password
 
     override fun initToolbar() {
         setSupportActionBar(toolbar)
         enableBackArrow()
-        setTitle(R.string.login)
+        setTitle(R.string.reset_password)
         toolbar.setNavigationOnClickListener { finish() }
     }
 
     override fun initUi() {
-        loginRegisterText.setOnClickListener {
-            onboardingNavigator.navigateToRegister(this, true)
-        }
-        loginResetPasswordText.setOnClickListener {
-            onboardingNavigator.navigateToResetPassword(this)
-        }
-        loginPasswordEditText.onDoneAction { onLoginClicked() }
-        loginButton.setOnClickListener { onLoginClicked() }
-    }
-
-    private fun onLoginClicked() {
-        viewModel.login(loginEmailEditText.input(), loginPasswordEditText.input())
-        hideKeyboard()
+        resetPasswordEmailEditText.onDoneAction { onResetClicked() }
+        resetPasswordButton.setOnClickListener { onResetClicked() }
     }
 
     private fun setupObservers() {
         viewModel.getValidationObservable().observe(this, Observer {
             handleValidationError(it!!)
         })
-        viewModel.getLoginObservable().observe(this, Observer {
+        viewModel.getActionObservable().observe(this, Observer {
             handleState(it!!)
         })
+    }
+
+    private fun onResetClicked() {
+        viewModel.resetPassword(resetPasswordEmailEditText.input())
+        hideKeyboard()
+    }
+
+    private fun handleValidationError(error: InputError) {
+        resetPasswordButton.snackbar(error.message)
     }
 
     private fun handleState(state: SimpleResource) {
@@ -75,7 +72,7 @@ class LoginActivity : BaseActivity() {
     }
 
     private fun showLoadingState() {
-        loadingDialog = indeterminateProgressDialog(R.string.logging_in) {
+        loadingDialog = indeterminateProgressDialog(R.string.general_loading) {
             setCancelable(false)
             setCanceledOnTouchOutside(false)
         }
@@ -84,16 +81,20 @@ class LoginActivity : BaseActivity() {
 
     private fun showSuccessState() {
         loadingDialog.dismiss()
-        onboardingNavigator.navigateToDashboard(this)
+        MaterialDialog.Builder(this)
+                .content(R.string.reset_password_success)
+                .canceledOnTouchOutside(false)
+                .cancelable(false)
+                .positiveText(R.string.general_ok)
+                .onPositive { dialog, _ ->
+                    dialog.dismiss()
+                    finish()
+                }
+                .show()
     }
 
     private fun showErrorState(errorMessage: Int) {
         loadingDialog.dismiss()
-        loginButton.snackbar(errorMessage)
+        resetPasswordButton.snackbar(errorMessage)
     }
-
-    private fun handleValidationError(error: InputError) {
-        loginButton.snackbar(error.message)
-    }
-
 }
