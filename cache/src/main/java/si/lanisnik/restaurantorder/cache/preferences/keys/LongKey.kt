@@ -7,5 +7,6 @@ package si.lanisnik.restaurantorder.cache.preferences.keys
 enum class LongKey : StorageKey {
     LAST_CACHE_TIME_FOOD_CATEGORY,
     LAST_CACHE_TIME_MENU_ITEM,
-    LAST_CACHE_TIME_ORDERS
+    LAST_CACHE_TIME_ORDERS,
+    LAST_CACHE_TIME_CUSTOMER
 }

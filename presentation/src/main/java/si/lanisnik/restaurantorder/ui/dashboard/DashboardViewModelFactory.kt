@@ -18,5 +18,4 @@ class DashboardViewModelFactory @Inject constructor(private val getCustomerType:
         throw IllegalArgumentException("Unknown ViewModel class")
     }
 
-
 }

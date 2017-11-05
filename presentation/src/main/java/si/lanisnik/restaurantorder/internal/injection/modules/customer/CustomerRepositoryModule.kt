@@ -4,6 +4,7 @@ import dagger.Module
 import dagger.Provides
 import si.lanisnik.restaurantorder.cache.CustomerCacheImpl
 import si.lanisnik.restaurantorder.cache.mapper.customer.CustomerCacheMapper
+import si.lanisnik.restaurantorder.cache.preferences.SimpleStorage
 import si.lanisnik.restaurantorder.data.CustomerDataRepository
 import si.lanisnik.restaurantorder.data.repository.customer.CustomerCache
 import si.lanisnik.restaurantorder.data.repository.customer.CustomerRemote
@@ -28,8 +29,9 @@ class CustomerRepositoryModule {
 
     @Provides
     @PerApplication
-    fun provideCustomerCache(mapper: CustomerCacheMapper): CustomerCache =
-            CustomerCacheImpl(mapper)
+    fun provideCustomerCache(mapper: CustomerCacheMapper,
+                             simpleStorage: SimpleStorage): CustomerCache =
+            CustomerCacheImpl(mapper, simpleStorage)
 
     @Provides
     @PerApplication

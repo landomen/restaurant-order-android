@@ -2,7 +2,9 @@ package si.lanisnik.restaurantorder.ui.dashboard.navigator
 
 import android.content.Context
 import org.jetbrains.anko.startActivity
+import si.lanisnik.restaurantorder.ui.customer.profile.ProfileActivity
 import si.lanisnik.restaurantorder.ui.foodcategory.CategoriesListActivity
+import si.lanisnik.restaurantorder.ui.onboarding.login.LoginActivity
 import javax.inject.Inject
 
 /**
@@ -13,6 +15,22 @@ class DashboardNavigator @Inject constructor() {
 
     fun navigateToCategories(context: Context) {
         context.startActivity<CategoriesListActivity>()
+    }
+
+    fun navigateToProfile(context: Context) {
+        context.startActivity<ProfileActivity>()
+    }
+
+    fun navigateToLogin(context: Context) {
+        context.startActivity<LoginActivity>()
+    }
+
+    fun navigateToHistory(context: Context){
+        // TODO
+    }
+
+    fun navigateToAbout(context: Context){
+        // TODO
     }
 
 }

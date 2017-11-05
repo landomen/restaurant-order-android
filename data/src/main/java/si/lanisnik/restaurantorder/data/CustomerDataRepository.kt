@@ -50,7 +50,7 @@ class CustomerDataRepository @Inject constructor(private val cache: CustomerCach
     }
 
     override fun getCustomer(): Single<Customer> {
-        return cache.isValid().flatMap { cacheValid ->
+        return cache.isCached().flatMap { cacheValid ->
             // check if cache is still valid (and available)
             if (!cacheValid) {
                 remote.getCustomer().doOnSuccess {

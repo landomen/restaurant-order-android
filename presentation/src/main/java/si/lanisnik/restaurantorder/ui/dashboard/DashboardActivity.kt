@@ -14,13 +14,11 @@ import si.lanisnik.restaurantorder.ui.base.views.LoadingStateView
 import si.lanisnik.restaurantorder.ui.dashboard.adapter.DashboardButtonsAdapter
 import si.lanisnik.restaurantorder.ui.dashboard.model.DashboardButtonModel
 import si.lanisnik.restaurantorder.ui.dashboard.navigator.DashboardNavigator
-import si.lanisnik.restaurantorder.ui.onboarding.navigator.OnboardingNavigator
 import javax.inject.Inject
 
 class DashboardActivity : BaseActivity() {
 
     @Inject lateinit var navigator: DashboardNavigator
-    @Inject lateinit var onboardingNavigator: OnboardingNavigator
     @Inject lateinit var viewModelFactory: DashboardViewModelFactory
     private lateinit var viewModel: DashboardViewModel
 
@@ -71,10 +69,10 @@ class DashboardActivity : BaseActivity() {
     private fun onButtonClicked(type: DashboardButtonModel) {
         when (type) {
             is DashboardButtonModel.Order -> navigator.navigateToCategories(this)
-            is DashboardButtonModel.History -> TODO()
-            is DashboardButtonModel.Profile -> TODO()
-            is DashboardButtonModel.Login -> onboardingNavigator.navigateToLogin(this)
-            is DashboardButtonModel.About -> TODO()
+            is DashboardButtonModel.History -> navigator.navigateToHistory(this)
+            is DashboardButtonModel.Profile -> navigator.navigateToProfile(this)
+            is DashboardButtonModel.Login -> navigator.navigateToLogin(this)
+            is DashboardButtonModel.About -> navigator.navigateToAbout(this)
         }
     }
 }

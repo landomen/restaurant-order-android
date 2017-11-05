@@ -3,12 +3,14 @@ package si.lanisnik.restaurantorder.internal.injection.modules
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import si.lanisnik.restaurantorder.internal.injection.modules.customer.LoginActivityModule
+import si.lanisnik.restaurantorder.internal.injection.modules.customer.ProfileActivityModule
 import si.lanisnik.restaurantorder.internal.injection.modules.customer.RegisterActivityModule
 import si.lanisnik.restaurantorder.internal.injection.modules.customer.ResetPasswordActivityModule
 import si.lanisnik.restaurantorder.internal.injection.modules.dashboard.DashboardActivityModule
 import si.lanisnik.restaurantorder.internal.injection.modules.foodcategory.FoodCategoryListActivityModule
 import si.lanisnik.restaurantorder.internal.injection.modules.menuitem.MenuItemActivityModule
 import si.lanisnik.restaurantorder.internal.injection.scopes.PerActivity
+import si.lanisnik.restaurantorder.ui.customer.profile.ProfileActivity
 import si.lanisnik.restaurantorder.ui.dashboard.DashboardActivity
 import si.lanisnik.restaurantorder.ui.foodcategory.CategoriesListActivity
 import si.lanisnik.restaurantorder.ui.menuitem.details.MenuItemDetailsActivity
@@ -41,6 +43,14 @@ abstract class ActivityBindingModule {
     @PerActivity
     @ContributesAndroidInjector(modules = arrayOf(ResetPasswordActivityModule::class))
     abstract fun resetPasswordActivity(): ResetPasswordActivity
+
+    // endregion
+
+    // region Customer
+
+    @PerActivity
+    @ContributesAndroidInjector(modules = arrayOf(ProfileActivityModule::class))
+    abstract fun profileActivity(): ProfileActivity
 
     // endregion
 
