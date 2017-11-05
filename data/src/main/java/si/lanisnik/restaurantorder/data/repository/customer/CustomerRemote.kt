@@ -18,8 +18,8 @@ interface CustomerRemote {
 
     fun changePassword(currentPassword: String, newPassword: String): Completable
 
-    fun getCustomer(): Single<CustomerEntity>
+    fun updateCustomer(customer: CustomerEntity): Single<CustomerEntity>
 
-    fun createCredentials(email: String, password: String): String
+    fun getCustomer(): Single<CustomerEntity>
 
 }

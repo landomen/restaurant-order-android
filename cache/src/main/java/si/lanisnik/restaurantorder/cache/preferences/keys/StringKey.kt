@@ -8,5 +8,6 @@ package si.lanisnik.restaurantorder.cache.preferences.keys
  */
 enum class StringKey : StorageKey {
     FCM_TOKEN,
-    CREDENTIALS
+    CREDENTIALS_USERNAME,
+    CREDENTIALS_PASSWORD
 }

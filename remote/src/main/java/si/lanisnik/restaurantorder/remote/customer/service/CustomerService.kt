@@ -29,6 +29,10 @@ interface CustomerService {
 
     @POST("customer/profile")
     @Headers(NetConstants.HEADER_AUTHORIZATION_PLACEHOLDER)
+    fun updateProfile(@Body request: UpdateProfileRequest): Single<CustomerDto>
+
+    @POST("customer/profile")
+    @Headers(NetConstants.HEADER_AUTHORIZATION_PLACEHOLDER)
     fun getProfile(): Single<CustomerDto>
 
 }

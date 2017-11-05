@@ -6,8 +6,12 @@ package si.lanisnik.restaurantorder.data.component
  */
 interface AuthorizationComponent {
 
-    fun saveAuthorization(credentials: String)
+    fun saveUsername(username: String)
 
-    fun getAuthorization(): String
+    fun savePassword(password: String)
+
+    fun getUsername(): String
+
+    fun getPassword(): String
 
 }

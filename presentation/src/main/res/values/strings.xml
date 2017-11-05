@@ -79,5 +79,6 @@
     <string name="profile_change_password_incorrect_old">Trenutno geslo ni pravilno</string>
     <string name="profile_change_password_success">Uspešno ste spremenili geslo.</string>
     <string name="profile_addresses">Naslovi za dostavo</string>
+    <string name="profile_update_success">Podatki so bili uspešno posodobljeni.</string>
 
 </resources>

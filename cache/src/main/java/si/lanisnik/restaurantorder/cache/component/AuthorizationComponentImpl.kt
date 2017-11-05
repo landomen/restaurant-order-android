@@ -11,9 +11,18 @@ import javax.inject.Inject
  */
 class AuthorizationComponentImpl @Inject constructor(private val simpleStorage: SimpleStorage) : AuthorizationComponent {
 
-    override fun saveAuthorization(credentials: String) {
-        simpleStorage.putString(StringKey.CREDENTIALS, credentials)
+    override fun saveUsername(username: String) {
+        simpleStorage.putString(StringKey.CREDENTIALS_USERNAME, username)
     }
 
-    override fun getAuthorization(): String = simpleStorage.getString(StringKey.CREDENTIALS) ?: ""
+    override fun savePassword(password: String) {
+        simpleStorage.putString(StringKey.CREDENTIALS_PASSWORD, password)
+    }
+
+    override fun getUsername(): String =
+            simpleStorage.getString(StringKey.CREDENTIALS_USERNAME) ?: ""
+
+    override fun getPassword(): String =
+            simpleStorage.getString(StringKey.CREDENTIALS_PASSWORD) ?: ""
+
 }

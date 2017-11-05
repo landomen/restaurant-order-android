@@ -3,8 +3,10 @@ package si.lanisnik.restaurantorder.internal.injection.modules.customer
 import dagger.Module
 import dagger.Provides
 import si.lanisnik.restaurantorder.domain.interactor.customer.GetCustomer
+import si.lanisnik.restaurantorder.domain.interactor.customer.UpdateCustomerProfile
 import si.lanisnik.restaurantorder.internal.injection.scopes.PerActivity
 import si.lanisnik.restaurantorder.mapper.CustomerModelMapper
+import si.lanisnik.restaurantorder.ui.base.utilities.PhoneNumberValidator
 import si.lanisnik.restaurantorder.ui.customer.profile.ProfileViewModelFactory
 
 /**
@@ -17,6 +19,8 @@ class ProfileActivityModule {
     @PerActivity
     @Provides
     fun provideProfileViewModelFactory(getCustomer: GetCustomer,
-                                       customerModelMapper: CustomerModelMapper): ProfileViewModelFactory =
-            ProfileViewModelFactory(getCustomer, customerModelMapper)
+                                       updateCustomerProfile: UpdateCustomerProfile,
+                                       customerModelMapper: CustomerModelMapper,
+                                       phoneNumberValidator: PhoneNumberValidator): ProfileViewModelFactory =
+            ProfileViewModelFactory(getCustomer, updateCustomerProfile, customerModelMapper, phoneNumberValidator)
 }

@@ -1,5 +1,6 @@
 package si.lanisnik.restaurantorder.remote.interceptor
 
+import okhttp3.Credentials
 import okhttp3.Interceptor
 import okhttp3.Response
 import si.lanisnik.restaurantorder.data.component.AuthorizationComponent
@@ -20,9 +21,13 @@ class AuthenticationInterceptor @Inject constructor(private val authorizationCom
 
         // automatically add authorization header to every request that demands it
         if (original.header(NetConstants.HEADER_AUTHORIZATION)?.contains(NetConstants.REPLACE_CHAR) == true) {
-            requestBuilder.header(NetConstants.HEADER_AUTHORIZATION, authorizationComponent.getAuthorization())
+            requestBuilder.header(NetConstants.HEADER_AUTHORIZATION, buildAuthorization())
         }
         return chain.proceed(requestBuilder.build())
+    }
+
+    private fun buildAuthorization(): String {
+        return Credentials.basic(authorizationComponent.getUsername(), authorizationComponent.getPassword())
     }
 
 }

@@ -6,13 +6,13 @@ import kotlinx.android.synthetic.main.toolbar.*
 import si.lanisnik.restaurantorder.R
 import si.lanisnik.restaurantorder.ui.base.BaseActivity
 import si.lanisnik.restaurantorder.ui.base.data.ResourceState
-import si.lanisnik.restaurantorder.ui.base.extensions.createViewModel
-import si.lanisnik.restaurantorder.ui.base.extensions.enableBackArrow
-import si.lanisnik.restaurantorder.ui.base.extensions.hide
-import si.lanisnik.restaurantorder.ui.base.extensions.show
+import si.lanisnik.restaurantorder.ui.base.data.SimpleResource
+import si.lanisnik.restaurantorder.ui.base.dialogs.DialogHelper
+import si.lanisnik.restaurantorder.ui.base.extensions.*
 import si.lanisnik.restaurantorder.ui.base.views.LoadingStateView
 import si.lanisnik.restaurantorder.ui.customer.model.CustomerModel
 import si.lanisnik.restaurantorder.ui.customer.navigator.CustomerNavigator
+import si.lanisnik.restaurantorder.ui.onboarding.model.InputError
 import javax.inject.Inject
 
 /**
@@ -39,6 +39,13 @@ class ProfileActivity : BaseActivity(), LoadingStateView.RetryListener {
         profilePasswordChangeButton.setOnClickListener {
             navigator.navigateToChangePassword(this)
         }
+        profileInfoCancelButton.setOnClickListener {
+            viewModel.restoreDetails()
+            hideKeyboard()
+        }
+        profileInfoSaveButton.setOnClickListener {
+            onSaveProfileInfo()
+        }
     }
 
     override fun initViewModel() {
@@ -49,6 +56,12 @@ class ProfileActivity : BaseActivity(), LoadingStateView.RetryListener {
     override fun setupObservers() {
         viewModel.getDetailsObservable().observe(this, Observer {
             handleDataState(it!!.status, it.data)
+        })
+        viewModel.getUpdateObservable().observe(this, Observer {
+            handleUpdateState(it!!)
+        })
+        viewModel.getValidationObservable().observe(this, Observer {
+            handleUpdateValidationError(it!!)
         })
     }
 
@@ -79,6 +92,40 @@ class ProfileActivity : BaseActivity(), LoadingStateView.RetryListener {
         profileLastNameEditText.setText(customer.lastName)
         profileEmailEditText.setText(customer.email)
         profilePhoneNumberEditText.setText(customer.phoneNumber)
+    }
+
+    private fun handleUpdateValidationError(error: InputError) {
+        profileInfoSaveButton.snackbar(error.message)
+    }
+
+    private fun handleUpdateState(state: SimpleResource) {
+        when (state.status) {
+            ResourceState.LOADING -> showUpdateLoadingState()
+            ResourceState.SUCCESS -> showUpdateSuccessState()
+            ResourceState.ERROR -> showUpdateErrorState(state.errorMessage!!)
+        }
+    }
+
+    private fun showUpdateLoadingState() {
+        showLoadingDialog()
+    }
+
+    private fun showUpdateSuccessState() {
+        hideLoadingDialog()
+        DialogHelper.showSuccessDialog(this, R.string.profile_update_success, null)
+    }
+
+    private fun showUpdateErrorState(errorMessage: Int) {
+        hideLoadingDialog()
+        profileInfoSaveButton.snackbar(errorMessage)
+    }
+
+    private fun onSaveProfileInfo() {
+        viewModel.updateProfile(profileFirstNameEditText.input(),
+                profileLastNameEditText.input(),
+                profileEmailEditText.input(),
+                profilePhoneNumberEditText.input())
+        hideKeyboard()
     }
 
 }

@@ -18,6 +18,8 @@ interface CustomerRepository {
 
     fun changePassword(currentPassword: String, newPassword: String): Completable
 
+    fun updateCustomer(customer: Customer): Completable
+
     fun getCustomer(): Single<Customer>
 
     fun hasCustomer(): Single<Boolean>

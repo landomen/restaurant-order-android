@@ -41,11 +41,19 @@ class CustomerDataRepository @Inject constructor(private val cache: CustomerCach
 
     override fun changePassword(currentPassword: String, newPassword: String): Completable {
         return remote.changePassword(currentPassword, newPassword)
-                .andThen(cache.getCustomer())
-                .flatMapCompletable { customer ->
+                .doOnComplete {
                     // update authorization credentials
-                    saveCredentials(customer.email, newPassword)
-                    Completable.complete()
+                    authorizationComponent.savePassword(newPassword)
+                }
+    }
+
+    override fun updateCustomer(customer: Customer): Completable {
+        return remote.updateCustomer(entityMapper.mapToEntity(customer))
+                .flatMapCompletable {
+                    cache.saveCustomer(it)
+                }
+                .doOnComplete {
+                    authorizationComponent.saveUsername(customer.email)
                 }
     }
 
@@ -71,7 +79,8 @@ class CustomerDataRepository @Inject constructor(private val cache: CustomerCach
     override fun hasCustomer(): Single<Boolean> = cache.isCached()
 
     private fun saveCredentials(email: String, password: String) {
-        authorizationComponent.saveAuthorization(remote.createCredentials(email, password))
+        authorizationComponent.saveUsername(email)
+        authorizationComponent.savePassword(password)
     }
 
 }
