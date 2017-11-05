@@ -3,8 +3,7 @@ package si.lanisnik.restaurantorder.domain.interactor.base
 import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
-import io.reactivex.observers.DisposableSingleObserver
-import io.reactivex.subscribers.ResourceSubscriber
+import io.reactivex.functions.Consumer
 import si.lanisnik.restaurantorder.domain.executor.JobExecutionThread
 import si.lanisnik.restaurantorder.domain.executor.PostExecutionThread
 
@@ -21,20 +20,20 @@ abstract class SingleUseCase<Result, in Params>(
     /**
      * Builds an [Single] which will be used when executing the current [SingleUseCase].
      */
-    abstract fun buildUseCaseObservable(params: Params? = null): Single<Result>
+    abstract protected fun buildUseCaseObservable(params: Params? = null): Single<Result>
 
     /**
      * Executes the current use case.
      *
-     * @param subscriber [ResourceSubscriber] which will be listening to the flowable build
-     * by [buildUseCaseFlowable] method.
-     * @param parameters Parameters used to build/execute this use case.
+     * @param onSuccess
+     * @param onError
+     * @param params Parameters used to build/execute this use case.
      */
-    fun execute(singleObserver: DisposableSingleObserver<Result>, params: Params? = null) {
+    fun execute(onSuccess: Consumer<Result>, onError: Consumer<Throwable>, params: Params? = null) {
         val disposable = this.buildUseCaseObservable(params)
                 .subscribeOn(jobExecutionThread.getScheduler())
                 .observeOn(postExecutionThread.getScheduler())
-                .subscribeWith(singleObserver)
+                .subscribe(onSuccess, onError)
         addDisposable(disposable)
     }
 

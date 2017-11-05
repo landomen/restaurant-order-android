@@ -13,5 +13,6 @@
     <!-- Basic colors -->
     <color name="white">#ffffff</color>
     <color name="transparent">#00000000</color>
+    <color name="whiteish">#eeeeee</color>
 
 </resources>

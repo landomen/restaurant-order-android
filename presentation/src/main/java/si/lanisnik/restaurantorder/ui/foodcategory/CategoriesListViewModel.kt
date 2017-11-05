@@ -4,11 +4,10 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import io.reactivex.subscribers.DisposableSubscriber
-import si.lanisnik.restaurantorder.ui.base.data.Resource
-import si.lanisnik.restaurantorder.ui.base.data.ResourceState
 import si.lanisnik.restaurantorder.domain.interactor.foodcategory.GetCategories
 import si.lanisnik.restaurantorder.domain.model.foodcategory.FoodCategory
 import si.lanisnik.restaurantorder.mapper.FoodCategoryMapper
+import si.lanisnik.restaurantorder.ui.base.data.Resource
 import si.lanisnik.restaurantorder.ui.foodcategory.model.FoodCategoryModel
 import javax.inject.Inject
 
@@ -46,15 +45,16 @@ class CategoriesListViewModel @Inject constructor(private val getCategories: Get
      * Starts retrieving categories.
      */
     private fun loadCategories() {
-        categoriesLiveData.postValue(Resource(ResourceState.LOADING))
+        categoriesLiveData.postValue(Resource.loading())
         getCategories.execute(CategoriesSubscriber())
     }
 
     inner class CategoriesSubscriber : DisposableSubscriber<List<FoodCategory>>() {
 
         override fun onNext(t: List<FoodCategory>) {
-            categoriesLiveData.postValue(Resource(ResourceState.SUCCESS,
-                    t.map { mapper.mapToModel(it) }))
+            categoriesLiveData.postValue(Resource.success(t.map {
+                mapper.mapToModel(it)
+            }))
         }
 
         override fun onComplete() {
@@ -62,7 +62,7 @@ class CategoriesListViewModel @Inject constructor(private val getCategories: Get
         }
 
         override fun onError(e: Throwable) {
-            categoriesLiveData.postValue(Resource(ResourceState.ERROR))
+            categoriesLiveData.postValue(Resource.error())
         }
 
     }

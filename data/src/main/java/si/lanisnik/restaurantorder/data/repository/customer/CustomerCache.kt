@@ -14,6 +14,8 @@ interface CustomerCache {
 
     fun isValid(): Single<Boolean>
 
+    fun isCached(): Single<Boolean>
+
     fun saveCustomer(customer: CustomerEntity): Completable
 
 }

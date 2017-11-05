@@ -68,6 +68,8 @@ class CustomerDataRepository @Inject constructor(private val cache: CustomerCach
         }
     }
 
+    override fun hasCustomer(): Single<Boolean> = cache.isCached()
+
     private fun saveCredentials(email: String, password: String) {
         authorizationComponent.saveAuthorization(remote.createCredentials(email, password))
     }
