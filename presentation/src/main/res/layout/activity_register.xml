@@ -46,7 +46,7 @@
                     style="@style/DefaultText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textEmailAddress" />
+                    android:inputType="textPersonName" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -65,7 +65,7 @@
                     style="@style/DefaultText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textEmailAddress" />
+                    android:inputType="textPersonName" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -103,7 +103,7 @@
                     style="@style/DefaultText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textEmailAddress" />
+                    android:inputType="number" />
 
             </android.support.design.widget.TextInputLayout>
 

@@ -6,6 +6,8 @@
     <string name="general_retry">Poskusi znova</string>
     <string name="general_loading">Prosimo, počakajte…</string>
     <string name="general_ok">V redu</string>
+    <string name="general_save">Shrani</string>
+    <string name="general_cancel">Prekliči</string>
 
     <!-- Error -->
     <string name="error_general">Prišlo je do nepričakovane napake.</string>
@@ -66,5 +68,11 @@
     <string name="dashboard_login">Prijava</string>
     <string name="dashboard_history">Zgodovina</string>
     <string name="dashboard_about">O restavraciji</string>
+
+    <!-- Profile -->
+    <string name="profile_basic_info">Osnovni podatki</string>
+    <string name="profile_password_change">Zamenjaj geslo</string>
+    <string name="profile_password_change_message">Vnesite vaše staro geslo in želeno novo geslo, ter kliknite Spremeni.</string>
+    <string name="profile_addresses">Naslovi za dostavo</string>
 
 </resources>
