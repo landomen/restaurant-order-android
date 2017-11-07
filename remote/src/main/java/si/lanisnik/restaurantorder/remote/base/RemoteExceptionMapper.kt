@@ -2,6 +2,7 @@ package si.lanisnik.restaurantorder.remote.base
 
 import retrofit2.HttpException
 import si.lanisnik.restaurantorder.domain.exception.ConflictException
+import si.lanisnik.restaurantorder.domain.exception.ForbiddenException
 import si.lanisnik.restaurantorder.domain.exception.NotAuthorizedException
 import si.lanisnik.restaurantorder.domain.exception.NotFoundException
 import si.lanisnik.restaurantorder.remote.HttpStatus
@@ -19,6 +20,7 @@ class RemoteExceptionMapper @Inject constructor() {
         if (t is HttpException) {
             return when (t.code()) {
                 HttpStatus.UNAUTHORIZED -> NotAuthorizedException()
+                HttpStatus.FORBIDDEN -> ForbiddenException()
                 HttpStatus.NOT_FOUND -> NotFoundException()
                 HttpStatus.CONFLICT -> ConflictException()
                 else -> t

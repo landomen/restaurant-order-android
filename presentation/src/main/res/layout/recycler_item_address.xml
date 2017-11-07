@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/space_normal">
+
+    <RadioButton
+        android:id="@+id/addressRadioButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/addressEditImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:foreground="?attr/selectableItemBackground"
+        android:padding="@dimen/space_small"
+        android:tint="@color/accent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_mode_edit" />
+
+    <TextView
+        android:id="@+id/addressTitleText"
+        style="@style/DefaultText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/space_normal"
+        android:layout_marginStart="@dimen/space_normal"
+        app:layout_constraintBottom_toTopOf="@+id/addressNoteText"
+        app:layout_constraintEnd_toStartOf="@+id/addressEditImage"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/addressRadioButton"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Glavni trg 10, 1420 Trbovlje" />
+
+    <TextView
+        android:id="@+id/addressNoteText"
+        style="@style/DefaultLightText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/space_normal"
+        android:layout_marginStart="@dimen/space_normal"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/addressEditImage"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/addressRadioButton"
+        app:layout_constraintTop_toBottomOf="@+id/addressTitleText"
+        tools:text="Zgornje nadstropje" />
+
+
+</android.support.constraint.ConstraintLayout>
