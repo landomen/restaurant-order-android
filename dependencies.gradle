@@ -30,7 +30,10 @@ ext {
     daggerVersion = '2.11'
 
     // Architecture components
-    architectureComponentsVersion = "1.0.0-rc1"
+    architectureComponentsVersion = "1.0.0"
+
+    // Google Play Services
+    googlePlayServicesVersion = '11.4.2'
 
     // Parceler
     parcelerVersion = '1.1.9'
@@ -136,6 +139,12 @@ ext {
             // Architecture Components
             archExtensions:     "android.arch.lifecycle:extensions:${architectureComponentsVersion}",
             archCompiler:       "android.arch.lifecycle:compiler:${architectureComponentsVersion}",
+
+            // Google Play Services
+            playServicesPlaces: "com.google.android.gms:play-services-places:$googlePlayServicesVersion",
+
+            // MultiDex (to support more than 64K method count)
+            multidex:           'com.android.support:multidex:1.0.2',
 
             // Parceler
             parceler:           "org.parceler:parceler-api:$parcelerVersion",

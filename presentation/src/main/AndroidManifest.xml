@@ -12,6 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
             android:name=".ui.splash.SplashActivity"
             android:screenOrientation="portrait">
@@ -55,6 +56,12 @@
         <activity
             android:name=".ui.address.AddressesActivity"
             android:screenOrientation="portrait" />
+
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDDl7XJomIXoyJhQtcAOmKZVbwW984jgV4"/>
+
     </application>
 
 </manifest>
