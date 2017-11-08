@@ -15,7 +15,7 @@ class AddressViewHolder(itemView: View) : BaseViewHolder<AddressModel>(itemView)
     private val radioButton by lazy { itemView.addressRadioButton }
     private val titleText by lazy { itemView.addressTitleText }
     private val noteText by lazy { itemView.addressNoteText }
-    private val editButton by lazy { itemView.addressEditImage }
+    private val editButton by lazy { itemView.addressDeleteImage }
 
     override fun bindModel(model: AddressModel) {
         titleText.text = model.getAddress()

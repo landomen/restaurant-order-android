@@ -199,6 +199,29 @@
                 app:layout_constraintStart_toEndOf="@id/guidelineStart"
                 app:layout_constraintTop_toBottomOf="@id/profilePasswordChangeButton" />
 
+            <TextView
+                android:id="@+id/profileAddressInstruction"
+                style="@style/DefaultLightText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_normal"
+                android:text="@string/profile_addresses_message"
+                app:layout_constraintEnd_toStartOf="@id/guidelineEnd"
+                app:layout_constraintStart_toEndOf="@id/guidelineStart"
+                app:layout_constraintTop_toBottomOf="@id/profileAddressTitle" />
+
+            <Button
+                android:id="@+id/profileAddressOpenButton"
+                style="@style/DefaultButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_normal"
+                android:paddingEnd="@dimen/space_large"
+                android:paddingStart="@dimen/space_large"
+                android:text="@string/profile_addresses_edit"
+                app:layout_constraintEnd_toStartOf="@id/guidelineEnd"
+                app:layout_constraintStart_toEndOf="@id/guidelineStart"
+                app:layout_constraintTop_toBottomOf="@id/profileAddressInstruction" />
 
         </android.support.constraint.ConstraintLayout>
 

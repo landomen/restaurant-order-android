@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="si.lanisnik.restaurantorder.ui.splash.SplashActivity"
+            android:name=".ui.splash.SplashActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,26 +22,26 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="si.lanisnik.restaurantorder.ui.dashboard.DashboardActivity"
+            android:name=".ui.dashboard.DashboardActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="si.lanisnik.restaurantorder.ui.menuitem.list.MenuItemsListActivity"
+            android:name=".ui.menuitem.list.MenuItemsListActivity"
             android:label="@string/categories_title"
             android:screenOrientation="portrait" />
         <activity
-            android:name="si.lanisnik.restaurantorder.ui.menuitem.details.MenuItemDetailsActivity"
+            android:name=".ui.menuitem.details.MenuItemDetailsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/TransparentStatusBarTheme"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name="si.lanisnik.restaurantorder.ui.foodcategory.CategoriesListActivity"
+            android:name=".ui.foodcategory.CategoriesListActivity"
             android:label="@string/categories_title"
             android:screenOrientation="portrait" />
         <activity
-            android:name="si.lanisnik.restaurantorder.ui.onboarding.login.LoginActivity"
+            android:name=".ui.onboarding.login.LoginActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="si.lanisnik.restaurantorder.ui.onboarding.register.RegisterActivity"
+            android:name=".ui.onboarding.register.RegisterActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.onboarding.password.ResetPasswordActivity"
@@ -51,6 +51,9 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.customer.password.ChangePasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.address.AddressesActivity"
             android:screenOrientation="portrait" />
     </application>
 

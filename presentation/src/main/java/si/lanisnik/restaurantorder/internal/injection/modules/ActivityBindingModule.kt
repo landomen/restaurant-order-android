@@ -2,11 +2,13 @@ package si.lanisnik.restaurantorder.internal.injection.modules
 
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
+import si.lanisnik.restaurantorder.internal.injection.modules.address.AddressesActivityModule
 import si.lanisnik.restaurantorder.internal.injection.modules.customer.*
 import si.lanisnik.restaurantorder.internal.injection.modules.dashboard.DashboardActivityModule
 import si.lanisnik.restaurantorder.internal.injection.modules.foodcategory.FoodCategoryListActivityModule
 import si.lanisnik.restaurantorder.internal.injection.modules.menuitem.MenuItemActivityModule
 import si.lanisnik.restaurantorder.internal.injection.scopes.PerActivity
+import si.lanisnik.restaurantorder.ui.address.AddressesActivity
 import si.lanisnik.restaurantorder.ui.customer.password.ChangePasswordActivity
 import si.lanisnik.restaurantorder.ui.customer.profile.ProfileActivity
 import si.lanisnik.restaurantorder.ui.dashboard.DashboardActivity
@@ -56,9 +58,23 @@ abstract class ActivityBindingModule {
 
     // endregion
 
+    // region Address
+
+    @PerActivity
+    @ContributesAndroidInjector(modules = arrayOf(AddressesActivityModule::class))
+    abstract fun addressesActivity(): AddressesActivity
+
+    // endregion
+
+    // region Category
+
     @PerActivity
     @ContributesAndroidInjector(modules = arrayOf(FoodCategoryListActivityModule::class))
     abstract fun categoriesListActivity(): CategoriesListActivity
+
+    // endregion
+
+    // region Menu Item
 
     @PerActivity
     @ContributesAndroidInjector(modules = arrayOf(MenuItemActivityModule::class))
@@ -67,5 +83,7 @@ abstract class ActivityBindingModule {
     @PerActivity
     @ContributesAndroidInjector(modules = arrayOf(MenuItemActivityModule::class))
     abstract fun menuItemDetailsActivity(): MenuItemDetailsActivity
+
+    // endregion
 
 }

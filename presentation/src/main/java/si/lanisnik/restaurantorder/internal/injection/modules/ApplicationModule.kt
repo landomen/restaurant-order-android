@@ -12,6 +12,7 @@ import si.lanisnik.restaurantorder.data.executor.JobThread
 import si.lanisnik.restaurantorder.domain.executor.JobExecutionThread
 import si.lanisnik.restaurantorder.domain.executor.PostExecutionThread
 import si.lanisnik.restaurantorder.internal.execution.MainThread
+import si.lanisnik.restaurantorder.internal.injection.modules.address.AddressRepositoryModule
 import si.lanisnik.restaurantorder.internal.injection.modules.customer.CustomerRepositoryModule
 import si.lanisnik.restaurantorder.internal.injection.modules.foodcategory.FoodCategoryRepositoryModule
 import si.lanisnik.restaurantorder.internal.injection.modules.menuitem.MenuItemRepositoryModule
@@ -25,7 +26,8 @@ import si.lanisnik.restaurantorder.remote.interceptor.AuthenticationInterceptor
 @Module(includes = arrayOf(
         FoodCategoryRepositoryModule::class,
         MenuItemRepositoryModule::class,
-        CustomerRepositoryModule::class
+        CustomerRepositoryModule::class,
+        AddressRepositoryModule::class
 ))
 open class ApplicationModule {
 

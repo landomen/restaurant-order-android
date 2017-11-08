@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
+import android.widget.TextView
 import org.jetbrains.anko.backgroundResource
 import org.jetbrains.anko.layoutInflater
 import si.lanisnik.restaurantorder.R
@@ -47,6 +48,9 @@ fun View.setSelectableBackground() {
     backgroundResource = outValue.resourceId
 }
 
+
+fun View.getString(@StringRes id: Int): String = context.getString(id)
+
 // endregion
 
 // region Edit text
@@ -59,6 +63,20 @@ fun EditText.onDoneAction(listener: () -> Unit) {
             listener.invoke()
         false
     }
+}
+
+// endregion
+
+// region TextView
+
+/**
+ * Sets the received string as text if not null or empty, else uses the default string resource.
+ */
+fun TextView.setTextOrDefault(string: String?, @StringRes defaultRes: Int) {
+    text = if (!string.isNullOrEmpty())
+        string
+    else
+        getString(defaultRes)
 }
 
 // endregion

@@ -25,7 +25,7 @@ class CustomerRepositoryModule {
 
     @Provides
     @PerApplication
-    fun provideCustomerRepository(foodCategoryRepository: CustomerDataRepository): CustomerRepository = foodCategoryRepository
+    fun provideCustomerRepository(customerRepository: CustomerDataRepository): CustomerRepository = customerRepository
 
     @Provides
     @PerApplication

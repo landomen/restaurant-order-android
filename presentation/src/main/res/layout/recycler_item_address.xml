@@ -15,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/addressEditImage"
+        android:id="@+id/addressDeleteImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:foreground="?attr/selectableItemBackground"
@@ -24,7 +24,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_mode_edit" />
+        app:srcCompat="@drawable/ic_delete" />
 
     <TextView
         android:id="@+id/addressTitleText"
@@ -34,7 +34,7 @@
         android:layout_marginEnd="@dimen/space_normal"
         android:layout_marginStart="@dimen/space_normal"
         app:layout_constraintBottom_toTopOf="@+id/addressNoteText"
-        app:layout_constraintEnd_toStartOf="@+id/addressEditImage"
+        app:layout_constraintEnd_toStartOf="@+id/addressDeleteImage"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/addressRadioButton"
         app:layout_constraintTop_toTopOf="parent"
@@ -49,7 +49,7 @@
         android:layout_marginStart="@dimen/space_normal"
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/addressEditImage"
+        app:layout_constraintEnd_toStartOf="@+id/addressDeleteImage"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/addressRadioButton"
         app:layout_constraintTop_toBottomOf="@+id/addressTitleText"

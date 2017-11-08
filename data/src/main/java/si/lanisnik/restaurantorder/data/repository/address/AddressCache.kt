@@ -1,14 +1,14 @@
-package si.lanisnik.restaurantorder.domain.repository
+package si.lanisnik.restaurantorder.data.repository.address
 
 import io.reactivex.Completable
 import io.reactivex.Single
 import si.lanisnik.restaurantorder.domain.model.address.DeliveryAddress
 
 /**
- * Created by Domen Lanišnik on 06/11/2017.
+ * Created by Domen Lanišnik on 08/11/2017.
  * domen.lanisnik@gmail.com
  */
-interface AddressRepository {
+interface AddressCache {
 
     fun getAddresses(): Single<List<DeliveryAddress>>
 
@@ -17,4 +17,5 @@ interface AddressRepository {
     fun deleteAddress(addressId: Int): Completable
 
     fun selectAddress(addressId: Int): Completable
+
 }

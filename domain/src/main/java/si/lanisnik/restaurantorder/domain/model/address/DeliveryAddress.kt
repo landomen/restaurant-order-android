@@ -4,7 +4,7 @@ package si.lanisnik.restaurantorder.domain.model.address
  * Created by Domen Lanišnik on 06/11/2017.
  * domen.lanisnik@gmail.com
  */
-data class Address(
+data class DeliveryAddress(
         val id: Int = 0,
         val street: String = "",
         val number: String = "",

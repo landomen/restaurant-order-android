@@ -2,6 +2,7 @@ package si.lanisnik.restaurantorder.ui.customer.navigator
 
 import android.content.Context
 import org.jetbrains.anko.startActivity
+import si.lanisnik.restaurantorder.ui.address.AddressesActivity
 import si.lanisnik.restaurantorder.ui.customer.password.ChangePasswordActivity
 import javax.inject.Inject
 
@@ -13,5 +14,9 @@ class CustomerNavigator @Inject constructor() {
 
     fun navigateToChangePassword(context: Context) {
         context.startActivity<ChangePasswordActivity>()
+    }
+
+    fun navigateToAddresses(context: Context) {
+        context.startActivity<AddressesActivity>()
     }
 }

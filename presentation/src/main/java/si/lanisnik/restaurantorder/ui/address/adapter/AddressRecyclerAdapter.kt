@@ -1,5 +1,6 @@
 package si.lanisnik.restaurantorder.ui.address.adapter
 
+import android.support.v7.util.DiffUtil
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 import si.lanisnik.restaurantorder.R
@@ -15,16 +16,31 @@ import kotlin.properties.Delegates
  */
 class AddressRecyclerAdapter @Inject constructor() : RecyclerView.Adapter<AddressViewHolder>() {
 
-    var addresses: MutableList<AddressModel> by Delegates.observable(mutableListOf()) { _, _, _ ->
-        notifyDataSetChanged()
-    }
     var listener: AddressListener? = null
+    var addresses: MutableList<AddressModel> by Delegates.observable(mutableListOf()) { _, old, new ->
+        DiffUtil.calculateDiff(object : DiffUtil.Callback() {
+
+            override fun getOldListSize(): Int = old.size
+
+            override fun getNewListSize(): Int = new.size
+
+            override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean =
+                    old[oldItemPosition].id == new[newItemPosition].id
+
+            override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+                val oldAddress = old[oldItemPosition]
+                val newAddress = new[newItemPosition]
+                return oldAddress.id == newAddress.id && oldAddress.selected == newAddress.selected
+            }
+
+        }).dispatchUpdatesTo(this)
+    }
 
     override fun onBindViewHolder(holder: AddressViewHolder, position: Int) {
         val address = addresses[position]
         holder.bindModel(address)
         holder.listenForEdit {
-            listener?.onAddressEdit(address)
+            listener?.onAddressDelete(address.id)
         }
         holder.listerForSelection {
             listener?.onAddressSelected(address)
@@ -38,6 +54,6 @@ class AddressRecyclerAdapter @Inject constructor() : RecyclerView.Adapter<Addres
 
     interface AddressListener {
         fun onAddressSelected(address: AddressModel)
-        fun onAddressEdit(address: AddressModel)
+        fun onAddressDelete(addressId: Int)
     }
 }

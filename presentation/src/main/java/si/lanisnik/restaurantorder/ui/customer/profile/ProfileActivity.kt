@@ -46,6 +46,9 @@ class ProfileActivity : BaseActivity(), LoadingStateView.RetryListener {
         profileInfoSaveButton.setOnClickListener {
             onSaveProfileInfo()
         }
+        profileAddressOpenButton.setOnClickListener {
+            navigator.navigateToAddresses(this)
+        }
     }
 
     override fun initViewModel() {

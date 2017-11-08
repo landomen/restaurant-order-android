@@ -79,6 +79,11 @@
     <string name="profile_change_password_incorrect_old">Trenutno geslo ni pravilno</string>
     <string name="profile_change_password_success">Uspešno ste spremenili geslo.</string>
     <string name="profile_addresses">Naslovi za dostavo</string>
+    <string name="profile_addresses_message">Naslove za dostavo lahko po želji dodajate in odstranjujete. Izberite privzeti naslov za hitrejše naročilo.</string>
+    <string name="profile_addresses_edit">Uredi naslove</string>
     <string name="profile_update_success">Podatki so bili uspešno posodobljeni.</string>
+
+    <!-- Address -->
+    <string name="addresses_title">Naslovi za dostavo</string>
 
 </resources>

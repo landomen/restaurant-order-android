@@ -6,7 +6,9 @@ package si.lanisnik.restaurantorder.remote.base.mapper
  * @param <R> the remote model input type
  * @param <E> the data entity model output type
  */
-interface RemoteEntityMapper<in R, out E> {
+interface RemoteEntityMapper<R, E> {
 
     fun mapFromRemote(remoteModel: R): E
+
+    fun mapToRemote(entity: E): R = throw UnsupportedOperationException()
 }
