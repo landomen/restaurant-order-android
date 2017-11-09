@@ -37,6 +37,7 @@ class AddressViewModel @Inject constructor(private val getAddressesUseCase: GetD
 
     override fun onCleared() {
         getAddressesUseCase.dispose()
+        addDeliveryAddress.dispose()
         deleteDeliveryAddress.unsubscribe()
         selectDefaultDeliveryAddress.unsubscribe()
         super.onCleared()
@@ -55,17 +56,26 @@ class AddressViewModel @Inject constructor(private val getAddressesUseCase: GetD
         deleteDeliveryAddress.execute(Action {
             onAddressDeleted(addressId)
         }, Consumer {
-            updateLiveData.postValue(SimpleResource.error(R.string.general_retry))
+            updateLiveData.postValue(SimpleResource.error(R.string.error_general))
         }, DeleteDeliveryAddress.Params(addressId))
     }
 
     fun selectAddress(addressId: Int) {
         updateLiveData.postValue(SimpleResource.loading())
         selectDefaultDeliveryAddress.execute(Action {
-            updateLiveData.postValue(SimpleResource.success())
+            onAddressSelected(addressId)
         }, Consumer {
-            updateLiveData.postValue(SimpleResource.error(R.string.general_retry))
+            updateLiveData.postValue(SimpleResource.error(R.string.error_general))
         }, SelectDefaultDeliveryAddress.Params(addressId))
+    }
+
+    fun addAddress(address: String, note: String, default: Boolean) {
+        updateLiveData.postValue(SimpleResource.loading())
+        addDeliveryAddress.execute(Consumer {
+            onAddressAdded(addressMapper.mapToModel(it))
+        }, Consumer {
+            updateLiveData.postValue(SimpleResource.error(R.string.error_general))
+        }, AddDeliveryAddress.Params(address, note, default))
     }
 
     private fun loadAddresses() {
@@ -82,6 +92,24 @@ class AddressViewModel @Inject constructor(private val getAddressesUseCase: GetD
 
     private fun onAddressDeleted(addressId: Int) {
         addresses.removeAll { it.id == addressId }
+        updateLiveData.postValue(SimpleResource.success())
+        postNewestAddresses()
+    }
+
+    private fun onAddressAdded(address: AddressModel) {
+        addresses.add(address)
+        if (address.selected) {
+            onAddressSelected(address.id)
+        } else {
+            updateLiveData.postValue(SimpleResource.success())
+            postNewestAddresses()
+        }
+    }
+
+    private fun onAddressSelected(addressId: Int) {
+        addresses = addresses.map {
+            it.copy(selected = it.id == addressId)
+        }.toMutableList()
         updateLiveData.postValue(SimpleResource.success())
         postNewestAddresses()
     }

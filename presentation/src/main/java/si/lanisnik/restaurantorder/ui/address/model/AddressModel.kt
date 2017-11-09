@@ -11,7 +11,7 @@ data class AddressModel(
         val city: String = "",
         val postcode: Int = 0,
         val note: String? = null,
-        val selected: Boolean = false,
+        var selected: Boolean = false,
         val deleted: Boolean = false,
         val customerId: Int = 0) {
 

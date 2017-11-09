@@ -43,7 +43,7 @@ class AddressRecyclerAdapter @Inject constructor() : RecyclerView.Adapter<Addres
             listener?.onAddressDelete(address.id)
         }
         holder.listerForSelection {
-            listener?.onAddressSelected(address)
+            listener?.onAddressSelected(address.id)
         }
     }
 
@@ -53,7 +53,7 @@ class AddressRecyclerAdapter @Inject constructor() : RecyclerView.Adapter<Addres
     override fun getItemCount(): Int = addresses.size
 
     interface AddressListener {
-        fun onAddressSelected(address: AddressModel)
+        fun onAddressSelected(addressId: Int)
         fun onAddressDelete(addressId: Int)
     }
 }

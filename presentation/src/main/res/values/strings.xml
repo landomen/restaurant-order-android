@@ -85,5 +85,9 @@
 
     <!-- Address -->
     <string name="addresses_title">Naslovi za dostavo</string>
+    <string name="address_notes">Dodatne opombe</string>
+    <string name="address_add_title">Dodajte naslov</string>
+    <string name="address_add_message">Vnesite še morebitne dodatne opombe za dostavljalca in pritisnite gumb shrani.</string>
+    <string name="address_add_default">Nastavi kot privzeti naslov</string>
 
 </resources>

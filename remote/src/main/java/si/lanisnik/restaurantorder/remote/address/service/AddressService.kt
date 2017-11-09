@@ -22,7 +22,7 @@ interface AddressService {
     @Headers(NetConstants.HEADER_AUTHORIZATION_PLACEHOLDER)
     fun addAddress(@Body request: AddressRequest): Single<AddressDto>
 
-    @POST("address({id}/select")
+    @POST("address/{id}/select")
     @Headers(NetConstants.HEADER_AUTHORIZATION_PLACEHOLDER)
     fun selectAddress(@Path("id") id: Int): Completable
 

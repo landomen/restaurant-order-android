@@ -21,7 +21,7 @@ class AddressViewHolder(itemView: View) : BaseViewHolder<AddressModel>(itemView)
         titleText.text = model.getAddress()
 
         noteText.text = model.note
-        noteText.changeVisibility(model.note != null)
+        noteText.changeVisibility(!model.note.isNullOrEmpty())
 
         radioButton.isChecked = model.selected
     }
