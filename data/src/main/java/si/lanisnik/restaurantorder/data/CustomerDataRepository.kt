@@ -58,7 +58,7 @@ class CustomerDataRepository @Inject constructor(private val cache: CustomerCach
     }
 
     override fun getCustomer(): Single<Customer> {
-        return cache.isCached().flatMap { cacheValid ->
+        return cache.isCachedAndValid().flatMap { cacheValid ->
             // check if cache is still valid (and available)
             if (!cacheValid) {
                 remote.getCustomer().doOnSuccess {
@@ -76,7 +76,7 @@ class CustomerDataRepository @Inject constructor(private val cache: CustomerCach
         }
     }
 
-    override fun hasCustomer(): Single<Boolean> = cache.isCached()
+    override fun hasCustomer(): Single<Boolean> = cache.hasCustomer()
 
     private fun saveCredentials(email: String, password: String) {
         authorizationComponent.saveUsername(email)

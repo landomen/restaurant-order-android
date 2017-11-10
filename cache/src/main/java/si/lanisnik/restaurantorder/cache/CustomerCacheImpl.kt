@@ -27,7 +27,7 @@ class CustomerCacheImpl @Inject constructor(private val mapper: CustomerCacheMap
         }
     }
 
-    override fun isCached(): Single<Boolean> {
+    override fun isCachedAndValid(): Single<Boolean> {
         return Single.defer {
             Single.just(getRealm().contains<CachedCustomer>() &&
                     !isCacheExpired(simpleStorage.getLong(LongKey.LAST_CACHE_TIME_CUSTOMER)))
@@ -41,6 +41,12 @@ class CustomerCacheImpl @Inject constructor(private val mapper: CustomerCacheMap
             }
             setLastCacheTime(System.currentTimeMillis())
             Completable.complete()
+        }
+    }
+
+    override fun hasCustomer(): Single<Boolean> {
+        return Single.defer {
+            Single.just(getRealm().contains<CachedCustomer>())
         }
     }
 
