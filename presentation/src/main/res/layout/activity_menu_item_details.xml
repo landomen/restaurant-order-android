@@ -65,8 +65,6 @@
         android:id="@+id/menuItemShoppingCartView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:clipToPadding="false"
-        android:clipChildren="false"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/space_large" />
 
