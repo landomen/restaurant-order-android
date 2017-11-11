@@ -161,6 +161,10 @@ ext {
             leakCanaryDebug:    "com.squareup.leakcanary:leakcanary-android:$leakCanaryVersion",
             leakCanaryRelease:  "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion",
 
+            // View animations
+            animationsEasing:   "com.daimajia.easing:library:2.0@aar",
+            animations:         'com.daimajia.androidanimations:library:2.3@aar',
+
             // Annotations
             javaxAnnotation:    "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
             javaxInject:        "javax.inject:javax.inject:${javaxInjectVersion}"

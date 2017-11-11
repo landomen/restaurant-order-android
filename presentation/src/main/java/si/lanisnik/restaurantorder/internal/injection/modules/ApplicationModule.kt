@@ -11,6 +11,7 @@ import si.lanisnik.restaurantorder.data.component.AuthorizationComponent
 import si.lanisnik.restaurantorder.data.executor.JobThread
 import si.lanisnik.restaurantorder.domain.executor.JobExecutionThread
 import si.lanisnik.restaurantorder.domain.executor.PostExecutionThread
+import si.lanisnik.restaurantorder.domain.model.order.ShoppingCart
 import si.lanisnik.restaurantorder.internal.execution.MainThread
 import si.lanisnik.restaurantorder.internal.injection.modules.address.AddressRepositoryModule
 import si.lanisnik.restaurantorder.internal.injection.modules.customer.CustomerRepositoryModule
@@ -57,5 +58,8 @@ open class ApplicationModule {
     fun provideServiceFactory(authenticationInterceptor: AuthenticationInterceptor): RestaurantOrderServiceFactory =
             RestaurantOrderServiceFactory(BuildConfig.SERVER_BASE_URL, BuildConfig.DEBUG, authenticationInterceptor)
 
-    // endregion
+    @Provides
+    @PerApplication
+    fun provideShoppingCart() = ShoppingCart()
+
 }

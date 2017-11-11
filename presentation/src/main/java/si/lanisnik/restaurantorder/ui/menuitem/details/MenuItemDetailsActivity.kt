@@ -1,5 +1,6 @@
 package si.lanisnik.restaurantorder.ui.menuitem.details
 
+import android.arch.lifecycle.Observer
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_menu_item_details.*
 import kotlinx.android.synthetic.main.content_menu_item_details.*
@@ -15,7 +16,7 @@ class MenuItemDetailsActivity : BaseActivity() {
 
     @Inject lateinit var viewModelFactory: MenuItemDetailsViewModelFactory
     private lateinit var viewModel: MenuItemDetailsViewModel
-    
+
     override fun getContentView(): Int = R.layout.activity_menu_item_details
 
     override fun initToolbar() {
@@ -25,7 +26,12 @@ class MenuItemDetailsActivity : BaseActivity() {
     }
 
     override fun initUi() {
-
+        menuItemAddFab.setOnClickListener {
+            viewModel.addToShoppingCart()
+        }
+        menuItemShoppingCartView.setOnClickListener {
+            // TODO Open shopping cart
+        }
     }
 
     override fun initViewModel() {
@@ -39,7 +45,9 @@ class MenuItemDetailsActivity : BaseActivity() {
     }
 
     override fun setupObservers() {
-
+        viewModel.getShoppingCartObservable().observe(this, Observer {
+            menuItemShoppingCartView.count = it!!
+        })
     }
 
     private fun displayImage() {

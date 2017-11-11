@@ -9,6 +9,7 @@ import si.lanisnik.restaurantorder.ui.base.data.Resource
 import si.lanisnik.restaurantorder.ui.base.data.ResourceState
 import si.lanisnik.restaurantorder.ui.base.extensions.*
 import si.lanisnik.restaurantorder.ui.base.views.LoadingStateView
+import si.lanisnik.restaurantorder.ui.base.views.LoadingStateView.State.*
 import si.lanisnik.restaurantorder.ui.foodcategory.adapters.CategoriesRecyclerAdapter
 import si.lanisnik.restaurantorder.ui.foodcategory.model.FoodCategoryModel
 import si.lanisnik.restaurantorder.ui.menuitem.navigator.MenuItemNavigator
@@ -56,10 +57,11 @@ class CategoriesListActivity : BaseActivity(), CategoriesRecyclerAdapter.OnCateg
 
     private fun handleDataState(state: ResourceState, data: List<FoodCategoryModel>?) {
         when (state) {
-            ResourceState.LOADING -> showLoadingState(LoadingStateView.State.LOADING)
+            ResourceState.LOADING -> showLoadingState(LOADING)
             ResourceState.SUCCESS -> showCategories(data)
-            ResourceState.ERROR -> showLoadingState(LoadingStateView.State.ERROR)
+            ResourceState.ERROR -> showLoadingState(ERROR)
         }
+        categoriesShoppingCartView.changeVisibility(state != ResourceState.LOADING)
     }
 
     private fun showCategories(categories: List<FoodCategoryModel>?) {
@@ -67,7 +69,7 @@ class CategoriesListActivity : BaseActivity(), CategoriesRecyclerAdapter.OnCateg
             adapter.categories = categories!!
             categoriesLoadingStateView.hide()
         } else {
-            showLoadingState(LoadingStateView.State.EMPTY)
+            showLoadingState(EMPTY)
         }
     }
 

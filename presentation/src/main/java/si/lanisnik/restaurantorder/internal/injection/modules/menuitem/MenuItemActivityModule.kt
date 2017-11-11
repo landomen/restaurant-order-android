@@ -3,6 +3,7 @@ package si.lanisnik.restaurantorder.internal.injection.modules.menuitem
 import dagger.Module
 import dagger.Provides
 import si.lanisnik.restaurantorder.domain.interactor.menuitem.GetMenuItems
+import si.lanisnik.restaurantorder.domain.model.order.ShoppingCart
 import si.lanisnik.restaurantorder.internal.injection.scopes.PerActivity
 import si.lanisnik.restaurantorder.mapper.MenuItemMapper
 import si.lanisnik.restaurantorder.ui.menuitem.details.MenuItemDetailsViewModelFactory
@@ -17,11 +18,13 @@ class MenuItemActivityModule {
 
     @PerActivity
     @Provides
-    fun provideMenuItemListViewModelFactory(getMenuItems: GetMenuItems, mapper: MenuItemMapper): MenuItemsListViewModelFactory =
-            MenuItemsListViewModelFactory(getMenuItems, mapper)
+    fun provideMenuItemListViewModelFactory(getMenuItems: GetMenuItems,
+                                            mapper: MenuItemMapper,
+                                            shoppingCart: ShoppingCart): MenuItemsListViewModelFactory =
+            MenuItemsListViewModelFactory(getMenuItems, mapper, shoppingCart)
 
     @PerActivity
     @Provides
-    fun provideMenuItemDetailsViewModelFactory(): MenuItemDetailsViewModelFactory =
-            MenuItemDetailsViewModelFactory()
+    fun provideMenuItemDetailsViewModelFactory(shoppingCart: ShoppingCart): MenuItemDetailsViewModelFactory =
+            MenuItemDetailsViewModelFactory(shoppingCart)
 }

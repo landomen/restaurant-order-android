@@ -31,7 +31,7 @@ android {
     flavorDimensions "default"
     productFlavors {
         develop {
-            buildConfigField "String", "SERVER_BASE_URL", '"http://450683a6.ngrok.io/"'
+            buildConfigField "String", "SERVER_BASE_URL", '"http://c81e7336.ngrok.io/"'
             versionNameSuffix "-DEV"
         }
 
@@ -119,6 +119,10 @@ dependencies {
     // Leak Canary
     debugCompile presentationDependencies.leakCanaryDebug
     releaseCompile presentationDependencies.leakCanaryRelease
+
+    // View animations
+    compile presentationDependencies.animationsEasing
+    compile presentationDependencies.animations
 
     // Annotations
     provided presentationDependencies.javaxAnnotation

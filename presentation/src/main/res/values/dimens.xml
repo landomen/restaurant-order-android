@@ -19,4 +19,8 @@
     <dimen name="dashboard_button_width">150dp</dimen>
     <dimen name="dashboard_button_height">100dp</dimen>
 
+    <!-- Shopping cart -->
+    <dimen name="shopping_cart_icon_normal">24dp</dimen>
+    <dimen name="shopping_cart_icon_small">15dp</dimen>
+
 </resources>

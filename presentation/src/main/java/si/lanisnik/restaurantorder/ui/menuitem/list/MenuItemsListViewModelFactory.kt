@@ -3,6 +3,7 @@ package si.lanisnik.restaurantorder.ui.menuitem.list
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import si.lanisnik.restaurantorder.domain.interactor.menuitem.GetMenuItems
+import si.lanisnik.restaurantorder.domain.model.order.ShoppingCart
 import si.lanisnik.restaurantorder.mapper.MenuItemMapper
 
 /**
@@ -10,12 +11,13 @@ import si.lanisnik.restaurantorder.mapper.MenuItemMapper
  * domen.lanisnik@gmail.com
  */
 class MenuItemsListViewModelFactory(private val getMenuItems: GetMenuItems,
-                                    private val mapper: MenuItemMapper) : ViewModelProvider.Factory {
+                                    private val mapper: MenuItemMapper,
+                                    private val shoppingCart: ShoppingCart) : ViewModelProvider.Factory {
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(MenuItemListViewModel::class.java))
-            return MenuItemListViewModel(getMenuItems, mapper) as T
+            return MenuItemListViewModel(getMenuItems, mapper, shoppingCart) as T
         throw IllegalArgumentException("Unknown ViewModel class")
     }
 }

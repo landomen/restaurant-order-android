@@ -6,6 +6,7 @@ import android.arch.lifecycle.ViewModel
 import io.reactivex.subscribers.DisposableSubscriber
 import si.lanisnik.restaurantorder.domain.interactor.menuitem.GetMenuItems
 import si.lanisnik.restaurantorder.domain.model.menuitem.MenuItem
+import si.lanisnik.restaurantorder.domain.model.order.ShoppingCart
 import si.lanisnik.restaurantorder.mapper.MenuItemMapper
 import si.lanisnik.restaurantorder.ui.base.data.Resource
 import si.lanisnik.restaurantorder.ui.foodcategory.model.FoodCategoryModel
@@ -17,9 +18,11 @@ import javax.inject.Inject
  * domen.lanisnik@gmail.com
  */
 class MenuItemListViewModel @Inject constructor(private val getMenuItems: GetMenuItems,
-                                                private val mapper: MenuItemMapper) : ViewModel() {
+                                                private val mapper: MenuItemMapper,
+                                                private val shoppingCart: ShoppingCart) : ViewModel() {
 
     private val menuItemsLiveData: MutableLiveData<Resource<List<MenuItemModel>>> = MutableLiveData()
+    private val shoppingCartObservable: MutableLiveData<Int> = MutableLiveData()
     private lateinit var foodCategory: FoodCategoryModel
 
     override fun onCleared() {
@@ -29,6 +32,7 @@ class MenuItemListViewModel @Inject constructor(private val getMenuItems: GetMen
 
     fun initialize(foodCategory: FoodCategoryModel) {
         this.foodCategory = foodCategory
+        shoppingCartObservable.postValue(shoppingCart.totalCount)
         loadMenuItems()
     }
 
@@ -36,6 +40,8 @@ class MenuItemListViewModel @Inject constructor(private val getMenuItems: GetMen
      * Get [LiveData] for observing state of Menu items fetching.
      */
     fun getMenuItems(): LiveData<Resource<List<MenuItemModel>>> = menuItemsLiveData
+
+    fun getShoppingCartObservable(): LiveData<Int> = shoppingCartObservable
 
     fun retry() {
         loadMenuItems()

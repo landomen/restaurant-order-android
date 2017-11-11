@@ -7,6 +7,7 @@ import si.lanisnik.restaurantorder.R
 import si.lanisnik.restaurantorder.ui.base.BaseActivity
 import si.lanisnik.restaurantorder.ui.base.data.Resource
 import si.lanisnik.restaurantorder.ui.base.data.ResourceState
+import si.lanisnik.restaurantorder.ui.base.extensions.changeVisibility
 import si.lanisnik.restaurantorder.ui.base.extensions.createViewModel
 import si.lanisnik.restaurantorder.ui.base.extensions.hide
 import si.lanisnik.restaurantorder.ui.base.extensions.show
@@ -30,9 +31,9 @@ class DashboardActivity : BaseActivity() {
     }
 
     override fun initUi() {
-//        floatingActionButton.setOnClickListener {
-//            navigator.navigateToCategories(this)
-//        }
+        dashboardShoppingCartView.setOnClickListener {
+            // TODO Open shopping cart preview
+        }
     }
 
     override fun initViewModel() {
@@ -52,6 +53,7 @@ class DashboardActivity : BaseActivity() {
             ResourceState.SUCCESS -> displayButtons(state.data!!)
             ResourceState.ERROR -> displayButtons(false)
         }
+        dashboardShoppingCartView.changeVisibility(state.status != ResourceState.LOADING)
     }
 
     private fun displayButtons(fullDashboard: Boolean) {

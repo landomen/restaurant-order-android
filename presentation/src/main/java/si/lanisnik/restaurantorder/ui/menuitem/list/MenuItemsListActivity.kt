@@ -48,6 +48,9 @@ class MenuItemsListActivity : BaseActivity(), MenuitemRecyclerAdapter.OnMenuItem
         viewModel.getMenuItems().observe(this, Observer<Resource<List<MenuItemModel>>> {
             it?.let { handleDataState(it.status, it.data) }
         })
+        viewModel.getShoppingCartObservable().observe(this, Observer {
+            menuItemsShoppingCartView.count = it!!
+        })
     }
 
     override fun onMenuItemSelected(item: MenuItemModel) {
@@ -74,6 +77,7 @@ class MenuItemsListActivity : BaseActivity(), MenuitemRecyclerAdapter.OnMenuItem
             ResourceState.SUCCESS -> showMenuItems(data)
             ResourceState.ERROR -> showLoadingState(LoadingStateView.State.ERROR)
         }
+        menuItemsShoppingCartView.changeVisibility(state != ResourceState.LOADING)
     }
 
     private fun showMenuItems(menuItems: List<MenuItemModel>?) {
