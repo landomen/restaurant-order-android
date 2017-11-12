@@ -3,6 +3,7 @@ package si.lanisnik.restaurantorder.internal.injection.modules.dashboard
 import dagger.Module
 import dagger.Provides
 import si.lanisnik.restaurantorder.domain.interactor.customer.GetCustomerType
+import si.lanisnik.restaurantorder.domain.model.order.ShoppingCart
 import si.lanisnik.restaurantorder.internal.injection.scopes.PerActivity
 import si.lanisnik.restaurantorder.ui.dashboard.DashboardViewModelFactory
 
@@ -15,7 +16,8 @@ class DashboardActivityModule {
 
     @PerActivity
     @Provides
-    fun provideDashboardViewModelFactory(getCustomerType: GetCustomerType): DashboardViewModelFactory =
-            DashboardViewModelFactory(getCustomerType)
+    fun provideDashboardViewModelFactory(getCustomerType: GetCustomerType,
+                                         shoppingCart: ShoppingCart): DashboardViewModelFactory =
+            DashboardViewModelFactory(getCustomerType, shoppingCart)
 
 }

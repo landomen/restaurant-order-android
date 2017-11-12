@@ -29,6 +29,7 @@ class MenuItemDetailsActivity : BaseActivity() {
         menuItemAddFab.setOnClickListener {
             viewModel.addToShoppingCart()
         }
+        menuItemShoppingCartView.animateChange = true
         menuItemShoppingCartView.setOnClickListener {
             // TODO Open shopping cart
         }

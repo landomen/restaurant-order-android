@@ -2,12 +2,13 @@ package si.lanisnik.restaurantorder.ui.foodcategory
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
 import io.reactivex.subscribers.DisposableSubscriber
 import si.lanisnik.restaurantorder.domain.interactor.foodcategory.GetCategories
 import si.lanisnik.restaurantorder.domain.model.foodcategory.FoodCategory
+import si.lanisnik.restaurantorder.domain.model.order.ShoppingCart
 import si.lanisnik.restaurantorder.mapper.FoodCategoryMapper
 import si.lanisnik.restaurantorder.ui.base.data.Resource
+import si.lanisnik.restaurantorder.ui.base.viewmodels.ShoppingCartViewModel
 import si.lanisnik.restaurantorder.ui.foodcategory.model.FoodCategoryModel
 import javax.inject.Inject
 
@@ -16,12 +17,14 @@ import javax.inject.Inject
  * domen.lanisnik@gmail.com
  */
 class CategoriesListViewModel @Inject constructor(private val getCategories: GetCategories,
-                                                  private val mapper: FoodCategoryMapper) : ViewModel() {
+                                                  private val mapper: FoodCategoryMapper,
+                                                  shoppingCart: ShoppingCart) : ShoppingCartViewModel(shoppingCart) {
 
     private val categoriesLiveData: MutableLiveData<Resource<List<FoodCategoryModel>>> = MutableLiveData()
 
-    init {
+    fun initialize() {
         loadCategories()
+        initShoppingCart()
     }
 
     override fun onCleared() {

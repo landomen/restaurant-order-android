@@ -45,6 +45,9 @@ class DashboardActivity : BaseActivity() {
         viewModel.getFullDashboardObservable().observe(this, Observer {
             handleDataState(it!!)
         })
+        viewModel.getShoppingCartObservable().observe(this, Observer {
+            dashboardShoppingCartView.count = it!!
+        })
     }
 
     private fun handleDataState(state: Resource<Boolean>) {

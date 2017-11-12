@@ -39,6 +39,7 @@ class CategoriesListActivity : BaseActivity(), CategoriesRecyclerAdapter.OnCateg
 
     override fun initViewModel() {
         viewModel = createViewModel(viewModelFactory)
+        viewModel.initialize()
     }
 
     override fun onCategoryClicked(category: FoodCategoryModel) {
@@ -48,6 +49,9 @@ class CategoriesListActivity : BaseActivity(), CategoriesRecyclerAdapter.OnCateg
     override fun setupObservers() {
         viewModel.getCategories().observe(this, Observer<Resource<List<FoodCategoryModel>>> {
             it?.let { handleDataState(it.status, it.data) }
+        })
+        viewModel.getShoppingCartObservable().observe(this, Observer {
+            categoriesShoppingCartView.count = it!!
         })
     }
 

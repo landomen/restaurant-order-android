@@ -31,8 +31,9 @@ class ShoppingCartView(context: Context, attrs: AttributeSet?) : ConstraintLayou
     )
     private var iconSize = NORMAL
 
-    var count: Int by Delegates.observable(-1) { _, old, new ->
-        if (old != -1 && new > old) {
+    var animateChange: Boolean = false
+    var count: Int by Delegates.observable(0) { _, old, new ->
+        if (new > old && animateChange) {
             animateNewItem()
         }
         updateIcon(if (new > 0) SMALL else NORMAL)
