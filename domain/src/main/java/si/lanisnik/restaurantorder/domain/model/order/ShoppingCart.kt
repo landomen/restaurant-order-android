@@ -1,5 +1,6 @@
 package si.lanisnik.restaurantorder.domain.model.order
 
+import io.reactivex.subjects.BehaviorSubject
 import javax.inject.Singleton
 
 /**
@@ -9,8 +10,8 @@ import javax.inject.Singleton
 @Singleton
 class ShoppingCart {
     private val selectedMenuItems = mutableListOf<SelectedMenuItem>()
-    var totalCount: Int = 0
-        private set
+    private var totalCount: Int = 0
+    val totalCountSubject = BehaviorSubject.create<Int>()
 
     fun addItem(id: Int) {
         val i = indexOfItem(id)
@@ -41,6 +42,7 @@ class ShoppingCart {
 
     private fun updateTotalCount() {
         totalCount = selectedMenuItems.sumBy { it.count }
+        totalCountSubject.onNext(totalCount)
     }
 
 
