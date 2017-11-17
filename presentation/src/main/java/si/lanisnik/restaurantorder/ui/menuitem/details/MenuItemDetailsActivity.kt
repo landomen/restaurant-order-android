@@ -11,11 +11,13 @@ import si.lanisnik.restaurantorder.ui.base.extensions.createViewModel
 import si.lanisnik.restaurantorder.ui.base.extensions.enableBackArrow
 import si.lanisnik.restaurantorder.ui.base.extensions.input
 import si.lanisnik.restaurantorder.ui.base.extensions.unwrapParcel
+import si.lanisnik.restaurantorder.ui.order.navigator.OrderNavigator
 import javax.inject.Inject
 
 class MenuItemDetailsActivity : BaseActivity() {
 
     @Inject lateinit var viewModelFactory: MenuItemDetailsViewModelFactory
+    @Inject lateinit var orderNavigator: OrderNavigator
     private lateinit var viewModel: MenuItemDetailsViewModel
 
     override fun getContentView(): Int = R.layout.activity_menu_item_details
@@ -32,7 +34,7 @@ class MenuItemDetailsActivity : BaseActivity() {
         }
         menuItemShoppingCartView.animateChange = true
         menuItemShoppingCartView.setOnClickListener {
-            // TODO Open shopping cart
+            orderNavigator.navigateToShoppingCart(this)
         }
     }
 

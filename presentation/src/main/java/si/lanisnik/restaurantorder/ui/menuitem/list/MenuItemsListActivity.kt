@@ -1,6 +1,7 @@
 package si.lanisnik.restaurantorder.ui.menuitem.list
 
 import android.arch.lifecycle.Observer
+import kotlinx.android.synthetic.main.activity_menu_item_details.*
 import kotlinx.android.synthetic.main.activity_menu_items_list.*
 import kotlinx.android.synthetic.main.toolbar.*
 import si.lanisnik.restaurantorder.R
@@ -14,6 +15,7 @@ import si.lanisnik.restaurantorder.ui.foodcategory.model.FoodCategoryModel
 import si.lanisnik.restaurantorder.ui.menuitem.list.adapter.MenuitemRecyclerAdapter
 import si.lanisnik.restaurantorder.ui.menuitem.model.MenuItemModel
 import si.lanisnik.restaurantorder.ui.menuitem.navigator.MenuItemNavigator
+import si.lanisnik.restaurantorder.ui.order.navigator.OrderNavigator
 import javax.inject.Inject
 
 class MenuItemsListActivity : BaseActivity(), MenuitemRecyclerAdapter.OnMenuItemSelectedListener, LoadingStateView.RetryListener {
@@ -21,6 +23,7 @@ class MenuItemsListActivity : BaseActivity(), MenuitemRecyclerAdapter.OnMenuItem
     @Inject lateinit var adapter: MenuitemRecyclerAdapter
     @Inject lateinit var viewModelFactory: MenuItemsListViewModelFactory
     @Inject lateinit var menuItemNavigator: MenuItemNavigator
+    @Inject lateinit var orderNavigator: OrderNavigator
     private lateinit var viewModel: MenuItemListViewModel
 
     override fun getContentView(): Int = R.layout.activity_menu_items_list
@@ -34,6 +37,9 @@ class MenuItemsListActivity : BaseActivity(), MenuitemRecyclerAdapter.OnMenuItem
     override fun initUi() {
         initRecyclerView()
         menuItemLoadingStateView.retryListener = this
+        menuItemsShoppingCartView.setOnClickListener {
+            orderNavigator.navigateToShoppingCart(this)
+        }
     }
 
     override fun initViewModel() {

@@ -13,6 +13,7 @@ import si.lanisnik.restaurantorder.ui.base.views.LoadingStateView.State.*
 import si.lanisnik.restaurantorder.ui.foodcategory.adapters.CategoriesRecyclerAdapter
 import si.lanisnik.restaurantorder.ui.foodcategory.model.FoodCategoryModel
 import si.lanisnik.restaurantorder.ui.menuitem.navigator.MenuItemNavigator
+import si.lanisnik.restaurantorder.ui.order.navigator.OrderNavigator
 import javax.inject.Inject
 
 class CategoriesListActivity : BaseActivity(), CategoriesRecyclerAdapter.OnCategoryClickListener, LoadingStateView.RetryListener {
@@ -20,6 +21,7 @@ class CategoriesListActivity : BaseActivity(), CategoriesRecyclerAdapter.OnCateg
     @Inject lateinit var adapter: CategoriesRecyclerAdapter
     @Inject lateinit var viewModelFactory: CategoriesListViewModelFactory
     @Inject lateinit var menuItemNavigator: MenuItemNavigator
+    @Inject lateinit var orderNavigator: OrderNavigator
 
     private lateinit var viewModel: CategoriesListViewModel
 
@@ -35,6 +37,9 @@ class CategoriesListActivity : BaseActivity(), CategoriesRecyclerAdapter.OnCateg
     override fun initUi() {
         setupRecyclerView()
         categoriesLoadingStateView.retryListener = this
+        categoriesShoppingCartView.setOnClickListener {
+            orderNavigator.navigateToShoppingCart(this)
+        }
     }
 
     override fun initViewModel() {
