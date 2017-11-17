@@ -12,6 +12,7 @@ import si.lanisnik.restaurantorder.data.executor.JobThread
 import si.lanisnik.restaurantorder.domain.executor.JobExecutionThread
 import si.lanisnik.restaurantorder.domain.executor.PostExecutionThread
 import si.lanisnik.restaurantorder.domain.interactor.order.ShoppingCart
+import si.lanisnik.restaurantorder.domain.interactor.order.ShoppingCartInteractor
 import si.lanisnik.restaurantorder.domain.repository.OrderRepository
 import si.lanisnik.restaurantorder.internal.execution.MainThread
 import si.lanisnik.restaurantorder.internal.injection.modules.address.AddressRepositoryModule
@@ -63,6 +64,6 @@ open class ApplicationModule {
 
     @Provides
     @PerApplication
-    fun provideShoppingCart(repository: OrderRepository) = ShoppingCart(repository)
+    fun provideShoppingCart(repository: OrderRepository): ShoppingCart = ShoppingCartInteractor(repository)
 
 }

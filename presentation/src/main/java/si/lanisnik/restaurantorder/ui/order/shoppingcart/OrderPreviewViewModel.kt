@@ -23,12 +23,12 @@ class OrderPreviewViewModel(private val shoppingCart: ShoppingCart,
     fun getItemsObservable(): LiveData<List<ShoppingCartItemModel>> = itemsLiveData
 
     fun removeItem(item: ShoppingCartItemModel) {
-        shoppingCart.deleteItem(item.menuItem.id)
+        shoppingCart.deleteSelectedItem(item.menuItem.id)
         loadShoppingCartItems()
     }
 
     private fun loadShoppingCartItems() {
-        itemsLiveData.postValue(shoppingCart.selectedMenuItems.map { mapper.mapToModel(it) })
+        itemsLiveData.postValue(shoppingCart.getSelectedMenuItems().map { mapper.mapToModel(it) })
     }
 
 }
