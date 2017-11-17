@@ -27,7 +27,7 @@ class OrderPreviewActivity : BaseActivity() {
 
     override fun initToolbar() {
         setSupportActionBar(toolbar)
-        toolbar.setTitle(R.string.shopping_cart_title)
+        setTitle(R.string.shopping_cart_title)
         enableBackArrow()
         toolbar.setNavigationOnClickListener { finish() }
     }

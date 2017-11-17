@@ -12,7 +12,7 @@ interface OrderCache {
 
     fun clearShoppingCart(): Completable
     fun addItemToShoppingCart(item: SelectedMenuItemEntity): Completable
-    fun removeItemFromShoppingCart(id: Int): Completable
+    fun removeItemFromShoppingCart(id: Long): Completable
     fun loadShoppingCart(): Single<List<SelectedMenuItemEntity>>
 
 }

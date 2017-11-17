@@ -30,27 +30,47 @@ class ShoppingCartInteractor @Inject constructor(private val repository: OrderRe
     override fun addItem(item: MenuItem, comment: String) {
         val selectedMenuItem = SelectedMenuItem(System.currentTimeMillis(), item, parseComment(comment))
         selectedMenuItems.add(selectedMenuItem)
+        saveNewItem(selectedMenuItem)
         updateTotalCount()
-
-        repository.addItemToShoppingCart(selectedMenuItem)
-                .observeOn(Schedulers.io())
-                .subscribeOn(Schedulers.newThread())
-                .subscribe { }
     }
 
-    override fun deleteSelectedItem(id: Int) {
-        selectedMenuItems.removeAt(indexOfItem(id))
-        updateTotalCount()
+    override fun deleteSelectedItem(id: Long) {
+        val indexOfItem = indexOfItem(id)
+        if (indexOfItem != -1) {
+            selectedMenuItems.removeAt(indexOfItem(id))
+            deleteItem(id)
+            updateTotalCount()
+        }
     }
 
     override fun getSelectedMenuItems(): List<SelectedMenuItem> = selectedMenuItems
 
     override fun getTotalCountObservable(): BehaviorSubject<Int> = totalCountSubject
 
-    private fun indexOfItem(id: Int): Int = selectedMenuItems.indexOfFirst { it.menuItem.id == id }
+    private fun indexOfItem(id: Long): Int = selectedMenuItems.indexOfFirst { it.id == id }
 
     private fun updateTotalCount() {
         totalCountSubject.onNext(selectedMenuItems.size)
+    }
+
+    /**
+     * Saves the new selected item locally.
+     */
+    private fun saveNewItem(selectedMenuItem: SelectedMenuItem) {
+        repository.addItemToShoppingCart(selectedMenuItem)
+                .observeOn(Schedulers.io())
+                .subscribeOn(Schedulers.newThread())
+                .subscribe { }
+    }
+
+    /**
+     * Deletes the item from local storage.
+     */
+    private fun deleteItem(id: Long) {
+        repository.removeItemFromShoppingCart(id)
+                .observeOn(Schedulers.io())
+                .subscribeOn(Schedulers.newThread())
+                .subscribe { }
     }
 
     private fun parseComment(comment: String): String? = if (comment.isEmpty())

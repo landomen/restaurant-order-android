@@ -20,7 +20,8 @@ class OrderDataRepository @Inject constructor(private val cache: OrderCache,
     override fun addItemToShoppingCart(item: SelectedMenuItem): Completable =
             cache.addItemToShoppingCart(selectedMenuItemMapper.mapToEntity(item))
 
-    override fun removeItemFromShoppingCart(itemId: Int): Completable = removeItemFromShoppingCart(itemId)
+    override fun removeItemFromShoppingCart(selectedItemId: Long): Completable =
+            cache.removeItemFromShoppingCart(selectedItemId)
 
     override fun loadShoppingCart(): Single<List<SelectedMenuItem>> {
         return cache.loadShoppingCart()

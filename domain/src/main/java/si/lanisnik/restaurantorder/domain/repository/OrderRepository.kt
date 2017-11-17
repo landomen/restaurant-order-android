@@ -12,7 +12,7 @@ interface OrderRepository {
 
     fun clearShoppingCart(): Completable
     fun addItemToShoppingCart(item: SelectedMenuItem): Completable
-    fun removeItemFromShoppingCart(itemId: Int): Completable
+    fun removeItemFromShoppingCart(selectedItemId: Long): Completable
     fun loadShoppingCart(): Single<List<SelectedMenuItem>>
 
 }

@@ -38,11 +38,15 @@ class OrderCacheImpl @Inject constructor(private val mapper: SelectedMenuItemCac
         }
     }
 
-    override fun removeItemFromShoppingCart(id: Int): Completable {
+    override fun removeItemFromShoppingCart(id: Long): Completable {
         return Completable.defer {
             getRealm().transaction {
-                it.where<CachedShoppingCart>().findAll().deleteAllFromRealm()
-                it.where<CachedSelectedMenuItem>().findAll().deleteAllFromRealm()
+                val shoppingCart = it.where<CachedShoppingCart>().findFirst()!!
+                shoppingCart.selectedMenuItems
+                        .where()
+                        .equalTo("id", id)
+                        .findFirst()
+                        ?.deleteFromRealm()
             }
             Completable.complete()
         }

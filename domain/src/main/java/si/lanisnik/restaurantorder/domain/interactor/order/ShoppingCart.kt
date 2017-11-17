@@ -11,7 +11,7 @@ import si.lanisnik.restaurantorder.domain.model.order.SelectedMenuItem
 interface ShoppingCart {
 
     fun addItem(item: MenuItem, comment: String)
-    fun deleteSelectedItem(id: Int)
+    fun deleteSelectedItem(id: Long)
 
     fun getSelectedMenuItems(): List<SelectedMenuItem>
     fun getTotalCountObservable(): BehaviorSubject<Int>
