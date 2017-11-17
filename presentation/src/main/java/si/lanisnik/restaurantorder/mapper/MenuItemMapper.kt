@@ -13,4 +13,8 @@ class MenuItemMapper @Inject constructor(private val foodCategoryMapper: FoodCat
     override fun mapToModel(model: MenuItem): MenuItemModel =
             MenuItemModel(model.id, model.title, model.description,
                     model.image, model.price, foodCategoryMapper.mapToModel(model.category))
+
+    override fun mapFromModel(model: MenuItemModel): MenuItem =
+            MenuItem(model.id, model.title, model.description,
+                    model.image, model.price, foodCategoryMapper.mapFromModel(model.category))
 }

@@ -3,6 +3,7 @@ package si.lanisnik.restaurantorder.remote.customer.service
 import io.reactivex.Completable
 import io.reactivex.Single
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.POST
 import si.lanisnik.restaurantorder.remote.NetConstants
@@ -31,7 +32,7 @@ interface CustomerService {
     @Headers(NetConstants.HEADER_AUTHORIZATION_PLACEHOLDER)
     fun updateProfile(@Body request: UpdateProfileRequest): Single<CustomerDto>
 
-    @POST("customer/profile")
+    @GET("customer/profile")
     @Headers(NetConstants.HEADER_AUTHORIZATION_PLACEHOLDER)
     fun getProfile(): Single<CustomerDto>
 

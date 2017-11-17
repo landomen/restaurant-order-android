@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:padding="@dimen/space_normal">
+
+    <TextView
+        android:id="@+id/shoppingCartItemTitle"
+        style="@style/DefaultTitleText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/space_normal"
+        app:layout_constraintBottom_toTopOf="@+id/shoppingCartItemComment"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/shoppingCartItemPrice"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Pizza Margerita" />
+
+    <TextView
+        android:id="@+id/shoppingCartItemComment"
+        style="@style/DefaultText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/space_normal"
+        android:textStyle="italic"
+        android:layout_marginTop="@dimen/space_small"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/shoppingCartItemPrice"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/shoppingCartItemTitle"
+        tools:text="Add extra cheese" />
+
+    <ImageView
+        android:id="@+id/shoppingCartItemRemoveIcon"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:foreground="?attr/selectableItemBackground"
+        android:scaleType="center"
+        android:src="@drawable/ic_delete"
+        android:tint="@color/accent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/shoppingCartItemPrice"
+        style="@style/DefaultText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/space_normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/shoppingCartItemRemoveIcon"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="5.60€" />
+
+</android.support.constraint.ConstraintLayout>

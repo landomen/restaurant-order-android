@@ -5,7 +5,7 @@ import android.arch.lifecycle.MutableLiveData
 import io.reactivex.subscribers.DisposableSubscriber
 import si.lanisnik.restaurantorder.domain.interactor.menuitem.GetMenuItems
 import si.lanisnik.restaurantorder.domain.model.menuitem.MenuItem
-import si.lanisnik.restaurantorder.domain.model.order.ShoppingCart
+import si.lanisnik.restaurantorder.domain.interactor.order.ShoppingCart
 import si.lanisnik.restaurantorder.mapper.MenuItemMapper
 import si.lanisnik.restaurantorder.ui.base.data.Resource
 import si.lanisnik.restaurantorder.ui.base.viewmodels.ShoppingCartViewModel

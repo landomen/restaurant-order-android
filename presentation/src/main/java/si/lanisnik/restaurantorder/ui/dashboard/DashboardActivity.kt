@@ -15,11 +15,13 @@ import si.lanisnik.restaurantorder.ui.base.views.LoadingStateView
 import si.lanisnik.restaurantorder.ui.dashboard.adapter.DashboardButtonsAdapter
 import si.lanisnik.restaurantorder.ui.dashboard.model.DashboardButtonModel
 import si.lanisnik.restaurantorder.ui.dashboard.navigator.DashboardNavigator
+import si.lanisnik.restaurantorder.ui.order.navigator.OrderNavigator
 import javax.inject.Inject
 
 class DashboardActivity : BaseActivity() {
 
     @Inject lateinit var navigator: DashboardNavigator
+    @Inject lateinit var orderNavigator: OrderNavigator
     @Inject lateinit var viewModelFactory: DashboardViewModelFactory
     private lateinit var viewModel: DashboardViewModel
 
@@ -32,7 +34,7 @@ class DashboardActivity : BaseActivity() {
 
     override fun initUi() {
         dashboardShoppingCartView.setOnClickListener {
-            // TODO Open shopping cart preview
+            orderNavigator.navigateToShoppingCart(this)
         }
     }
 

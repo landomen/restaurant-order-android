@@ -5,7 +5,7 @@ import android.arch.lifecycle.MutableLiveData
 import io.reactivex.functions.Consumer
 import si.lanisnik.restaurantorder.domain.interactor.customer.GetCustomerType
 import si.lanisnik.restaurantorder.domain.model.customer.CustomerType
-import si.lanisnik.restaurantorder.domain.model.order.ShoppingCart
+import si.lanisnik.restaurantorder.domain.interactor.order.ShoppingCart
 import si.lanisnik.restaurantorder.ui.base.data.Resource
 import si.lanisnik.restaurantorder.ui.base.viewmodels.ShoppingCartViewModel
 import javax.inject.Inject

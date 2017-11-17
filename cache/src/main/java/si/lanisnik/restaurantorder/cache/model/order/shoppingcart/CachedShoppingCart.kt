@@ -7,10 +7,10 @@ import io.realm.RealmObject
  * Created by Domen Lanišnik on 11/11/2017.
  * domen.lanisnik@gmail.com
  */
-open class ShoppingCartDb() : RealmObject() {
-    var selectedMenuItems = RealmList<SelectedMenuItemDb>()
+open class CachedShoppingCart() : RealmObject() {
+    var selectedMenuItems = RealmList<CachedSelectedMenuItem>()
 
-    constructor(selectedMenuItems: RealmList<SelectedMenuItemDb>) : this() {
+    constructor(selectedMenuItems: RealmList<CachedSelectedMenuItem>) : this() {
         this.selectedMenuItems = selectedMenuItems
     }
 }

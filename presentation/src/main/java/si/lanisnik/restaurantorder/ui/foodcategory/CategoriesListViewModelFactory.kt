@@ -3,7 +3,7 @@ package si.lanisnik.restaurantorder.ui.foodcategory
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import si.lanisnik.restaurantorder.domain.interactor.foodcategory.GetCategories
-import si.lanisnik.restaurantorder.domain.model.order.ShoppingCart
+import si.lanisnik.restaurantorder.domain.interactor.order.ShoppingCart
 import si.lanisnik.restaurantorder.mapper.FoodCategoryMapper
 
 /**

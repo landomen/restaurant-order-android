@@ -7,6 +7,7 @@ import si.lanisnik.restaurantorder.internal.injection.modules.customer.*
 import si.lanisnik.restaurantorder.internal.injection.modules.dashboard.DashboardActivityModule
 import si.lanisnik.restaurantorder.internal.injection.modules.foodcategory.FoodCategoryListActivityModule
 import si.lanisnik.restaurantorder.internal.injection.modules.menuitem.MenuItemActivityModule
+import si.lanisnik.restaurantorder.internal.injection.modules.order.OrderPreviewActivityModule
 import si.lanisnik.restaurantorder.internal.injection.scopes.PerActivity
 import si.lanisnik.restaurantorder.ui.address.AddressesActivity
 import si.lanisnik.restaurantorder.ui.customer.password.ChangePasswordActivity
@@ -18,6 +19,7 @@ import si.lanisnik.restaurantorder.ui.menuitem.list.MenuItemsListActivity
 import si.lanisnik.restaurantorder.ui.onboarding.login.LoginActivity
 import si.lanisnik.restaurantorder.ui.onboarding.password.ResetPasswordActivity
 import si.lanisnik.restaurantorder.ui.onboarding.register.RegisterActivity
+import si.lanisnik.restaurantorder.ui.order.shoppingcart.OrderPreviewActivity
 
 /**
  * Created by Domen Lanišnik on 27/09/2017.
@@ -83,6 +85,14 @@ abstract class ActivityBindingModule {
     @PerActivity
     @ContributesAndroidInjector(modules = arrayOf(MenuItemActivityModule::class))
     abstract fun menuItemDetailsActivity(): MenuItemDetailsActivity
+
+    // endregion
+
+    // region Order
+
+    @PerActivity
+    @ContributesAndroidInjector(modules = arrayOf(OrderPreviewActivityModule::class))
+    abstract fun orderPreviewActivity(): OrderPreviewActivity
 
     // endregion
 

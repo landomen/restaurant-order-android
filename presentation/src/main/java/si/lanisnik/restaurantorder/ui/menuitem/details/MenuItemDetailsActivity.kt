@@ -9,6 +9,7 @@ import si.lanisnik.restaurantorder.ui.base.BaseActivity
 import si.lanisnik.restaurantorder.ui.base.constants.ActivityConstants.EXTRA_MENU_ITEM
 import si.lanisnik.restaurantorder.ui.base.extensions.createViewModel
 import si.lanisnik.restaurantorder.ui.base.extensions.enableBackArrow
+import si.lanisnik.restaurantorder.ui.base.extensions.input
 import si.lanisnik.restaurantorder.ui.base.extensions.unwrapParcel
 import javax.inject.Inject
 
@@ -27,7 +28,7 @@ class MenuItemDetailsActivity : BaseActivity() {
 
     override fun initUi() {
         menuItemAddFab.setOnClickListener {
-            viewModel.addToShoppingCart()
+            viewModel.addToShoppingCart(menuItemCommentEditText.input())
         }
         menuItemShoppingCartView.animateChange = true
         menuItemShoppingCartView.setOnClickListener {

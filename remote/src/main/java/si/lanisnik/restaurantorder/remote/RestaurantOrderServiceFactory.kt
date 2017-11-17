@@ -42,8 +42,8 @@ class RestaurantOrderServiceFactory @Inject constructor(baseUrl: String,
                     .readTimeout(NetConstants.TIMEOUT_SECONDS, TimeUnit.SECONDS)
                     .writeTimeout(NetConstants.TIMEOUT_SECONDS, TimeUnit.SECONDS)
                     .connectTimeout(NetConstants.TIMEOUT_SECONDS, TimeUnit.SECONDS)
-                    .addInterceptor(makeLoggingInterceptor())
                     .addInterceptor(authenticationInterceptor)
+                    .addInterceptor(makeLoggingInterceptor()) // order of interceptors is important
                     .build()
 
     private fun makeLoggingInterceptor(): HttpLoggingInterceptor {

@@ -9,6 +9,7 @@
     <string name="general_save">Shrani</string>
     <string name="general_cancel">Prekliči</string>
     <string name="general_confirm">Potrdi</string>
+    <string name="general_next_step">Naslednji korak</string>
 
     <!-- Error -->
     <string name="error_general">Prišlo je do nepričakovane napake.</string>
@@ -42,6 +43,7 @@
     <string name="menu_item_price">Cena</string>
     <string name="menu_item_comment">Vaše želje</string>
     <string name="menu_item_count">Količina</string>
+    <string name="menu_item_no_comment">Ni komentarja.</string>
 
     <!-- Login -->
     <string name="login">Prijava</string>
@@ -89,5 +91,10 @@
     <string name="address_add_title">Dodajte naslov</string>
     <string name="address_add_message">Vnesite še morebitne dodatne opombe za dostavljalca in pritisnite gumb shrani.</string>
     <string name="address_add_default">Nastavi kot privzeti naslov</string>
+
+    <!-- Shopping car -->
+    <string name="shopping_cart_title">Vsebina naročila</string>
+    <string name="shopping_cart_empty">Vaše naročilo je prazno.</string>
+    <string name="shopping_cart_total">Skupaj za plačilo: </string>
 
 </resources>

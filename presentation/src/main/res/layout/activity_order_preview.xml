@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/toolbar" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/shoppingCartRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="@dimen/space_large"
+        android:visibility="invisible"
+        app:layoutManager="LinearLayoutManager"
+        app:layout_constraintBottom_toTopOf="@id/shoppingCartTotalTitleText"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        tools:listitem="@layout/recycler_item_shopping_cart"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/shoppingCartEmptyText"
+        style="@style/DefaultText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/shopping_cart_empty"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+    <TextView
+        android:id="@+id/shoppingCartTotalTitleText"
+        style="@style/DefaultLightText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/space_large"
+        android:text="@string/shopping_cart_total"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@id/shoppingCartContinueButton"
+        app:layout_constraintEnd_toStartOf="@+id/shoppingCartTotalText"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/shoppingCartTotalText"
+        style="@style/DefaultTitleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/space_large"
+        android:layout_marginStart="@dimen/space_normal"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@id/shoppingCartContinueButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/shoppingCartTotalTitleText"
+        tools:text="10.2€"
+        tools:visibility="visible" />
+
+    <Button
+        android:id="@+id/shoppingCartContinueButton"
+        style="@style/DefaultButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/space_large"
+        android:paddingEnd="@dimen/space_large"
+        android:paddingStart="@dimen/space_large"
+        android:text="@string/general_next_step"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:visibility="visible" />
+
+    <android.support.constraint.Group
+        android:id="@+id/shoppingCartTotalPriceGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+</android.support.constraint.ConstraintLayout>

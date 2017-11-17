@@ -11,12 +11,14 @@ import si.lanisnik.restaurantorder.data.component.AuthorizationComponent
 import si.lanisnik.restaurantorder.data.executor.JobThread
 import si.lanisnik.restaurantorder.domain.executor.JobExecutionThread
 import si.lanisnik.restaurantorder.domain.executor.PostExecutionThread
-import si.lanisnik.restaurantorder.domain.model.order.ShoppingCart
+import si.lanisnik.restaurantorder.domain.interactor.order.ShoppingCart
+import si.lanisnik.restaurantorder.domain.repository.OrderRepository
 import si.lanisnik.restaurantorder.internal.execution.MainThread
 import si.lanisnik.restaurantorder.internal.injection.modules.address.AddressRepositoryModule
 import si.lanisnik.restaurantorder.internal.injection.modules.customer.CustomerRepositoryModule
 import si.lanisnik.restaurantorder.internal.injection.modules.foodcategory.FoodCategoryRepositoryModule
 import si.lanisnik.restaurantorder.internal.injection.modules.menuitem.MenuItemRepositoryModule
+import si.lanisnik.restaurantorder.internal.injection.modules.order.OrderRepositoryModule
 import si.lanisnik.restaurantorder.internal.injection.scopes.PerApplication
 import si.lanisnik.restaurantorder.remote.RestaurantOrderServiceFactory
 import si.lanisnik.restaurantorder.remote.interceptor.AuthenticationInterceptor
@@ -28,7 +30,8 @@ import si.lanisnik.restaurantorder.remote.interceptor.AuthenticationInterceptor
         FoodCategoryRepositoryModule::class,
         MenuItemRepositoryModule::class,
         CustomerRepositoryModule::class,
-        AddressRepositoryModule::class
+        AddressRepositoryModule::class,
+        OrderRepositoryModule::class
 ))
 open class ApplicationModule {
 
@@ -60,6 +63,6 @@ open class ApplicationModule {
 
     @Provides
     @PerApplication
-    fun provideShoppingCart() = ShoppingCart()
+    fun provideShoppingCart(repository: OrderRepository) = ShoppingCart(repository)
 
 }

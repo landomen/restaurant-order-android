@@ -12,4 +12,6 @@ class FoodCategoryMapper @Inject constructor() : PresentationMapper<FoodCategory
 
     override fun mapToModel(model: FoodCategory): FoodCategoryModel = FoodCategoryModel(model.id, model.title)
 
+    override fun mapFromModel(model: FoodCategoryModel): FoodCategory = FoodCategory(model.id, model.title)
+
 }
