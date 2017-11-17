@@ -5,10 +5,7 @@ import kotlinx.android.synthetic.main.activity_order_preview.*
 import kotlinx.android.synthetic.main.toolbar.*
 import si.lanisnik.restaurantorder.R
 import si.lanisnik.restaurantorder.ui.base.BaseActivity
-import si.lanisnik.restaurantorder.ui.base.extensions.changeVisibility
-import si.lanisnik.restaurantorder.ui.base.extensions.createViewModel
-import si.lanisnik.restaurantorder.ui.base.extensions.enableBackArrow
-import si.lanisnik.restaurantorder.ui.base.extensions.enableItemDividers
+import si.lanisnik.restaurantorder.ui.base.extensions.*
 import si.lanisnik.restaurantorder.ui.order.shoppingcart.adapter.ShoppingCartRecyclerAdapter
 import si.lanisnik.restaurantorder.ui.order.shoppingcart.model.ShoppingCartItemModel
 import javax.inject.Inject
@@ -48,6 +45,10 @@ class OrderPreviewActivity : BaseActivity() {
     override fun setupObservers() {
         viewModel.getItemsObservable().observe(this, Observer {
             onDataReceived(it!!)
+        })
+        viewModel.getTotalCostObservable().observe(this, Observer {
+            shoppingCartTotalPriceGroup.show()
+            shoppingCartTotalText.text = it
         })
     }
 

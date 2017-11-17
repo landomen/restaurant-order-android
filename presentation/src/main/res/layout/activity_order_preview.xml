@@ -39,12 +39,10 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/space_large"
         android:text="@string/shopping_cart_total"
-        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@id/shoppingCartContinueButton"
         app:layout_constraintEnd_toStartOf="@+id/shoppingCartTotalText"
         app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:visibility="visible" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/shoppingCartTotalText"
@@ -53,12 +51,10 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/space_large"
         android:layout_marginStart="@dimen/space_normal"
-        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@id/shoppingCartContinueButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/shoppingCartTotalTitleText"
-        tools:text="10.2€"
-        tools:visibility="visible" />
+        tools:text="10.2€" />
 
     <Button
         android:id="@+id/shoppingCartContinueButton"
@@ -78,7 +74,10 @@
     <android.support.constraint.Group
         android:id="@+id/shoppingCartTotalPriceGroup"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:constraint_referenced_ids="shoppingCartTotalTitleText,shoppingCartTotalText"
+        tools:visibility="visible" />
 
 
 </android.support.constraint.ConstraintLayout>

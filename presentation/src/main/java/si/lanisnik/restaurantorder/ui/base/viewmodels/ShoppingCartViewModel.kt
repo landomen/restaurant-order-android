@@ -18,7 +18,7 @@ open class ShoppingCartViewModel(protected val shoppingCart: ShoppingCart) : Vie
     private lateinit var disposable: Disposable
 
     protected fun initShoppingCart() {
-        disposable = shoppingCart.getTotalCountObservable()
+        disposable = shoppingCart.getItemsCountObservable()
                 .observeOn(Schedulers.newThread())
                 .subscribeOn(AndroidSchedulers.mainThread())
                 .subscribe {

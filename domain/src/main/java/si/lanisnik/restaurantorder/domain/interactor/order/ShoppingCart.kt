@@ -14,6 +14,7 @@ interface ShoppingCart {
     fun deleteSelectedItem(id: Long)
 
     fun getSelectedMenuItems(): List<SelectedMenuItem>
-    fun getTotalCountObservable(): BehaviorSubject<Int>
+    fun getItemsCountObservable(): BehaviorSubject<Int>
+    fun getTotalCost(): Double
 
 }

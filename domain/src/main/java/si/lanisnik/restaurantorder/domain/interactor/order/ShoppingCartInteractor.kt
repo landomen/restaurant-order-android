@@ -15,7 +15,7 @@ import javax.inject.Singleton
 @Singleton
 class ShoppingCartInteractor @Inject constructor(private val repository: OrderRepository) : ShoppingCart {
     private val selectedMenuItems = mutableListOf<SelectedMenuItem>()
-    private val totalCountSubject: BehaviorSubject<Int> = BehaviorSubject.create<Int>()
+    private val itemsCountSubject: BehaviorSubject<Int> = BehaviorSubject.create()
 
     init {
         repository.loadShoppingCart()
@@ -45,12 +45,14 @@ class ShoppingCartInteractor @Inject constructor(private val repository: OrderRe
 
     override fun getSelectedMenuItems(): List<SelectedMenuItem> = selectedMenuItems
 
-    override fun getTotalCountObservable(): BehaviorSubject<Int> = totalCountSubject
+    override fun getItemsCountObservable(): BehaviorSubject<Int> = itemsCountSubject
+
+    override fun getTotalCost(): Double = selectedMenuItems.sumByDouble { it.menuItem.price }
 
     private fun indexOfItem(id: Long): Int = selectedMenuItems.indexOfFirst { it.id == id }
 
     private fun updateTotalCount() {
-        totalCountSubject.onNext(selectedMenuItems.size)
+        itemsCountSubject.onNext(selectedMenuItems.size)
     }
 
     /**
@@ -73,9 +75,7 @@ class ShoppingCartInteractor @Inject constructor(private val repository: OrderRe
                 .subscribe { }
     }
 
-    private fun parseComment(comment: String): String? = if (comment.isEmpty())
-        null
-    else
-        comment
+    private fun parseComment(comment: String): String?
+            = if (comment.isEmpty()) null else comment
 
 }
