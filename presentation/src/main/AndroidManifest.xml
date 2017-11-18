@@ -59,6 +59,9 @@
         <activity
             android:name=".ui.order.shoppingcart.OrderPreviewActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.order.shoppingcart.SendOrderActivity"
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
