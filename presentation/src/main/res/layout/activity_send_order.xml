@@ -1,6 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
 
-</android.support.constraint.ConstraintLayout>
+    <include layout="@layout/toolbar" />
+
+    <Button
+        android:id="@+id/sendOrderButton"
+        style="@style/DefaultButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/space_large"
+        android:paddingEnd="@dimen/space_large"
+        android:paddingStart="@dimen/space_large"
+        android:text="@string/send_order"
+        android:visibility="invisible"
+        tools:visibility="visible" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/sendOrderButton"
+        android:layout_below="@id/toolbar"
+        android:layout_marginBottom="@dimen/space_large">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/sendOrderAddressTitle"
+                style="@style/DefaultTitleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/space_large"
+                android:layout_marginStart="@dimen/space_large"
+                android:layout_marginTop="@dimen/space_large"
+                android:text="@string/placeholder_delivery_address"
+                android:textAllCaps="true" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/sendOrderAddressRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_normal"
+                app:layoutManager="LinearLayoutManager"
+                tools:listitem="@layout/recycler_item_address" />
+
+            <TextView
+                android:id="@+id/sendOrderCommentTitle"
+                style="@style/DefaultTitleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/space_large"
+                android:layout_marginStart="@dimen/space_large"
+                android:layout_marginTop="@dimen/space_large"
+                android:text="@string/send_order_comment"
+                android:textAllCaps="true" />
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/sendOrderCommentInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/edit_text_big_height"
+                android:layout_marginBottom="@dimen/space_large"
+                android:layout_marginEnd="@dimen/space_large"
+                android:layout_marginStart="@dimen/space_large"
+                android:layout_marginTop="@dimen/space_normal"
+                android:hint="@string/placeholder_comment">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/sendOrderCommentEditText"
+                    style="@style/DefaultText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="top|start"
+                    android:inputType="textMultiLine"
+                    android:maxLines="5" />
+
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <si.lanisnik.restaurantorder.ui.base.views.LoadingStateView
+        android:id="@+id/sendOrderStateView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar"
+        android:background="@color/white"
+        tools:visibility="gone" />
+
+</RelativeLayout>

@@ -70,7 +70,7 @@
             android:id="@+id/menuItemCommentEditText"
             style="@style/DefaultLightText"
             android:layout_width="0dp"
-            android:layout_height="100dp"
+            android:layout_height="@dimen/edit_text_big_height"
             android:layout_marginTop="@dimen/space_small"
             android:background="@drawable/background_edit_text"
             android:gravity="top|start"

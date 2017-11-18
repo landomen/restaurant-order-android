@@ -15,4 +15,6 @@ interface OrderRepository {
     fun removeItemFromShoppingCart(selectedItemId: Long): Completable
     fun loadShoppingCart(): Single<List<SelectedMenuItem>>
 
+    fun createOrder(addressId: Int, items: List<SelectedMenuItem>, comment: String?): Completable
+
 }

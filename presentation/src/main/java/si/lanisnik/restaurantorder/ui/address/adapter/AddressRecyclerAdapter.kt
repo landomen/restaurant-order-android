@@ -35,6 +35,7 @@ class AddressRecyclerAdapter @Inject constructor() : RecyclerView.Adapter<Addres
 
         }).dispatchUpdatesTo(this)
     }
+    var editingEnabled = true
 
     override fun onBindViewHolder(holder: AddressViewHolder, position: Int) {
         val address = addresses[position]
@@ -45,6 +46,8 @@ class AddressRecyclerAdapter @Inject constructor() : RecyclerView.Adapter<Addres
         holder.listerForSelection {
             listener?.onAddressSelected(address.id)
         }
+        if (!editingEnabled)
+            holder.hideEditButton()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AddressViewHolder =

@@ -15,6 +15,9 @@
     <dimen name="text_size_normal">14sp</dimen>
     <dimen name="text_size_title">15sp</dimen>
 
+    <!-- Edit text -->
+    <dimen name="edit_text_big_height">100dp</dimen>
+
     <!-- Dashboard -->
     <dimen name="dashboard_button_width">150dp</dimen>
     <dimen name="dashboard_button_height">100dp</dimen>
@@ -22,5 +25,8 @@
     <!-- Shopping cart -->
     <dimen name="shopping_cart_icon_normal">24dp</dimen>
     <dimen name="shopping_cart_icon_small">15dp</dimen>
+
+    <!-- Send order -->
+    <dimen name="send_order_comment_height"></dimen>
 
 </resources>

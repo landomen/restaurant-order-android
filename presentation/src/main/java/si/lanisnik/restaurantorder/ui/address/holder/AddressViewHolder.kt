@@ -4,6 +4,7 @@ import android.view.View
 import kotlinx.android.synthetic.main.recycler_item_address.view.*
 import si.lanisnik.restaurantorder.ui.address.model.AddressModel
 import si.lanisnik.restaurantorder.ui.base.extensions.changeVisibility
+import si.lanisnik.restaurantorder.ui.base.extensions.hide
 import si.lanisnik.restaurantorder.ui.base.holder.BaseViewHolder
 
 /**
@@ -34,6 +35,10 @@ class AddressViewHolder(itemView: View) : BaseViewHolder<AddressModel>(itemView)
         radioButton.setOnCheckedChangeListener { _, checked ->
             if (checked) listener()
         }
+    }
+
+    fun hideEditButton(){
+        editButton.hide()
     }
 
 }

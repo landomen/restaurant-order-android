@@ -29,6 +29,7 @@
     <string name="placeholder_last_name">Priimek</string>
     <string name="placeholder_delivery_address">Naslov za dostavo</string>
     <string name="placeholder_phone_number">Telefonska št.</string>
+    <string name="placeholder_comment">Komentar</string>
 
     <!-- Loading -->
     <string name="result_loading">Pridobivanje podatkov…</string>
@@ -96,5 +97,9 @@
     <string name="shopping_cart_title">Vsebina naročila</string>
     <string name="shopping_cart_empty">Vaše naročilo je prazno.</string>
     <string name="shopping_cart_total">Skupaj za plačilo: </string>
+
+    <!-- Send order -->
+    <string name="send_order">Oddaj naročilo</string>
+    <string name="send_order_comment">Dodatna navodila/komentarji</string>
 
 </resources>

@@ -6,9 +6,12 @@ import si.lanisnik.restaurantorder.cache.OrderCacheImpl
 import si.lanisnik.restaurantorder.cache.mapper.order.SelectedMenuItemCacheMapper
 import si.lanisnik.restaurantorder.data.OrderDataRepository
 import si.lanisnik.restaurantorder.data.repository.order.OrderCache
+import si.lanisnik.restaurantorder.data.repository.order.OrderRemote
 import si.lanisnik.restaurantorder.domain.repository.OrderRepository
 import si.lanisnik.restaurantorder.internal.injection.scopes.PerApplication
 import si.lanisnik.restaurantorder.remote.RestaurantOrderServiceFactory
+import si.lanisnik.restaurantorder.remote.order.OrderRemoteImpl
+import si.lanisnik.restaurantorder.remote.order.mapper.SelectedMenuItemRemoteMapper
 import si.lanisnik.restaurantorder.remote.order.service.OrdersService
 
 /**
@@ -27,11 +30,11 @@ class OrderRepositoryModule {
     fun provideOrderCache(mapper: SelectedMenuItemCacheMapper): OrderCache =
             OrderCacheImpl(mapper)
 
-//    @Provides
-//    @PerApplication
-//    fun provideOrderRemote(service: FoodCategoriesService,
-//                           mapper: OrderRemoteMapper): OrderRemote =
-//            OrderRemoteImpl(mapper, service)
+    @Provides
+    @PerApplication
+    fun provideOrderRemote(service: OrdersService,
+                           mapper: SelectedMenuItemRemoteMapper): OrderRemote =
+            OrderRemoteImpl(service, mapper)
 
     @Provides
     @PerApplication

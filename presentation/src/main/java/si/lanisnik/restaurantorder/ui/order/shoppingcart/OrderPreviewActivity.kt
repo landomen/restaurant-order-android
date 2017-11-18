@@ -6,6 +6,7 @@ import kotlinx.android.synthetic.main.toolbar.*
 import si.lanisnik.restaurantorder.R
 import si.lanisnik.restaurantorder.ui.base.BaseActivity
 import si.lanisnik.restaurantorder.ui.base.extensions.*
+import si.lanisnik.restaurantorder.ui.order.navigator.OrderNavigator
 import si.lanisnik.restaurantorder.ui.order.shoppingcart.adapter.ShoppingCartRecyclerAdapter
 import si.lanisnik.restaurantorder.ui.order.shoppingcart.model.ShoppingCartItemModel
 import javax.inject.Inject
@@ -18,6 +19,7 @@ class OrderPreviewActivity : BaseActivity() {
 
     @Inject lateinit var adapter: ShoppingCartRecyclerAdapter
     @Inject lateinit var viewModelFactory: OrderPreviewViewModelFactory
+    @Inject lateinit var orderNavigator: OrderNavigator
     private lateinit var viewModel: OrderPreviewViewModel
 
     override fun getContentView(): Int = R.layout.activity_order_preview
@@ -35,6 +37,9 @@ class OrderPreviewActivity : BaseActivity() {
         }
         shoppingCartRecyclerView.adapter = adapter
         shoppingCartRecyclerView.enableItemDividers()
+        shoppingCartContinueButton.setOnClickListener {
+            orderNavigator.navigateToSendOrder(this)
+        }
     }
 
     override fun initViewModel() {

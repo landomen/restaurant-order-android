@@ -8,6 +8,7 @@ import si.lanisnik.restaurantorder.internal.injection.modules.dashboard.Dashboar
 import si.lanisnik.restaurantorder.internal.injection.modules.foodcategory.FoodCategoryListActivityModule
 import si.lanisnik.restaurantorder.internal.injection.modules.menuitem.MenuItemActivityModule
 import si.lanisnik.restaurantorder.internal.injection.modules.order.OrderPreviewActivityModule
+import si.lanisnik.restaurantorder.internal.injection.modules.order.SendOrderActivityModule
 import si.lanisnik.restaurantorder.internal.injection.scopes.PerActivity
 import si.lanisnik.restaurantorder.ui.address.AddressesActivity
 import si.lanisnik.restaurantorder.ui.customer.password.ChangePasswordActivity
@@ -19,6 +20,7 @@ import si.lanisnik.restaurantorder.ui.menuitem.list.MenuItemsListActivity
 import si.lanisnik.restaurantorder.ui.onboarding.login.LoginActivity
 import si.lanisnik.restaurantorder.ui.onboarding.password.ResetPasswordActivity
 import si.lanisnik.restaurantorder.ui.onboarding.register.RegisterActivity
+import si.lanisnik.restaurantorder.ui.order.send.SendOrderActivity
 import si.lanisnik.restaurantorder.ui.order.shoppingcart.OrderPreviewActivity
 
 /**
@@ -93,6 +95,10 @@ abstract class ActivityBindingModule {
     @PerActivity
     @ContributesAndroidInjector(modules = arrayOf(OrderPreviewActivityModule::class))
     abstract fun orderPreviewActivity(): OrderPreviewActivity
+
+    @PerActivity
+    @ContributesAndroidInjector(modules = arrayOf(SendOrderActivityModule::class))
+    abstract fun sendOrderActivity(): SendOrderActivity
 
     // endregion
 

@@ -60,7 +60,7 @@
             android:name=".ui.order.shoppingcart.OrderPreviewActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.order.shoppingcart.SendOrderActivity"
+            android:name=".ui.order.send.SendOrderActivity"
             android:screenOrientation="portrait" />
 
         <meta-data
