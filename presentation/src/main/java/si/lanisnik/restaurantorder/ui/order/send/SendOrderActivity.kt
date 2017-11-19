@@ -10,6 +10,7 @@ import si.lanisnik.restaurantorder.ui.base.BaseActivity
 import si.lanisnik.restaurantorder.ui.base.data.ResourceState
 import si.lanisnik.restaurantorder.ui.base.extensions.*
 import si.lanisnik.restaurantorder.ui.base.views.LoadingStateView
+import si.lanisnik.restaurantorder.ui.order.navigator.OrderNavigator
 import javax.inject.Inject
 
 /**
@@ -20,6 +21,7 @@ class SendOrderActivity : BaseActivity(), LoadingStateView.RetryListener, Addres
 
     @Inject lateinit var viewModelFactory: SendOrderViewModelFactory
     @Inject lateinit var addressAdapter: AddressRecyclerAdapter
+    @Inject lateinit var navigator: OrderNavigator
     private lateinit var viewModel: SendOrderViewModel
 
     override fun getContentView(): Int = R.layout.activity_send_order
@@ -85,6 +87,7 @@ class SendOrderActivity : BaseActivity(), LoadingStateView.RetryListener, Addres
                 ResourceState.SUCCESS -> onOrderCreated()
                 ResourceState.ERROR -> {
                     sendOrderStateView.hide()
+                    sendOrderButton.show()
                     sendOrderStateView.snackbar(resource.errorMessage!!)
                 }
             }
@@ -93,11 +96,13 @@ class SendOrderActivity : BaseActivity(), LoadingStateView.RetryListener, Addres
 
     private fun handleLoadingState() {
         sendOrderStateView.state = LoadingStateView.State.LOADING
+        sendOrderButton.hide()
         sendOrderStateView.show()
     }
 
     private fun handleErrorState() {
         sendOrderStateView.state = LoadingStateView.State.ERROR
+        sendOrderButton.hide()
         sendOrderStateView.show()
     }
 
@@ -111,7 +116,7 @@ class SendOrderActivity : BaseActivity(), LoadingStateView.RetryListener, Addres
     }
 
     private fun onOrderCreated() {
-        // TODO
+        navigator.navigateToOrderSuccess(this)
     }
 
 }

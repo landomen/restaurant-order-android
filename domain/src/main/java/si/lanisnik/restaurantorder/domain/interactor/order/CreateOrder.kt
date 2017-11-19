@@ -20,6 +20,12 @@ class CreateOrder @Inject constructor(private val shoppingCart: ShoppingCart,
     override fun buildUseCaseObservable(params: Params): Completable {
         return orderRepository.createOrder(params.selectedAddressId,
                 shoppingCart.getSelectedMenuItems(), parseComment(params.comment))
+                .doOnComplete {
+                    orderRepository.clearShoppingCart()
+                }
+                .doOnComplete {
+                    shoppingCart.clear()
+                }
     }
 
     private fun parseComment(comment: String): String? = if (comment.isNotEmpty()) comment else null
