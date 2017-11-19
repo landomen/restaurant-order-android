@@ -38,7 +38,7 @@ class OrderPreviewActivity : BaseActivity() {
         shoppingCartRecyclerView.adapter = adapter
         shoppingCartRecyclerView.enableItemDividers()
         shoppingCartContinueButton.setOnClickListener {
-            orderNavigator.navigateToSendOrder(this)
+            viewModel.onNextStepClicked()
         }
     }
 
@@ -55,6 +55,9 @@ class OrderPreviewActivity : BaseActivity() {
             shoppingCartTotalPriceGroup.show()
             shoppingCartTotalText.text = it
         })
+        viewModel.getCanContinueObservable().observe(this, Observer {
+            onCanContinueToNextStep(it!!)
+        })
     }
 
     private fun onDataReceived(items: List<ShoppingCartItemModel>) {
@@ -66,5 +69,13 @@ class OrderPreviewActivity : BaseActivity() {
         shoppingCartRecyclerView.changeVisibility(itemsNotEmpty)
         shoppingCartContinueButton.changeVisibility(itemsNotEmpty)
         shoppingCartTotalPriceGroup.changeVisibility(itemsNotEmpty)
+    }
+
+    private fun onCanContinueToNextStep(canContinue: Boolean) {
+        if (canContinue) {
+            orderNavigator.navigateToSendOrder(this)
+        } else {
+            shoppingCartContinueButton.snackbar(R.string.send_order_not_logged_in)
+        }
     }
 }

@@ -81,7 +81,7 @@
                     style="@style/DefaultText"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_gravity="top|start"
+                    android:gravity="top|start"
                     android:inputType="textMultiLine"
                     android:maxLines="5" />
 

@@ -34,6 +34,9 @@ class SendOrderActivity : BaseActivity(), LoadingStateView.RetryListener, Addres
     override fun initUi() {
         setupRecyclerView()
         sendOrderStateView.retryListener = this
+        sendOrderButton.setOnClickListener {
+            viewModel.createOrder(sendOrderCommentEditText.input())
+        }
     }
 
     override fun initViewModel() {
@@ -51,7 +54,7 @@ class SendOrderActivity : BaseActivity(), LoadingStateView.RetryListener, Addres
     }
 
     override fun onAddressSelected(addressId: Int) {
-        // TODO
+        viewModel.onAddressSelected(addressId)
     }
 
     override fun onAddressDelete(addressId: Int) {
@@ -98,6 +101,7 @@ class SendOrderActivity : BaseActivity(), LoadingStateView.RetryListener, Addres
     private fun showAddresses(addresses: List<AddressModel>) {
         addressAdapter.addresses = addresses.toMutableList()
         sendOrderStateView.hide()
+        sendOrderButton.show()
     }
 
     private fun onOrderCreated() {

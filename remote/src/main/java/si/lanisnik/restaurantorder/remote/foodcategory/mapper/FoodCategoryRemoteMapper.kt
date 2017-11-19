@@ -13,4 +13,7 @@ class FoodCategoryRemoteMapper @Inject constructor() : RemoteEntityMapper<FoodCa
 
     override fun mapFromRemote(remoteModel: FoodCategoryDto): FoodCategoryEntity =
             FoodCategoryEntity(remoteModel.id, remoteModel.title)
+
+    override fun mapToRemote(entity: FoodCategoryEntity): FoodCategoryDto =
+            FoodCategoryDto(entity.id, entity.title)
 }

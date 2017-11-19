@@ -2,6 +2,7 @@ package si.lanisnik.restaurantorder.internal.injection.modules.order
 
 import dagger.Module
 import dagger.Provides
+import si.lanisnik.restaurantorder.domain.interactor.customer.GetCustomerType
 import si.lanisnik.restaurantorder.domain.interactor.order.ShoppingCart
 import si.lanisnik.restaurantorder.internal.injection.scopes.PerActivity
 import si.lanisnik.restaurantorder.mapper.SelectedMenuItemModelMapper
@@ -17,7 +18,8 @@ class OrderPreviewActivityModule {
     @PerActivity
     @Provides
     fun provideOrderPreviewViewModelFactory(shoppingCart: ShoppingCart,
+                                            getCustomerType: GetCustomerType,
                                             mapper: SelectedMenuItemModelMapper): OrderPreviewViewModelFactory =
-            OrderPreviewViewModelFactory(shoppingCart, mapper)
+            OrderPreviewViewModelFactory(shoppingCart, getCustomerType, mapper)
 
 }

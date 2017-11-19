@@ -42,8 +42,8 @@ class SendOrderViewModel @Inject constructor(private val getDeliveryAddresses: G
         getAddresses()
     }
 
-    fun createOrder(selectedAddress: AddressModel, comment: String) {
-        createNewOrder(selectedAddress.id, comment)
+    fun createOrder(comment: String) {
+        createNewOrder(getSelectedAddressId(), comment)
     }
 
     fun retry() {
@@ -56,17 +56,21 @@ class SendOrderViewModel @Inject constructor(private val getDeliveryAddresses: G
         }
     }
 
-    fun onAddressSelected(address: AddressModel) {
-
+    fun onAddressSelected(addressId: Int) {
+        addresses = addresses.map {
+            it.copy(selected = it.id == addressId)
+        }.toMutableList()
+        postNewestAddresses()
     }
 
     private fun getAddresses() {
         addressLiveData.postValue(Resource.loading())
         lastAction = SendOrderActionType.GetAddresses()
         getDeliveryAddresses.execute(Consumer {
-            addressLiveData.postValue(Resource.success(it.map {
+            this.addresses = it.map {
                 addressMapper.mapToModel(it)
-            }))
+            }.toMutableList()
+            postNewestAddresses()
         }, Consumer {
             addressLiveData.postValue(Resource.error())
         })
@@ -82,4 +86,11 @@ class SendOrderViewModel @Inject constructor(private val getDeliveryAddresses: G
         }, CreateOrder.Params(addressId, comment))
     }
 
+    private fun postNewestAddresses() {
+        addressLiveData.postValue(Resource.success(addresses))
+    }
+
+    private fun getSelectedAddressId(): Int {
+        return addresses.find { it.selected }?.id ?: 0
+    }
 }
