@@ -78,6 +78,10 @@ class CustomerDataRepository @Inject constructor(private val cache: CustomerCach
 
     override fun hasCustomer(): Single<Boolean> = cache.hasCustomer()
 
+    override fun logoutCustomer(): Completable {
+        return cache.logoutCustomer()
+    }
+
     private fun saveCredentials(email: String, password: String) {
         authorizationComponent.saveUsername(email)
         authorizationComponent.savePassword(password)

@@ -25,11 +25,11 @@ class DashboardNavigator @Inject constructor() {
         context.startActivity<LoginActivity>()
     }
 
-    fun navigateToHistory(context: Context){
+    fun navigateToHistory(context: Context) {
         // TODO
     }
 
-    fun navigateToAbout(context: Context){
+    fun navigateToAbout(context: Context) {
         // TODO
     }
 

@@ -85,6 +85,7 @@
     <string name="profile_addresses_message">Naslove za dostavo lahko po želji dodajate in odstranjujete. Izberite privzeti naslov za hitrejše naročilo.</string>
     <string name="profile_addresses_edit">Uredi naslove</string>
     <string name="profile_update_success">Podatki so bili uspešno posodobljeni.</string>
+    <string name="profile_logout">Izpis</string>
 
     <!-- Address -->
     <string name="addresses_title">Naslovi za dostavo</string>
@@ -101,5 +102,6 @@
     <!-- Send order -->
     <string name="send_order">Oddaj naročilo</string>
     <string name="send_order_comment">Dodatna navodila/komentarji</string>
+    <string name="send_order_not_logged_in">Za oddajo naročila se morate prijaviti.</string>
 
 </resources>

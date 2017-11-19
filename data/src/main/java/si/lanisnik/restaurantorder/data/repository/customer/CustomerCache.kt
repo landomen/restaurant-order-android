@@ -18,4 +18,6 @@ interface CustomerCache {
 
     fun hasCustomer(): Single<Boolean>
 
+    fun logoutCustomer(): Completable
+
 }

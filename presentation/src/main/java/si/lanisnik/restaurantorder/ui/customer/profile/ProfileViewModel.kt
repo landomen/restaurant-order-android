@@ -8,6 +8,7 @@ import io.reactivex.functions.Consumer
 import si.lanisnik.restaurantorder.R
 import si.lanisnik.restaurantorder.domain.exception.ConflictException
 import si.lanisnik.restaurantorder.domain.interactor.customer.GetCustomer
+import si.lanisnik.restaurantorder.domain.interactor.customer.LogoutCustomer
 import si.lanisnik.restaurantorder.domain.interactor.customer.UpdateCustomerProfile
 import si.lanisnik.restaurantorder.domain.model.customer.Customer
 import si.lanisnik.restaurantorder.mapper.CustomerModelMapper
@@ -25,12 +26,14 @@ import javax.inject.Inject
  */
 class ProfileViewModel @Inject constructor(private val getCustomer: GetCustomer,
                                            private val updateCustomerProfile: UpdateCustomerProfile,
+                                           private val logoutCustomer: LogoutCustomer,
                                            private val customerModelMapper: CustomerModelMapper,
                                            private val phoneNumberValidator: PhoneNumberValidator) : ViewModel() {
 
     private val detailsLiveData = MutableLiveData<Resource<CustomerModel>>()
     private val updateLiveData = MutableLiveData<SimpleResource>()
     private val validationLiveData = MutableLiveData<InputError>()
+    private val logoutLiveData = MutableLiveData<Boolean>()
     private lateinit var customer: Customer
 
     override fun onCleared() {
@@ -44,6 +47,8 @@ class ProfileViewModel @Inject constructor(private val getCustomer: GetCustomer,
     fun getUpdateObservable(): LiveData<SimpleResource> = updateLiveData
 
     fun getValidationObservable(): LiveData<InputError> = validationLiveData
+
+    fun getLogoutObservable(): LiveData<Boolean> = logoutLiveData
 
     fun initialize() {
         getCustomerDetails()
@@ -71,6 +76,14 @@ class ProfileViewModel @Inject constructor(private val getCustomer: GetCustomer,
 
     fun restoreDetails() {
         detailsLiveData.postValue(Resource.success(customerModelMapper.mapToModel(customer)))
+    }
+
+    fun logoutClicked() {
+        logoutCustomer.execute(Action {
+            logoutLiveData.postValue(true)
+        }, Consumer {
+            logoutLiveData.postValue(false)
+        }, null)
     }
 
     private fun getCustomerDetails() {

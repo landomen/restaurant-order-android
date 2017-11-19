@@ -23,4 +23,6 @@ interface CustomerRepository {
     fun getCustomer(): Single<Customer>
 
     fun hasCustomer(): Single<Boolean>
+
+    fun logoutCustomer(): Completable
 }

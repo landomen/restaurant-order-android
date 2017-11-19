@@ -50,6 +50,16 @@ class CustomerCacheImpl @Inject constructor(private val mapper: CustomerCacheMap
         }
     }
 
+    override fun logoutCustomer(): Completable {
+        return Completable.defer {
+            getRealm().transaction {
+                it.deleteAll()
+                simpleStorage.clear()
+            }
+            Completable.complete()
+        }
+    }
+
     private fun setLastCacheTime(time: Long) {
         simpleStorage.putLong(LongKey.LAST_CACHE_TIME_CUSTOMER, time)
     }

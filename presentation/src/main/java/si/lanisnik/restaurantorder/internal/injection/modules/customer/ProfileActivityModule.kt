@@ -3,6 +3,7 @@ package si.lanisnik.restaurantorder.internal.injection.modules.customer
 import dagger.Module
 import dagger.Provides
 import si.lanisnik.restaurantorder.domain.interactor.customer.GetCustomer
+import si.lanisnik.restaurantorder.domain.interactor.customer.LogoutCustomer
 import si.lanisnik.restaurantorder.domain.interactor.customer.UpdateCustomerProfile
 import si.lanisnik.restaurantorder.internal.injection.scopes.PerActivity
 import si.lanisnik.restaurantorder.mapper.CustomerModelMapper
@@ -20,7 +21,9 @@ class ProfileActivityModule {
     @Provides
     fun provideProfileViewModelFactory(getCustomer: GetCustomer,
                                        updateCustomerProfile: UpdateCustomerProfile,
+                                       logoutCustomer: LogoutCustomer,
                                        customerModelMapper: CustomerModelMapper,
                                        phoneNumberValidator: PhoneNumberValidator): ProfileViewModelFactory =
-            ProfileViewModelFactory(getCustomer, updateCustomerProfile, customerModelMapper, phoneNumberValidator)
+            ProfileViewModelFactory(getCustomer, updateCustomerProfile,
+                    logoutCustomer, customerModelMapper, phoneNumberValidator)
 }

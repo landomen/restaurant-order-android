@@ -43,6 +43,11 @@ class ShoppingCartInteractor @Inject constructor(private val repository: OrderRe
         }
     }
 
+    override fun clear() {
+        selectedMenuItems.clear()
+        updateTotalCount()
+    }
+
     override fun getSelectedMenuItems(): List<SelectedMenuItem> = selectedMenuItems
 
     override fun getItemsCountObservable(): BehaviorSubject<Int> = itemsCountSubject

@@ -1,9 +1,10 @@
 package si.lanisnik.restaurantorder.cache.preferences
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
-import si.lanisnik.restaurantorder.cache.preferences.keys.StorageKey
 import si.lanisnik.restaurantorder.cache.preferences.keys.LongKey
+import si.lanisnik.restaurantorder.cache.preferences.keys.StorageKey
 import si.lanisnik.restaurantorder.cache.preferences.keys.StringKey
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -86,5 +87,10 @@ class SimpleStorage @Inject constructor(context: Context) {
     fun <T> remove(key: T, suffix: String = ""): SimpleStorage where T : Enum<T>, T : StorageKey {
         sharedPreferences.edit().remove(key.name + suffix).apply()
         return this
+    }
+
+    @SuppressLint("ApplySharedPref")
+    fun clear() {
+        sharedPreferences.edit().clear().commit()
     }
 }

@@ -1,6 +1,8 @@
 package si.lanisnik.restaurantorder.ui.customer.profile
 
 import android.arch.lifecycle.Observer
+import android.view.Menu
+import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_profile.*
 import kotlinx.android.synthetic.main.toolbar.*
 import si.lanisnik.restaurantorder.R
@@ -13,6 +15,7 @@ import si.lanisnik.restaurantorder.ui.base.views.LoadingStateView
 import si.lanisnik.restaurantorder.ui.customer.model.CustomerModel
 import si.lanisnik.restaurantorder.ui.customer.navigator.CustomerNavigator
 import si.lanisnik.restaurantorder.ui.onboarding.model.InputError
+import si.lanisnik.restaurantorder.ui.onboarding.navigator.OnboardingNavigator
 import javax.inject.Inject
 
 /**
@@ -22,6 +25,7 @@ import javax.inject.Inject
 class ProfileActivity : BaseActivity(), LoadingStateView.RetryListener {
 
     @Inject lateinit var navigator: CustomerNavigator
+    @Inject lateinit var onboardingNavigator: OnboardingNavigator
     @Inject lateinit var viewModelFactory: ProfileViewModelFactory
     private lateinit var viewModel: ProfileViewModel
 
@@ -66,10 +70,24 @@ class ProfileActivity : BaseActivity(), LoadingStateView.RetryListener {
         viewModel.getValidationObservable().observe(this, Observer {
             handleUpdateValidationError(it!!)
         })
+        viewModel.getLogoutObservable().observe(this, Observer {
+            onboardingNavigator.navigateToDashboard(this)
+        })
     }
 
     override fun onRetryClicked() {
         viewModel.retry()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_profile, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.menu_profile_logout)
+            viewModel.logoutClicked()
+        return super.onOptionsItemSelected(item)
     }
 
     private fun handleDataState(state: ResourceState, data: CustomerModel?) {

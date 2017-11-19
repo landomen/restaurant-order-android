@@ -61,6 +61,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.order.send.SendOrderActivity"
+            android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait" />
 
         <meta-data

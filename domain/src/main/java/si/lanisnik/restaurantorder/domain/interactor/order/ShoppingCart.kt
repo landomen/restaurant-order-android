@@ -17,4 +17,6 @@ interface ShoppingCart {
     fun getItemsCountObservable(): BehaviorSubject<Int>
     fun getTotalCost(): Double
 
+    fun clear()
+
 }

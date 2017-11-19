@@ -3,6 +3,7 @@ package si.lanisnik.restaurantorder.ui.customer.profile
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
 import si.lanisnik.restaurantorder.domain.interactor.customer.GetCustomer
+import si.lanisnik.restaurantorder.domain.interactor.customer.LogoutCustomer
 import si.lanisnik.restaurantorder.domain.interactor.customer.UpdateCustomerProfile
 import si.lanisnik.restaurantorder.mapper.CustomerModelMapper
 import si.lanisnik.restaurantorder.ui.base.utilities.PhoneNumberValidator
@@ -14,6 +15,7 @@ import javax.inject.Inject
  */
 class ProfileViewModelFactory @Inject constructor(private val getCustomer: GetCustomer,
                                                   private val updateCustomerProfile: UpdateCustomerProfile,
+                                                  private val logoutCustomer: LogoutCustomer,
                                                   private val customerModelMapper: CustomerModelMapper,
                                                   private val phoneNumberValidator: PhoneNumberValidator) : ViewModelProvider.Factory {
 
@@ -21,7 +23,7 @@ class ProfileViewModelFactory @Inject constructor(private val getCustomer: GetCu
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(ProfileViewModel::class.java))
             return ProfileViewModel(getCustomer, updateCustomerProfile,
-                    customerModelMapper, phoneNumberValidator) as T
+                    logoutCustomer, customerModelMapper, phoneNumberValidator) as T
         throw IllegalArgumentException("Unknown ViewModel class")
     }
 
