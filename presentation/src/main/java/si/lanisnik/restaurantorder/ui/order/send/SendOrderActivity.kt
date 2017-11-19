@@ -73,7 +73,7 @@ class SendOrderActivity : BaseActivity(), LoadingStateView.RetryListener, Addres
             when (resource!!.status) {
                 ResourceState.LOADING -> handleLoadingState()
                 ResourceState.SUCCESS -> showAddresses(resource.data!!)
-                ResourceState.ERROR -> handleErrorState(false)
+                ResourceState.ERROR -> handleErrorState()
             }
         })
     }
@@ -83,7 +83,10 @@ class SendOrderActivity : BaseActivity(), LoadingStateView.RetryListener, Addres
             when (resource!!.status) {
                 ResourceState.LOADING -> handleLoadingState()
                 ResourceState.SUCCESS -> onOrderCreated()
-                ResourceState.ERROR -> handleErrorState(true)
+                ResourceState.ERROR -> {
+                    sendOrderStateView.hide()
+                    sendOrderStateView.snackbar(resource.errorMessage!!)
+                }
             }
         })
     }
@@ -93,7 +96,7 @@ class SendOrderActivity : BaseActivity(), LoadingStateView.RetryListener, Addres
         sendOrderStateView.show()
     }
 
-    private fun handleErrorState(showErrorDialog: Boolean) {
+    private fun handleErrorState() {
         sendOrderStateView.state = LoadingStateView.State.ERROR
         sendOrderStateView.show()
     }
@@ -101,11 +104,14 @@ class SendOrderActivity : BaseActivity(), LoadingStateView.RetryListener, Addres
     private fun showAddresses(addresses: List<AddressModel>) {
         addressAdapter.addresses = addresses.toMutableList()
         sendOrderStateView.hide()
-        sendOrderButton.show()
+
+        sendOrderButton.changeVisibility(addresses.isNotEmpty())
+        sendOrderAddressRecyclerView.changeVisibility(addresses.isNotEmpty())
+        sendOrderAddressEmptyText.changeVisibility(addresses.isEmpty())
     }
 
     private fun onOrderCreated() {
-
+        // TODO
     }
 
 }

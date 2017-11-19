@@ -103,5 +103,7 @@
     <string name="send_order">Oddaj naročilo</string>
     <string name="send_order_comment">Dodatna navodila/komentarji</string>
     <string name="send_order_not_logged_in">Za oddajo naročila se morate prijaviti.</string>
+    <string name="send_order_no_address_selected">Izbrati morate naslov za dostavo.</string>
+    <string name="send_order_no_addresses">Shranjenega nimate nobenega naslova za dostavo.\nNaslove lahko urejate v profilu.</string>
 
 </resources>

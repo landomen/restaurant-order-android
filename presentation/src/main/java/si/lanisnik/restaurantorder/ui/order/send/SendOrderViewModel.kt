@@ -43,7 +43,11 @@ class SendOrderViewModel @Inject constructor(private val getDeliveryAddresses: G
     }
 
     fun createOrder(comment: String) {
-        createNewOrder(getSelectedAddressId(), comment)
+        val selectedAddressId = getSelectedAddressId()
+        if (selectedAddressId != -1)
+            createNewOrder(selectedAddressId, comment)
+        else
+            createLiveData.postValue(SimpleResource.error(R.string.send_order_no_address_selected))
     }
 
     fun retry() {
@@ -91,6 +95,6 @@ class SendOrderViewModel @Inject constructor(private val getDeliveryAddresses: G
     }
 
     private fun getSelectedAddressId(): Int {
-        return addresses.find { it.selected }?.id ?: 0
+        return addresses.find { it.selected }?.id ?: -1
     }
 }

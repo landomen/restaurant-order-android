@@ -52,8 +52,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_normal"
+                android:visibility="gone"
                 app:layoutManager="LinearLayoutManager"
                 tools:listitem="@layout/recycler_item_address" />
+
+            <TextView
+                android:id="@+id/sendOrderAddressEmptyText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/space_large"
+                android:layout_marginStart="@dimen/space_large"
+                android:layout_marginTop="@dimen/space_normal"
+                android:gravity="center"
+                android:text="@string/send_order_no_addresses" />
 
             <TextView
                 android:id="@+id/sendOrderCommentTitle"
