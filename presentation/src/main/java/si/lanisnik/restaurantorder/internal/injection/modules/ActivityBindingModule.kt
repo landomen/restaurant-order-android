@@ -8,6 +8,7 @@ import si.lanisnik.restaurantorder.internal.injection.modules.customer.*
 import si.lanisnik.restaurantorder.internal.injection.modules.dashboard.DashboardActivityModule
 import si.lanisnik.restaurantorder.internal.injection.modules.foodcategory.FoodCategoryListActivityModule
 import si.lanisnik.restaurantorder.internal.injection.modules.menuitem.MenuItemActivityModule
+import si.lanisnik.restaurantorder.internal.injection.modules.order.OrderHistoryListActivityModule
 import si.lanisnik.restaurantorder.internal.injection.modules.order.OrderPreviewActivityModule
 import si.lanisnik.restaurantorder.internal.injection.modules.order.OrderSuccessActivityModule
 import si.lanisnik.restaurantorder.internal.injection.modules.order.SendOrderActivityModule
@@ -18,6 +19,7 @@ import si.lanisnik.restaurantorder.ui.customer.password.ChangePasswordActivity
 import si.lanisnik.restaurantorder.ui.customer.profile.ProfileActivity
 import si.lanisnik.restaurantorder.ui.dashboard.DashboardActivity
 import si.lanisnik.restaurantorder.ui.foodcategory.CategoriesListActivity
+import si.lanisnik.restaurantorder.ui.order.history.OrderHistoryListActivity
 import si.lanisnik.restaurantorder.ui.menuitem.details.MenuItemDetailsActivity
 import si.lanisnik.restaurantorder.ui.menuitem.list.MenuItemsListActivity
 import si.lanisnik.restaurantorder.ui.onboarding.login.LoginActivity
@@ -111,6 +113,10 @@ abstract class ActivityBindingModule {
     @PerActivity
     @ContributesAndroidInjector(modules = arrayOf(OrderSuccessActivityModule::class))
     abstract fun orderSuccessActivity(): OrderSuccessActivity
+
+    @PerActivity
+    @ContributesAndroidInjector(modules = arrayOf(OrderHistoryListActivityModule::class))
+    abstract fun orderHistoryListActivity(): OrderHistoryListActivity
 
     // endregion
 

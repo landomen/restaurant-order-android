@@ -69,6 +69,9 @@
         <activity
             android:name=".ui.about.AboutActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name="si.lanisnik.restaurantorder.ui.order.history.OrderHistoryListActivity"
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

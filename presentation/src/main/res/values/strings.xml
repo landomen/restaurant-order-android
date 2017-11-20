@@ -114,4 +114,7 @@
     <string name="about_description">Restaurant Order je prototip aplikacije za naročanje hrane na dom. Aplikacija je namenjena manjšim restavracijam oz. pizzerijam, ki naročila še vedno sprejemajo preko telefona.</string>
     <string name="about_author">Razvijalec: Domen Lanišnik</string>
 
+    <!-- History -->
+    <string name="history_title">Zgodovina naročil</string>
+
 </resources>

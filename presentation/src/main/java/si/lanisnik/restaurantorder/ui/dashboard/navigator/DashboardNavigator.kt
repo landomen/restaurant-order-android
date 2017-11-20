@@ -6,6 +6,7 @@ import si.lanisnik.restaurantorder.ui.about.AboutActivity
 import si.lanisnik.restaurantorder.ui.customer.profile.ProfileActivity
 import si.lanisnik.restaurantorder.ui.foodcategory.CategoriesListActivity
 import si.lanisnik.restaurantorder.ui.onboarding.login.LoginActivity
+import si.lanisnik.restaurantorder.ui.order.history.OrderHistoryListActivity
 import javax.inject.Inject
 
 /**
@@ -27,7 +28,7 @@ class DashboardNavigator @Inject constructor() {
     }
 
     fun navigateToHistory(context: Context) {
-        // TODO
+        context.startActivity<OrderHistoryListActivity>()
     }
 
     fun navigateToAbout(context: Context) {
