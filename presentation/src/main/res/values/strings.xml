@@ -109,4 +109,9 @@
     <string name="send_order_success_title">Naročilo uspešno oddano</string>
     <string name="send_order_success_message">Naročilo je bilo uspešno oddano in je v čakalni vrsti.\nStanje naročila lahko spremljate v zgodovini naročil.</string>
 
+    <!-- About -->
+    <string name="about_title">O restavraciji</string>
+    <string name="about_description">Restaurant Order je prototip aplikacije za naročanje hrane na dom. Aplikacija je namenjena manjšim restavracijam oz. pizzerijam, ki naročila še vedno sprejemajo preko telefona.</string>
+    <string name="about_author">Razvijalec: Domen Lanišnik</string>
+
 </resources>

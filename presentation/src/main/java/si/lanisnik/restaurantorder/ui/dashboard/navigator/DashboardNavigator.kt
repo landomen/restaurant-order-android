@@ -2,6 +2,7 @@ package si.lanisnik.restaurantorder.ui.dashboard.navigator
 
 import android.content.Context
 import org.jetbrains.anko.startActivity
+import si.lanisnik.restaurantorder.ui.about.AboutActivity
 import si.lanisnik.restaurantorder.ui.customer.profile.ProfileActivity
 import si.lanisnik.restaurantorder.ui.foodcategory.CategoriesListActivity
 import si.lanisnik.restaurantorder.ui.onboarding.login.LoginActivity
@@ -30,7 +31,7 @@ class DashboardNavigator @Inject constructor() {
     }
 
     fun navigateToAbout(context: Context) {
-        // TODO
+        context.startActivity<AboutActivity>()
     }
 
 }

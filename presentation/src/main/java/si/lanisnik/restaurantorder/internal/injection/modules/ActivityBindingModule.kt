@@ -2,6 +2,7 @@ package si.lanisnik.restaurantorder.internal.injection.modules
 
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
+import si.lanisnik.restaurantorder.internal.injection.modules.about.AboutActivityModule
 import si.lanisnik.restaurantorder.internal.injection.modules.address.AddressesActivityModule
 import si.lanisnik.restaurantorder.internal.injection.modules.customer.*
 import si.lanisnik.restaurantorder.internal.injection.modules.dashboard.DashboardActivityModule
@@ -11,6 +12,7 @@ import si.lanisnik.restaurantorder.internal.injection.modules.order.OrderPreview
 import si.lanisnik.restaurantorder.internal.injection.modules.order.OrderSuccessActivityModule
 import si.lanisnik.restaurantorder.internal.injection.modules.order.SendOrderActivityModule
 import si.lanisnik.restaurantorder.internal.injection.scopes.PerActivity
+import si.lanisnik.restaurantorder.ui.about.AboutActivity
 import si.lanisnik.restaurantorder.ui.address.AddressesActivity
 import si.lanisnik.restaurantorder.ui.customer.password.ChangePasswordActivity
 import si.lanisnik.restaurantorder.ui.customer.profile.ProfileActivity
@@ -35,6 +37,10 @@ abstract class ActivityBindingModule {
     @PerActivity
     @ContributesAndroidInjector(modules = arrayOf(DashboardActivityModule::class))
     abstract fun dashboardActivity(): DashboardActivity
+
+    @PerActivity
+    @ContributesAndroidInjector(modules = arrayOf(AboutActivityModule::class))
+    abstract fun aboutActivity(): AboutActivity
 
     // region Onboarding
 
