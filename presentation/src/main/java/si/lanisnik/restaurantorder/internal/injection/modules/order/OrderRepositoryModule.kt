@@ -11,6 +11,7 @@ import si.lanisnik.restaurantorder.domain.repository.OrderRepository
 import si.lanisnik.restaurantorder.internal.injection.scopes.PerApplication
 import si.lanisnik.restaurantorder.remote.RestaurantOrderServiceFactory
 import si.lanisnik.restaurantorder.remote.order.OrderRemoteImpl
+import si.lanisnik.restaurantorder.remote.order.mapper.OrderRemoteMapper
 import si.lanisnik.restaurantorder.remote.order.mapper.SelectedMenuItemRemoteMapper
 import si.lanisnik.restaurantorder.remote.order.service.OrdersService
 
@@ -33,8 +34,9 @@ class OrderRepositoryModule {
     @Provides
     @PerApplication
     fun provideOrderRemote(service: OrdersService,
-                           mapper: SelectedMenuItemRemoteMapper): OrderRemote =
-            OrderRemoteImpl(service, mapper)
+                           mapper: SelectedMenuItemRemoteMapper,
+                           orderMapper: OrderRemoteMapper): OrderRemote =
+            OrderRemoteImpl(service, mapper, orderMapper)
 
     @Provides
     @PerApplication

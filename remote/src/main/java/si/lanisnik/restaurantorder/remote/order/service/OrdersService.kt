@@ -7,7 +7,7 @@ import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.POST
 import si.lanisnik.restaurantorder.remote.NetConstants
-import si.lanisnik.restaurantorder.remote.order.model.Order
+import si.lanisnik.restaurantorder.remote.order.model.OrderDto
 import si.lanisnik.restaurantorder.remote.order.model.create.CreateOrderRequest
 
 /**
@@ -22,6 +22,6 @@ interface OrdersService {
 
     @GET("order/history")
     @Headers(NetConstants.HEADER_AUTHORIZATION_PLACEHOLDER)
-    fun getOrderHistory(): Single<List<Order>>
+    fun getOrderHistory(): Single<List<OrderDto>>
 
 }

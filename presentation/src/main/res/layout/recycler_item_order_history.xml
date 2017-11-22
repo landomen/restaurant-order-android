@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:padding="@dimen/space_normal">
+
+    <TextView
+        android:id="@+id/orderHistoryTimeText"
+        style="@style/DefaultTitleText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/space_normal"
+        app:layout_constraintBottom_toTopOf="@+id/orderHistoryStatusText"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/orderHistoryPriceText"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="10.8.2017 ob 14:20" />
+
+    <TextView
+        android:id="@+id/orderHistoryStatusText"
+        style="@style/DefaultText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/space_normal"
+        android:layout_marginTop="@dimen/space_small"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/orderHistoryPriceText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/orderHistoryTimeText"
+        tools:text="ZAKLJUČEN" />
+
+    <ImageView
+        android:id="@+id/orderHistoryDetailsIcon"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:foreground="?attr/selectableItemBackground"
+        android:scaleType="center"
+        android:src="@drawable/ic_arrow_right"
+        android:tint="@color/divider"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/orderHistoryPriceText"
+        style="@style/DefaultText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/space_normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/orderHistoryDetailsIcon"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="5.60€" />
+
+</android.support.constraint.ConstraintLayout>

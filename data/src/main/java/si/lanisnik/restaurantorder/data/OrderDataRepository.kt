@@ -2,9 +2,11 @@ package si.lanisnik.restaurantorder.data
 
 import io.reactivex.Completable
 import io.reactivex.Single
+import si.lanisnik.restaurantorder.data.mapper.OrderEntityMapper
 import si.lanisnik.restaurantorder.data.mapper.SelectedMenuItemEntityMapper
 import si.lanisnik.restaurantorder.data.repository.order.OrderCache
 import si.lanisnik.restaurantorder.data.repository.order.OrderRemote
+import si.lanisnik.restaurantorder.domain.model.order.Order
 import si.lanisnik.restaurantorder.domain.model.order.SelectedMenuItem
 import si.lanisnik.restaurantorder.domain.repository.OrderRepository
 import javax.inject.Inject
@@ -15,7 +17,8 @@ import javax.inject.Inject
  */
 class OrderDataRepository @Inject constructor(private val cache: OrderCache,
                                               private val remote: OrderRemote,
-                                              private val selectedMenuItemMapper: SelectedMenuItemEntityMapper) : OrderRepository {
+                                              private val selectedMenuItemMapper: SelectedMenuItemEntityMapper,
+                                              private val orderMapper: OrderEntityMapper) : OrderRepository {
 
     override fun clearShoppingCart(): Completable = cache.clearShoppingCart()
 
@@ -34,5 +37,14 @@ class OrderDataRepository @Inject constructor(private val cache: OrderCache,
 
     override fun createOrder(addressId: Int, items: List<SelectedMenuItem>, comment: String?): Completable {
         return remote.createOrder(addressId, items.map { selectedMenuItemMapper.mapToEntity(it) }, comment)
+    }
+
+    override fun getOrdersHistory(): Single<List<Order>> {
+        return remote.getOrdersHistory()
+                .map {
+                    it.map {
+                        orderMapper.mapFromEntity(it)
+                    }
+                }
     }
 }

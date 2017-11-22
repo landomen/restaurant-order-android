@@ -31,6 +31,7 @@ class OrderHistoryListActivity : BaseActivity() {
 
     override fun initViewModel() {
         viewModel = createViewModel(viewModelFactory)
+        viewModel.initialize()
     }
 
     override fun setupObservers() {

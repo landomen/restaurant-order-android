@@ -2,6 +2,7 @@ package si.lanisnik.restaurantorder.internal.injection.modules.order
 
 import dagger.Module
 import dagger.Provides
+import si.lanisnik.restaurantorder.domain.interactor.order.GetHistoryOrders
 import si.lanisnik.restaurantorder.internal.injection.scopes.PerActivity
 import si.lanisnik.restaurantorder.ui.order.history.OrderHistoryListViewModelFactory
 
@@ -14,6 +15,6 @@ class OrderHistoryListActivityModule {
 
     @PerActivity
     @Provides
-    fun provideOrderHistoryListViewModelFactory(): OrderHistoryListViewModelFactory =
-            OrderHistoryListViewModelFactory()
+    fun provideOrderHistoryListViewModelFactory(getHistoryOrders: GetHistoryOrders): OrderHistoryListViewModelFactory =
+            OrderHistoryListViewModelFactory(getHistoryOrders)
 }

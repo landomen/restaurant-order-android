@@ -2,6 +2,7 @@ package si.lanisnik.restaurantorder.domain.repository
 
 import io.reactivex.Completable
 import io.reactivex.Single
+import si.lanisnik.restaurantorder.domain.model.order.Order
 import si.lanisnik.restaurantorder.domain.model.order.SelectedMenuItem
 
 /**
@@ -16,5 +17,7 @@ interface OrderRepository {
     fun loadShoppingCart(): Single<List<SelectedMenuItem>>
 
     fun createOrder(addressId: Int, items: List<SelectedMenuItem>, comment: String?): Completable
+
+    fun getOrdersHistory(): Single<List<Order>>
 
 }
