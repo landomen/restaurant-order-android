@@ -18,7 +18,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar"
-        tools:listitem="@layout/recycler_item_food_category" />
+        tools:listitem="@layout/recycler_item_order_history" />
 
     <si.lanisnik.restaurantorder.ui.base.views.LoadingStateView
         android:id="@+id/ordersHistoryLoadingStateView"

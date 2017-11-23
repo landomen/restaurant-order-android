@@ -3,8 +3,10 @@ package si.lanisnik.restaurantorder.remote.order
 import io.reactivex.Completable
 import io.reactivex.Single
 import si.lanisnik.restaurantorder.data.entity.orders.OrderEntity
+import si.lanisnik.restaurantorder.data.entity.orders.OrderHistoryEntity
 import si.lanisnik.restaurantorder.data.entity.orders.SelectedMenuItemEntity
 import si.lanisnik.restaurantorder.data.repository.order.OrderRemote
+import si.lanisnik.restaurantorder.remote.order.mapper.OrderHistoryRemoteMapper
 import si.lanisnik.restaurantorder.remote.order.mapper.OrderRemoteMapper
 import si.lanisnik.restaurantorder.remote.order.mapper.SelectedMenuItemRemoteMapper
 import si.lanisnik.restaurantorder.remote.order.model.create.CreateOrderRequest
@@ -17,6 +19,7 @@ import javax.inject.Inject
  */
 class OrderRemoteImpl @Inject constructor(private val service: OrdersService,
                                           private val selectedMenuItemMapper: SelectedMenuItemRemoteMapper,
+                                          private val orderHistoryMapper: OrderHistoryRemoteMapper,
                                           private val orderMapper: OrderRemoteMapper) : OrderRemote {
 
     override fun createOrder(addressId: Int, items: List<SelectedMenuItemEntity>, comment: String?): Completable {
@@ -24,12 +27,17 @@ class OrderRemoteImpl @Inject constructor(private val service: OrdersService,
         return service.createOrder(createOrderRequest)
     }
 
-    override fun getOrdersHistory(): Single<List<OrderEntity>> {
+    override fun getOrdersHistory(): Single<List<OrderHistoryEntity>> {
         return service.getOrderHistory()
                 .map {
                     it.map {
-                        orderMapper.mapFromRemote(it)
+                        orderHistoryMapper.mapFromRemote(it)
                     }
                 }
+    }
+
+    override fun getOrderHistoryDetails(id: Int): Single<OrderEntity> {
+        return service.getOrderHistoryDetails(id)
+                .map { orderMapper.mapFromRemote(it) }
     }
 }

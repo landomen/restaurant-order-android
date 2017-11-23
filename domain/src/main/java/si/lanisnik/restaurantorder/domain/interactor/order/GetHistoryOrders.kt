@@ -4,7 +4,7 @@ import io.reactivex.Single
 import si.lanisnik.restaurantorder.domain.executor.JobExecutionThread
 import si.lanisnik.restaurantorder.domain.executor.PostExecutionThread
 import si.lanisnik.restaurantorder.domain.interactor.base.SingleUseCase
-import si.lanisnik.restaurantorder.domain.model.order.Order
+import si.lanisnik.restaurantorder.domain.model.order.OrderHistory
 import si.lanisnik.restaurantorder.domain.repository.OrderRepository
 import javax.inject.Inject
 
@@ -15,9 +15,9 @@ import javax.inject.Inject
 class GetHistoryOrders @Inject constructor(private val orderRepository: OrderRepository,
                                            jobExecutionThread: JobExecutionThread,
                                            postExecutionThread: PostExecutionThread) :
-        SingleUseCase<List<Order>, Any?>(jobExecutionThread, postExecutionThread) {
+        SingleUseCase<List<OrderHistory>, Any?>(jobExecutionThread, postExecutionThread) {
 
-    override fun buildUseCaseObservable(params: Any?): Single<List<Order>> {
+    override fun buildUseCaseObservable(params: Any?): Single<List<OrderHistory>> {
         return orderRepository.getOrdersHistory()
     }
 }

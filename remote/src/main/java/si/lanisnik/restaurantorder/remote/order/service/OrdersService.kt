@@ -2,12 +2,10 @@ package si.lanisnik.restaurantorder.remote.order.service
 
 import io.reactivex.Completable
 import io.reactivex.Single
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.Headers
-import retrofit2.http.POST
+import retrofit2.http.*
 import si.lanisnik.restaurantorder.remote.NetConstants
 import si.lanisnik.restaurantorder.remote.order.model.OrderDto
+import si.lanisnik.restaurantorder.remote.order.model.OrderHistoryDto
 import si.lanisnik.restaurantorder.remote.order.model.create.CreateOrderRequest
 
 /**
@@ -22,6 +20,10 @@ interface OrdersService {
 
     @GET("order/history")
     @Headers(NetConstants.HEADER_AUTHORIZATION_PLACEHOLDER)
-    fun getOrderHistory(): Single<List<OrderDto>>
+    fun getOrderHistory(): Single<List<OrderHistoryDto>>
+
+    @GET("order/history/{id}")
+    @Headers(NetConstants.HEADER_AUTHORIZATION_PLACEHOLDER)
+    fun getOrderHistoryDetails(@Path("id") id: Int): Single<OrderDto>
 
 }

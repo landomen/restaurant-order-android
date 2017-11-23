@@ -116,5 +116,14 @@
 
     <!-- History -->
     <string name="history_title">Zgodovina naročil</string>
+    <string name="history_items_count">Število jedi: %d</string>
+
+    <string name="order_status_created">Ustvarjen</string>
+    <string name="order_status_confirmed">Potrjen</string>
+    <string name="order_status_rejected">Zavrnjen</string>
+    <string name="order_status_in_progress">V izvajanju</string>
+    <string name="order_status_ready">Pripravljen za dostavo</string>
+    <string name="order_status_finished">Zaključen</string>
+    <string name="order_status_cancelled">Preklican</string>
 
 </resources>
