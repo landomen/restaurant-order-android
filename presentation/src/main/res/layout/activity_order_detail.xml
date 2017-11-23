@@ -1,12 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clipChildren="false"
     android:clipToPadding="false">
 
     <include layout="@layout/toolbar" />
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/space_large">
+
+            <!-- Created -->
+
+            <TextView
+                style="@style/LabelText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/order_detail_created_title" />
+
+            <TextView
+                android:id="@+id/orderDetailCreatedText"
+                style="@style/DefaultLightText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="10.10.2017 ob 10:23" />
+
+            <!-- Address -->
+
+            <TextView
+                style="@style/LabelText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_large"
+                android:text="@string/order_detail_address_title" />
+
+            <TextView
+                android:id="@+id/orderDetailAddressText"
+                style="@style/DefaultLightText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Glavna ulica 10a, Ljubljana" />
+
+            <!-- Total -->
+
+            <TextView
+                style="@style/LabelText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_large"
+                android:text="@string/order_detail_total_title" />
+
+            <TextView
+                android:id="@+id/orderDetailTotalText"
+                style="@style/DefaultLightText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="10€" />
+
+            <!-- Comment -->
+
+            <TextView
+                style="@style/LabelText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_large"
+                android:text="@string/order_detail_comment_title" />
+
+            <TextView
+                android:id="@+id/orderDetailCommentText"
+                style="@style/DefaultLightText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="This is a comment" />
+
+            <!-- Status -->
+
+            <TextView
+                style="@style/LabelText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_large"
+                android:text="@string/order_detail_status_history_title" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/orderDetailStatusRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:overScrollMode="never"
+                android:scrollbars="none" />
+
+            <!-- Status -->
+
+            <TextView
+                style="@style/LabelText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_large"
+                android:text="@string/order_detail_items_title" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/orderDetailItemsRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:overScrollMode="never"
+                android:scrollbars="none" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
     <si.lanisnik.restaurantorder.ui.base.views.LoadingStateView
         android:id="@+id/orderDetailLoadingStateView"

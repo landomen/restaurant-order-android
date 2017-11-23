@@ -127,5 +127,11 @@
     <string name="order_status_cancelled">Preklican</string>
 
     <string name="order_detail_title">Podrobnosti naročila</string>
+    <string name="order_detail_created_title">Ustvarjeno</string>
+    <string name="order_detail_status_history_title">Zgodovina statusov</string>
+    <string name="order_detail_total_title">Skupaj za plačilo</string>
+    <string name="order_detail_address_title">Naslov za dostavo</string>
+    <string name="order_detail_items_title">Izbrane jedi</string>
+    <string name="order_detail_comment_title">Komentar</string>
 
 </resources>
