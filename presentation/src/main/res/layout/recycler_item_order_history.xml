@@ -26,12 +26,13 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/space_normal"
         android:layout_marginTop="@dimen/space_small"
+        android:textAllCaps="true"
         android:textColor="@color/primary"
         app:layout_constraintBottom_toTopOf="@+id/orderHistoryCountText"
         app:layout_constraintEnd_toStartOf="@+id/orderHistoryPriceText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/orderHistoryTimeText"
-        tools:text="ZAKLJUČEN" />
+        tools:text="Ustvarjen" />
 
     <TextView
         android:id="@+id/orderHistoryCountText"

@@ -11,6 +11,7 @@ import si.lanisnik.restaurantorder.ui.base.extensions.*
 import si.lanisnik.restaurantorder.ui.base.views.LoadingStateView
 import si.lanisnik.restaurantorder.ui.order.history.adapter.OrderHistoryRecyclerAdapter
 import si.lanisnik.restaurantorder.ui.order.model.OrderHistoryModel
+import si.lanisnik.restaurantorder.ui.order.navigator.OrderNavigator
 import javax.inject.Inject
 
 /**
@@ -21,6 +22,7 @@ class OrderHistoryListActivity : BaseActivity() {
 
     @Inject lateinit var viewModelFactory: OrderHistoryListViewModelFactory
     @Inject lateinit var adapter: OrderHistoryRecyclerAdapter
+    @Inject lateinit var navigator: OrderNavigator
     private lateinit var viewModel: OrderHistoryListViewModel
 
     override fun getContentView(): Int = R.layout.activity_order_history_list
@@ -49,7 +51,7 @@ class OrderHistoryListActivity : BaseActivity() {
 
     private fun setupRecyclerView() {
         adapter.listener = {
-            viewModel.onOrderSelected(it)
+            navigator.navigateToOrderDetails(this, it)
         }
         ordersHistoryRecyclerView.adapter = adapter
         ordersHistoryRecyclerView.enableItemDividers()

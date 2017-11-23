@@ -126,4 +126,6 @@
     <string name="order_status_finished">Zaključen</string>
     <string name="order_status_cancelled">Preklican</string>
 
+    <string name="order_detail_title">Podrobnosti naročila</string>
+
 </resources>

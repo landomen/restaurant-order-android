@@ -5,6 +5,7 @@ import org.jetbrains.anko.clearTask
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.newTask
 import org.jetbrains.anko.startActivity
+import si.lanisnik.restaurantorder.ui.order.detail.OrderDetailActivity
 import si.lanisnik.restaurantorder.ui.order.send.SendOrderActivity
 import si.lanisnik.restaurantorder.ui.order.shoppingcart.OrderPreviewActivity
 import si.lanisnik.restaurantorder.ui.order.success.OrderSuccessActivity
@@ -26,5 +27,9 @@ class OrderNavigator @Inject constructor() {
 
     fun navigateToOrderSuccess(context: Context) {
         context.startActivity(context.intentFor<OrderSuccessActivity>().newTask().clearTask())
+    }
+
+    fun navigateToOrderDetails(context: Context, orderId: Int) {
+        context.startActivity<OrderDetailActivity>(OrderDetailActivity.EXTRA_ORDER_ID to orderId)
     }
 }
