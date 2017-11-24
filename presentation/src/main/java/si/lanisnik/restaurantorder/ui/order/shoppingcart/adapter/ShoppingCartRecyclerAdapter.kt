@@ -17,12 +17,17 @@ class ShoppingCartRecyclerAdapter @Inject constructor() : RecyclerView.Adapter<S
 
     private var items = listOf<ShoppingCartItemModel>()
     var deleteListener: ((ShoppingCartItemModel) -> Unit)? = null
+    var editActionEnabled = true
 
     override fun onBindViewHolder(holder: ShoppingCartItemViewHolder, position: Int) {
         val item = items[position]
         holder.bindModel(item)
-        holder.onDeleteClick {
-            deleteListener?.invoke(item)
+        if (!editActionEnabled) {
+            holder.disableEditAction()
+        } else {
+            holder.onDeleteClick {
+                deleteListener?.invoke(item)
+            }
         }
     }
 

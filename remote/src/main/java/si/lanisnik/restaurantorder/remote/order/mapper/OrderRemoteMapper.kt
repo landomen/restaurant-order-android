@@ -18,6 +18,7 @@ class OrderRemoteMapper @Inject constructor(private val statusMapper: OrderStatu
     override fun mapFromRemote(remoteModel: OrderDto): OrderEntity {
         return OrderEntity(
                 remoteModel.id,
+                remoteModel.createdAt,
                 remoteModel.total,
                 remoteModel.customerComment,
                 addressMapper.mapFromRemote(remoteModel.address),

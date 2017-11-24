@@ -29,8 +29,8 @@ class OrderHistoryListViewModel(private val getHistoryOrders: GetHistoryOrders,
         fetchOrders()
     }
 
-    fun onOrderSelected(orderId: Int) {
-
+    fun retry() {
+        fetchOrders()
     }
 
     private fun fetchOrders() {

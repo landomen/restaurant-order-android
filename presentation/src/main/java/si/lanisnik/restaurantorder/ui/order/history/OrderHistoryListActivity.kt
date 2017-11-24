@@ -18,7 +18,7 @@ import javax.inject.Inject
  * Created by Domen Lanišnik on 20/11/2017.
  * domen.lanisnik@gmail.com
  */
-class OrderHistoryListActivity : BaseActivity() {
+class OrderHistoryListActivity : BaseActivity(), LoadingStateView.RetryListener {
 
     @Inject lateinit var viewModelFactory: OrderHistoryListViewModelFactory
     @Inject lateinit var adapter: OrderHistoryRecyclerAdapter
@@ -36,6 +36,7 @@ class OrderHistoryListActivity : BaseActivity() {
 
     override fun initUi() {
         setupRecyclerView()
+        ordersHistoryLoadingStateView.retryListener = this
     }
 
     override fun initViewModel() {
@@ -47,6 +48,10 @@ class OrderHistoryListActivity : BaseActivity() {
         viewModel.getOrdersObservable().observe(this, Observer {
             handleDataState(it!!)
         })
+    }
+
+    override fun onRetryClicked() {
+        viewModel.retry()
     }
 
     private fun setupRecyclerView() {

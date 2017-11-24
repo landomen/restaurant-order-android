@@ -14,6 +14,7 @@ class OrderModelMapper @Inject constructor(private val addressMapper: AddressMod
 
     override fun mapToModel(model: Order): OrderModel {
         return OrderModel(model.id,
+                model.createdAt,
                 model.total,
                 model.customerComment,
                 addressMapper.mapToModel(model.address),

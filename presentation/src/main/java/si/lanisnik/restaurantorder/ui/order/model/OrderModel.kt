@@ -8,9 +8,10 @@ import si.lanisnik.restaurantorder.ui.order.shoppingcart.model.ShoppingCartItemM
  * domen.lanisnik@gmail.com
  */
 data class OrderModel(val id: Int,
+                      val createdAt: Long,
                       val total: Double,
                       val customerComment: String? = null,
                       val address: AddressModel,
                       val menuItems: List<ShoppingCartItemModel> = listOf(),
-                      val orderChanges: List<OrderStatusModel> = listOf()
-)
+                      val orderChanges: List<OrderStatusModel> = listOf()){
+}

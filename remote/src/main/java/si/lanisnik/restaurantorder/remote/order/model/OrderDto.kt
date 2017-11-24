@@ -10,6 +10,7 @@ import si.lanisnik.restaurantorder.remote.order.model.status.OrderStatusDto
  */
 data class OrderDto(
         val id: Int,
+        val createdAt: Long,
         val total: Double,
         val customerComment: String? = null,
         val address: AddressDto,

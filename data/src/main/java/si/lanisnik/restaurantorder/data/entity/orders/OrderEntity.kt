@@ -8,6 +8,7 @@ import si.lanisnik.restaurantorder.data.entity.address.AddressEntity
  */
 data class OrderEntity(
         val id: Int,
+        val createdAt: Long,
         val total: Double,
         val customerComment: String? = null,
         val address: AddressEntity,

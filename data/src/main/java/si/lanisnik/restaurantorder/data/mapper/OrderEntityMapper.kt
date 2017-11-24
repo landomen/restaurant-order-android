@@ -14,6 +14,7 @@ class OrderEntityMapper @Inject constructor(private val addressMapper: AddressEn
     override fun mapFromEntity(model: OrderEntity): Order {
         return Order(
                 model.id,
+                model.createdAt,
                 model.total,
                 model.customerComment,
                 addressMapper.mapFromEntity(model.address),

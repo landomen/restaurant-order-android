@@ -10,6 +10,7 @@
     <include layout="@layout/toolbar" />
 
     <ScrollView
+        android:id="@+id/orderDetailScrollView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -99,10 +100,11 @@
                 android:id="@+id/orderDetailStatusRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:layoutManager="LinearLayoutManager"
                 android:overScrollMode="never"
                 android:scrollbars="none" />
 
-            <!-- Status -->
+            <!-- Menu items -->
 
             <TextView
                 style="@style/LabelText"
@@ -115,6 +117,7 @@
                 android:id="@+id/orderDetailItemsRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:layoutManager="LinearLayoutManager"
                 android:overScrollMode="never"
                 android:scrollbars="none" />
 

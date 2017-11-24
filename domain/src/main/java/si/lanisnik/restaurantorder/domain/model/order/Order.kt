@@ -8,6 +8,7 @@ import si.lanisnik.restaurantorder.domain.model.address.DeliveryAddress
  */
 data class Order(
         val id: Int,
+        val createdAt: Long,
         val total: Double,
         val customerComment: String? = null,
         val address: DeliveryAddress,

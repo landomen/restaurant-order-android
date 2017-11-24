@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/space_normal">
+
+    <TextView
+        android:id="@+id/orderStatusText"
+        style="@style/DefaultActionText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:textAllCaps="true"
+        tools:text="Ustvarjen" />
+
+    <TextView
+        android:id="@+id/orderStatusTimeText"
+        style="@style/DefaultText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        tools:text="10.10.2017 ob 10:10" />
+
+
+    <TextView
+        android:id="@+id/orderStatusReasonText"
+        style="@style/DefaultLightText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/orderStatusText"
+        android:layout_marginTop="@dimen/space_small"
+        android:textStyle="italic"
+        tools:text="Novo naročilo" />
+
+
+</RelativeLayout>
