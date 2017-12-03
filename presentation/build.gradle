@@ -31,12 +31,8 @@ android {
     flavorDimensions "default"
     productFlavors {
         develop {
-            buildConfigField "String", "SERVER_BASE_URL", '"http://1c8f2769.ngrok.io/"'
+            buildConfigField "String", "SERVER_BASE_URL", '"https://restaurant-order.herokuapp.com/"'
             versionNameSuffix "-DEV"
-        }
-
-        staging {
-            buildConfigField "String", "SERVER_BASE_URL", '"http://localhost:8080/"'
         }
     }
 
