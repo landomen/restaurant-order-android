@@ -1,4 +1,4 @@
-# restaurant-order-android
+# Restaurant Order
 
 Android app for ordering food online. This is a part of my Bachelor thesis in Computer Science.
 
